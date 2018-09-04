@@ -38,12 +38,12 @@ void _open(mixed * tls) {
          "Please email " + ADMIN_EMAIL + " about access from your site.\n");
       destruct_object(this_object());
    }
-   send_message("Welcome to " + MUD_NAME + ".\n");
+   send_message("Добро пожаловать в MUD " + MUD_NAME + ".\n");
    send_message("Running " + LIB_NAME + " " + LIB_VERSION + " on " +
       status()[ST_VERSION] + ".\n");
    send_message("\n");
    send_message(TELNET_D->query_banner());
-   send_message("\nEnter your name (or 'who', 'guest', 'quit'): ");
+   send_message("\nВведите ваше имя на русском (or 'who', 'guest', 'quit'): ");
    send_message(1);
 
    timeout_handle = call_out("login_timeout", 600);
@@ -51,7 +51,7 @@ void _open(mixed * tls) {
    player->set_user(this_object());
    player->initialize_cmd_path();
    player->initialize_alias();
-   player->set_long("A boring player without a description.");
+   player->set_long("Скучающий игрок без описания.");
    LOG_D->write_log("logins", ctime(time()) + "\t" + 
       query_ip_number(this_object()) + "\t" + "opening connection\n");
    player->input_to_object(this_object(), "input_name");
@@ -84,7 +84,7 @@ void close(int ld) {
 }
 
 void login_timeout(void) {
-   send_message("\nTimeout.\n");
+   send_message("\nВремя вышло.\n");
    destruct_object(player);
    destruct_object(this_object());
 }
@@ -272,10 +272,10 @@ static void login_user(void) {
    usr = USER_D->find_user(user_name);
 
    if (usr) {
-      send_message("Already logged in.\n");
+      send_message("Уже в игре.\n");
       flag = 1;
       if (usr->query_player()->query_linkdead() == 1) {
-         send_message("Reconnecting to linkdead player.\n");
+         send_message("Восстановление свяжи с персонажем.\n");
          tmp_player = usr->query_player();
          usr->set_player(player);
          player = tmp_player;
@@ -292,7 +292,7 @@ static void login_user(void) {
          player->write_prompt();
          remove_call_out(timeout_handle);
       } else {
-         send_message("Reconnect to the other copy? (y/n) : ");
+         send_message("Подключиться к другой копии? (да/нет) : ");
          player->input_to_object(this_object(), "handle_reconnect");
       }
    } else {
@@ -309,7 +309,7 @@ static void login_user(void) {
       if (start) {
          done = player->move(start);
          if (!done) {
-            send_message("Invalid start room.\n");
+            send_message("Неверная стартовая комната.\n");
          }
       }
       if (!done) {
@@ -319,7 +319,7 @@ static void login_user(void) {
          player->move(VOID);
       }
 
-      player->simple_action("$N $vlog in.\n");
+      player->simple_action("Вы вошли в игру.\n");
       player->do_look(player->query_environment());
       player->write_prompt();
       remove_call_out(timeout_handle);
@@ -333,9 +333,9 @@ static void login_user(void) {
 
 void handle_reconnect(string str) {
    if (!str || str == "") {
-      send_message("Please enter y or n : ");
+      send_message("Пожалуйста введите да или нет: ");
       player->input_to_object(this_object(), "handle_reconnect");
-   } else if (lowercase(str) == "y") {
+   } else if (lowercase(str) == "да") {
       object usr, tmp_player;
       int flag, i;
 
@@ -354,19 +354,19 @@ void handle_reconnect(string str) {
            "\t" + this_object()->query_name() + " reconnects\n");
 
          player->set_linkdead(0);
-         send_message("Other copy kicked.\n");
+         send_message("Другая копия отключена.\n");
          USER_D->user_online(user_name, this_object());
          logged_in = 1;
          player->write_prompt();
          remove_call_out(timeout_handle);
       }
-   } else if (str == "n") {
-      send_message("So long then.\n");
+   } else if (str == "нет") {
+      send_message("На нет и суда нет.\n");
       remove_call_out(timeout_handle);
       player->destruct();
       destruct_object(this_object());
    } else {
-      send_message("Please enter y or n : ");
+      send_message("Пожалуйста введите да или нет: ");
       player->input_to_object(this_object(), "handle_reconnect");
    }
 }
@@ -454,7 +454,7 @@ void input_name(string str) {
    }
 
    if (lowercase(str) == "quit") {
-      write("Goodbye!!!\n");
+      write("Пока!!!\n");
       destruct_object(player);
       destruct_object(this_object());
       return;
@@ -472,19 +472,19 @@ void input_name(string str) {
       user_name = usr;
 
       /* Skip ahead for the guest user, no need for password and other stuff */
-      send_message("Please enter your gender (male/female/neuter) : ");
+      send_message("Каким полом желаете играть? (мужской/женский/бесполый) : ");
       player->input_to_object(this_object(), "input_get_gender");
       return;
    } 
 
    if (!str || str == "") {
-      send_message("\r\nPlease enter your name : ");
+      send_message("\r\nПожалуйста введите ваше имя : ");
       player->input_to_object(this_object(), "input_name");
    } else {
       str = lowercase(str);
 
       if (strlen(str) > 16) {
-         send_message("Name too long.\n");
+         send_message("Слишком длинное имя.\n");
          input_name("");
          return;
       }
@@ -502,8 +502,8 @@ void input_name(string str) {
          LOG_D->write_log("logins", ctime(time()) + "\t" +
             query_ip_number(this_object()) +
             "\t" + query_name() + " <- banished name\n");
-         send_message("\nThe name '" + user_name +
-            "' is reserved and not available for use.\n");
+         send_message("\nИмя '" + user_name +
+            "' занято и недоступно для использования.\n");
          destruct_object(player);
          destruct_object(this_object());
          return;
@@ -512,7 +512,7 @@ void input_name(string str) {
          /* Player exists */
          player->set_name(user_name);
          player->restore_me();
-         send_message("Enter your password: ");
+         send_message("Введите пароль: ");
          send_message(0);
          player->input_to_object(this_object(), "input_old_passwd");
       } else {
@@ -530,8 +530,8 @@ void input_name(string str) {
             return;
          }
 
-         send_message("Ah. New player.\n");
-         send_message("Is '" + user_name + "' correct (y/n)? : ");
+         send_message("Ого. Новый игрок.\n");
+         send_message("Имя '" + user_name + "' правильное (да/нет)? : ");
          player->input_to_object(this_object(), "input_correct_name");
       }
    }
@@ -539,17 +539,17 @@ void input_name(string str) {
 
 void input_correct_name(string str) {
    if (!str || str == "") {
-      send_message("Please enter 'y' or 'n' : ");
-      send_message("Is '" + user_name + "' correct (y/n)? : ");
+      send_message("Пожалуйста введите 'да' или 'нет' : ");
+      send_message("Имя '" + user_name + "' правильное (да/нет)? : ");
       player->input_to_object(this_object(), "input_correct_name");
    }
 
-   if (lowercase(str) == "y" || lowercase(str) == "yes") {
-      send_message("Enter your password: ");
+   if (lowercase(str) == "д" || lowercase(str) == "да") {
+      send_message("Введите ваш пароль: ");
       send_message(0);
       player->input_to_object(this_object(), "input_new_passwd");
    } else {
-      send_message("Enter your name : ");
+      send_message("Введите ваше имя : ");
       send_message(1);
       player->input_to_object(this_object(), "input_name");
    }
@@ -557,14 +557,14 @@ void input_correct_name(string str) {
 
 void input_old_passwd(string str) {
    if (!str || str == "") {
-      send_message("\nPlease enter your password: ");
+      send_message("\nПожалуйста введите ваш пароль: ");
       send_message(0);
       player->input_to_object(this_object(), "input_old_passwd");
    }
    if (USER_D->login(user_name, str)) {
       login_user();
    } else {
-      send_message("\nPasswords don't match!\n");
+      send_message("\nПароль не совпадает!\n");
       destruct_object(player);
       destruct_object(this_object());
    }
@@ -573,39 +573,39 @@ void input_old_passwd(string str) {
 void change_passwd(string str) {
    string passwd2;
 
-   send_message("\nOld password: ");
+   send_message("\nСтарый пароль: ");
    send_message(0);
    player->input_to_object(this_object(), "change_passwd2");
 }
 
 void change_passwd2(string str) {
    if (!str || str == "") { 
-      send_message("\nNo password, aborting.\n");
+      send_message("\nНет пароля, конец игре.\n");
       send_message(1);
       return;
    }
 
    if (!USER_D->login(user_name, str)) {
-      send_message("\nInvalid password, aborting.\n");
+      send_message("\nНеправильный пароль, конец игре.\n");
       send_message(1);
       return;
    }
 
    newpass = str;
-   send_message("\nNew, password: ");
+   send_message("\nНовый пароль: ");
    send_message(0);
    player->input_to_object(this_object(), "change_passwd3");
 }
 
 void change_passwd3(string str) {
    if (!str || str == "") { 
-      send_message("\nNo password, aborting.\n");
+      send_message("\nНет пароля, конец игре.\n");
       send_message(1);
       return;
    }
 
    newpass = str;
-   send_message("\nAgain, new password: ");
+   send_message("\nСнова, новый пароль: ");
    send_message(0);
    player->input_to_object(this_object(), "change_passwd4");
 }
@@ -614,32 +614,32 @@ void change_passwd4(string str) {
    send_message(1);
 
    if (!str || str == "") { 
-      send_message("\nNo password, aborting.\n");
+      send_message("\nНет пароля, конец игре.\n");
       return;
    }
 
    if (newpass != str) {
-      send_message("\nPasswords do not match.\n");
+      send_message("\nПароль не совпадает.\n");
       return;
    } else {
       LOG_D->write_log("change_passwd", ctime(time()) + "\t" +
          query_ip_number(this_object()) + "\t" + query_name() + "\n");
 
       USER_D->set_password(this_player()->query_name(), str);
-      send_message("\nPassword successfully changed.\n");
+      send_message("\nПароль успешно изменен.\n");
    }
 }
 
 void input_new_passwd(string str) {
    if (!str || str == "") {
-      send_message("\nPlease enter your password: ");
+      send_message("\nПожалуйста введите ваш пароль: ");
       send_message(0);
       player->input_to_object(this_object(), "input_new_passwd");
    } else {
       LOG_D->write_log("new_players", ctime(time()) + "\t" +
          query_ip_number(this_object()) + "\t" + query_name() + "\n");
       USER_D->new_user(user_name, str);
-      send_message("\nEnter password again: ");
+      send_message("\nВведите пароль снова: ");
       send_message(0);
       player->input_to_object(this_object(), "input_check_passwd");
    }
@@ -647,14 +647,14 @@ void input_new_passwd(string str) {
 
 void input_check_passwd(string str) {
    if (!str || str == "") {
-      send_message("\nPlease enter the password again: ");
+      send_message("\nПожалуйста введите пароль снова: ");
       send_message(0);
       player->input_to_object(this_object(), "input_check_passwd");
    } else {
       if (USER_D->login(user_name, str)) {
-         send_message("\nPlease enter your real name : ");
+         send_message("\nВведите ваше имя в родительном падеже (кого? чего?) ");
          send_message(1);
-         player->input_to_object(this_object(), "input_get_real_name");
+         player->input_to_object(this_object(), "input_get_r_name");
       } else {
          send_message("\nThe passwords don't match.\n");
          send_message("Goodbye!!!\n");
@@ -665,67 +665,103 @@ void input_check_passwd(string str) {
    }
 }
 
+/* Падежи */
+void input_get_r_name(string str) {
+   player->set_r_name(str);
+
+   send_message("Введите ваше имя в дательном падеже (кому? чему?) : ");
+   player->input_to_object(this_object(), "input_get_d_name");
+}
+
+void input_get_d_name(string str) {
+   player->set_d_name(str);
+
+   send_message("Введите ваше имя в винительном падеже (кого? что?) : ");
+   player->input_to_object(this_object(), "input_get_v_name");
+}
+
+void input_get_v_name(string str) {
+   player->set_v_name(str);
+
+   send_message("Введите ваше имя в творительном падеже (кем? чем?) : ");
+   player->input_to_object(this_object(), "input_get_t_name");
+}
+
+void input_get_t_name(string str) {
+   player->set_t_name(str);
+
+   send_message("Введите ваше имя в предложном падеже (о ком? о чем?) : ");
+   player->input_to_object(this_object(), "input_get_p_name");
+}
+
+void input_get_p_name(string str) {
+   player->set_p_name(str);
+
+   send_message("Введите ваше реальное имя: ");
+   player->input_to_object(this_object(), "input_get_real_name");
+}
+
 void input_get_real_name(string str) {
    player->set_realname(str);
 
-   send_message("Please enter your email address : ");
+   send_message("Пожалуйста введите адрес вашей электронной почты : ");
    player->input_to_object(this_object(), "input_get_email");
 }
 
 void input_get_email(string str) {
    player->set_email(str);
-   send_message("Please enter your website : ");
+   send_message("Пожалуйста введите ваш сайт (интересно же) : ");
    player->input_to_object(this_object(), "input_get_website");
 }
 
 void input_get_website(string str) {
    player->set_website(str);
 
-   send_message("\nEnter your gender (male/female/neuter) : ");
+   send_message("\nКаким полом желаете играть? (мужской/женский/бесполый) : ");
    player->input_to_object(this_object(), "input_get_gender");
 }
 
 void input_get_gender(string str) {
    if (!str || str == "") {
-      send_message("Please enter your gender (male/female/neuter) : ");
+      send_message("Каким полом желаете играть? (мужской/женский/бесполый) : ");
       player->input_to_object(this_object(), "input_get_gender");
       return;
    }
 
    str = lowercase(str);
-   if (str == "m" || str == "male") {
+   if (str == "м" || str == "мужской") {
       player->set_gender("male");
-   } else if (str == "f" || str == "female") {
+   } else if (str == "ж" || str == "женский") {
       player->set_gender("female");
-   } else if (str == "n" || str == "neuter") {
+   } else if (str == "б" || str == "бесполый") {
       player->set_gender("neuter");
-   } else if (str == "quit") {
-      write("Goodbye!!!\n");
+   } else if (str == "quit" || str == "выход") {
+      write("Пока!!!\n");
       destruct_object(player);
       destruct_object(this_object());
       return;
    } else {
-      send_message("Please use 'male', 'female' or 'neuter'.\n");
-      send_message("Please enter your gender (male/female/neuter) : ");
+      send_message("Пожалуйста используйте 'мужской', 'женский' или 'бесполый'.\n");
+      send_message("Каким полом желаете играть? (мужской/женский/бесполый) : ");
       player->input_to_object(this_object(), "input_get_gender");
       return;
    }
    write_races();
-   send_message("Please choose one of the races, or type 'info <race>' : ");
+   send_message("Пожалуйста выберите одну из рас или наберите 'info <race>' : ");
    player->input_to_object(this_object(), "input_get_race");
 }
 
 void input_get_race(string str) {
    if (!str || str == "") {
       write_races();
-      send_message("Please choose one of the races, or type 'info <race>' : ");
+      send_message("Пожалуйста выберите одну из рас или наберите 'info <race>' : ");
       player->input_to_object(this_object(), "input_get_race");
       return;
    }
    str = lowercase(str);
 
-   if (str == "quit") {
-      write("Goodbye!!!\n");
+   if (str == "quit" || str == "выход") {
+      write("Пока!!!\n");
       destruct_object(player);
       destruct_object(this_object());
       return;
@@ -737,14 +773,14 @@ void input_get_race(string str) {
       r = str[5..( strlen(str) - 1)];
       if (RACE_D->is_race( r ) ) {
          send_message( RACE_D->query_race_long(r) + "\n\n" +
-            "Please choose one of the races, or type 'info <race>' : ");
+            "Пожалуйста выберите одну из рас или наберите 'info <race>' : ");
          player->input_to_object(this_object(), "input_get_race");
          return;
       }
    }
          
    if (!RACE_D->is_race(str)) {
-      send_message("Please choose one of the races, or type 'info <race>' : ");
+      send_message("Пожалуйста выберите одну из рас или наберите 'info <race>' : ");
       player->input_to_object(this_object(), "input_get_race");
       return;
    }

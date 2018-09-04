@@ -58,6 +58,11 @@ int verbose_errors;     /* 1 for longer error codes */
 int display_caught;     /* 1 to show caught runtime errors */
 static mixed menu_data;		/* temp storage for menu system */
 int muzzle;			/* if 0 we are allowed to shout. */
+string r_name;		/* Родительный, кого? чего? */
+string d_name;		/* Дательный, кому? чему? */
+string v_name;		/* Винительный, кого? что? */
+string t_name;		/* Творительный, кем? чем? */
+string p_name;		/* Предложный, о ком? о чем? */
 
 string query_name(void);
 
@@ -1364,3 +1369,63 @@ void update_internal_weight(void) {
    set_internal_weight(w);
 }
 
+/* Падежи */
+void set_r_name(string str) {
+   r_name = str;
+}
+
+string query_r_name(void) {
+   if (!r_name) {
+      return "";
+   }
+
+   return r_name;
+}
+
+void set_d_name(string str) {
+   d_name = str;
+}
+
+string query_d_name(void) {
+   if (!d_name) {
+      return "";
+   }
+
+   return d_name;
+}
+
+void set_v_name(string str) {
+   v_name = str;
+}
+
+string query_v_name(void) {
+   if (!v_name) {
+      return "";
+   }
+
+   return v_name;
+}
+
+void set_t_name(string str) {
+   t_name = str;
+}
+
+string query_t_name(void) {
+   if (!t_name) {
+      return "";
+   }
+
+   return t_name;
+}
+
+void set_p_name(string str) {
+   p_name = str;
+}
+
+string query_p_name(void) {
+   if (!p_name) {
+      return "";
+   }
+
+   return p_name;
+}
