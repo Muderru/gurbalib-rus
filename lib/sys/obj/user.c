@@ -152,7 +152,7 @@ void wrap_message(string str, varargs int chat_flag) {
       for (j = 0; j < sizeof(lines); j++) {
          str = lines[j];
          msg = str;
-         if (strlen(ansid->strip_colors(str)) > width) {
+         if (strlen(ansid->strip_colors(str)) > (2*width)) { /* prool fool, double width */
             int adding;
             string word_todo;
 
@@ -170,7 +170,7 @@ void wrap_message(string str, varargs int chat_flag) {
                   word_todo = words[i];
                }
 
-               if (sz + strlen(word_todo) + adding > width) {
+               if (sz + strlen(word_todo) + adding > (2*width)) { /* prool fool, double width */
                   msg += "\n";
 
                   if (chat_flag) {
