@@ -365,7 +365,7 @@ object *query_wizards(void) {
 }
 
 int valid_player_name(string str) {
-   return !catch(parse_string("valid=/[a-zA-Z][a-zA-Z0-9]+/ name: valid", str));
+   return !catch(parse_string("valid=/[а-яА-Я][а-яА-Я0-9]+/ name: valid", str));
 }
 
 int player_exists(string str) {

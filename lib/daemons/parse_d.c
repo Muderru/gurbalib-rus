@@ -332,7 +332,7 @@ void rescan_verbs(void) {
       verbs[names[i]] = verb;
    }
 
-   verb_rules = "whitespace = / / word = /[a-zA-Z]+/ number = /[0-9]+/ ";
+   verb_rules = "whitespace = / / word = /[а-яА-Я]+/ number = /[0-9]+/ ";
 
    for (i = 0; i < sizeof(names); i++) {
       write("Scanning " + names[i] + "(" + verbs[names[i]] + ")");

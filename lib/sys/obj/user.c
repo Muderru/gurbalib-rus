@@ -488,12 +488,13 @@ void input_name(string str) {
          input_name("");
          return;
       }
+     /* Разрешаем кириллические имена 
       if (!USER_D->valid_player_name(str)) {
          send_message("A name must start with a letter, and can contain " +
             "letters and numbers.\n");
          input_name("");
          return;
-      }
+      } */
 
       user_name = str;
       if (BANISH_D->is_banished(user_name)) {
