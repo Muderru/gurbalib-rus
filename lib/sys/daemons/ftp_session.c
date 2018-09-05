@@ -7,7 +7,7 @@ inherit "/sys/lib/runas";
 
 private mapping cmds;
 int priv, binary, filesize, where, closing, connected, timeout_handle;
-string file_name, chunk, cwd, name, store_file_name;
+string file_name, chunk, cwd, name, store_file_name, r_name, d_name, v_name, t_name, p_name;
 object connection;
 
 void ftp_cmd_list(string str);
@@ -92,6 +92,26 @@ void close(varargs int flag) {
 
 string query_name(void) {
    return name;
+}
+/* Падежи */
+string query_r_name(void) {
+   return r_name;
+}
+
+string query_d_name(void) {
+   return d_name;
+}
+
+string query_v_name(void) {
+   return v_name;
+}
+
+string query_t_name(void) {
+   return t_name;
+}
+
+string query_p_name(void) {
+   return p_name;
 }
 
 void FTPLOG(string str) {

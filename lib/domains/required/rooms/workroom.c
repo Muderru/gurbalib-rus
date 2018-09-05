@@ -12,22 +12,22 @@ private string myname(void) {
 }
 
 void setup(void) {
-   set_short(myname() + "'s workroom");
-   set_long("The room is littered with all kinds of arcane tools.  " +
-      "Your not really sure what all this stuff is but someone looks " +
-      "pretty busy.  In the middle of the room, is a large desk with " +
-      "various tools on it.");
+   set_short("Мастерская " + this_player()->query_r_name());
+   set_long("Эта комната заставлена разными мистическими устройствами.  " +
+      "Вы не совсем уверены для чего они нужны, но кажется кто-то очень " +
+      "постарался, расставляя их здесь. В центре комнаты стоит большой " +
+      "стол, заваленный всякими инструментами.");
    set_exits(([
-      "out" : STARTING_ROOM,
-      "east" : REQDIR + "/rooms/bug_room",
+      "выход" : STARTING_ROOM,
+      "восток" : REQDIR + "/rooms/bug_room",
    ]));
 
-   add_item("desk", "The desk is a huge and made of mahogany. " +
-      "It's the central piece of furniture of the room, and it is clear that " +
-      myname() + " spends a lot of time behind it.");
+   add_item("стол", "Этот огромный стол сделан из великолепного красного дерева. " +
+      "Кажется, что " +
+      myname() + " любит проводить за ним время.");
 
-   add_item("tools", "They are used by " + myname() +
-      " to do all kinds of things.");
+   add_item("инструменты", "Они используются " + this_player()->query_t_name() +
+      " для всяких разных операций.");
 
    set_objects(
       REQDIR + "/monsters/rat", 

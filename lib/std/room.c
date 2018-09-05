@@ -419,7 +419,7 @@ string body_exit(object who, string dir) {
    object room, *inventory;
 
    if (!query_exit(dir) && !query_hidden_exit(dir)) {
-      write("You can't go " + dir + ".\n");
+      write("Вы не можете идти на " + dir + ".\n");
       return nil;
    }
 
