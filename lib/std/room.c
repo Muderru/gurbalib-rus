@@ -60,7 +60,7 @@ int is_dark(void) {
 
 string query_dark_msg(void) {
    if (!dark_msg) {
-      return "It is too dark to see here.\n";
+      return "Тут слишком темно, ничего не видно.\n";
    }
    return dark_msg;
 }
@@ -184,7 +184,7 @@ string query_desc(varargs int brief) {
 
    text += "%^ROOM_NAME%^\t" + query_short() + "%^RESET%^\n";
    text += "%^ROOM_DESC%^" + query_long() + "%^RESET%^\n";
-   text += "%^ROOM_EXIT%^[ Obvious exits: ";
+   text += "%^ROOM_EXIT%^[ Доступные выходы: ";
 
    if (!exits || map_sizeof(exits) == 0) {
       text += "none ";
@@ -203,7 +203,7 @@ string query_desc(varargs int brief) {
 
       compacted_inv = ([]);
 
-      text += "\nYou see:\n";
+      text += "\nВы видите:\n";
 
       for (count = 0; count < sizeof(inventory); count++) {
          if (!inventory[count]->is_living()) {
@@ -455,7 +455,13 @@ string body_exit(object who, string dir) {
       }
 
       event("body_leave", who);
-      tell_room(who, lname + " leaves " + dir + ".\n");
+     if (who->query_gender() == "male") {
+      tell_room(who, lname + " ушел на " + dir + ".\n");
+   } else if (who->query_gender() == "female") {
+       tell_room(who, lname + " ушла на " + dir + ".\n");
+   } else {
+      tell_room(who, lname + " ушло на " + dir + ".\n");
+   }
       error = catch(who->move(query_exit(dir)));
       if (who->is_player()) {
     last_exit = time();
@@ -474,7 +480,13 @@ string body_exit(object who, string dir) {
       }
 
       event("body_leave", who);
-      tell_room(who, lname + " leaves " + dir + ".\n");
+     if (who->query_gender() == "male") {
+      tell_room(who, lname + " ушел на " + dir + ".\n");
+   } else if (who->query_gender() == "female") {
+       tell_room(who, lname + " ушла на " + dir + ".\n");
+   } else {
+      tell_room(who, lname + " ушло на " + dir + ".\n");
+   }
       error = catch(who->move(query_hidden_exit(dir)));
       if (who->is_player()) {
          last_exit = time();
@@ -483,9 +495,9 @@ string body_exit(object who, string dir) {
 
    if (error) {
       if (query_wizard(who) == 1) {
-         return "\nConstruction blocks your path.\n" + "Error: " + error;
+         return "\nПрепятствие преграждает ваш путь.\n" + "Error: " + error;
       } else {
-         return "\nConstruction blocks your path.\n";
+         return "\nПрепятствие преграждает ваш путь.\n";
       }
    }
 
@@ -495,7 +507,14 @@ string body_exit(object who, string dir) {
 
    room = who->query_environment();
    room->event("body_enter", who);
-   room->tell_room(who, aname + " enters.\n");
+     if (who->query_gender() == "male") {
+      room->tell_room(who, aname + " пришел.\n");
+   } else if (who->query_gender() == "female") {
+       room->tell_room(who, aname + " пришла.\n");
+   } else {
+      room->tell_room(who, aname + " пришло.\n");
+   }
+   
    return nil;
 }
 

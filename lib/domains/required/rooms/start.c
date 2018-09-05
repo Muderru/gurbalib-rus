@@ -10,9 +10,9 @@ void setup(void) {
       "раскинулся темный лес.");
 
    set_exits(([
-      "north" : "/domains/newbie/rooms/tree", 
-      "south" : "/domains/2.4.5/rooms/forest1", 
-      "east" : "/domains/boothill/rooms/outside_town",
-      "west" : "/domains/gurba/rooms/gate_east",
+      "север" : "/domains/newbie/rooms/tree", 
+      "юг" : "/domains/2.4.5/rooms/forest1", 
+      "восток" : "/domains/boothill/rooms/outside_town",
+      "запад" : "/domains/gurba/rooms/gate_east",
    ]));
 }

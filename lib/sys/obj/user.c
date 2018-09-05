@@ -43,7 +43,7 @@ void _open(mixed * tls) {
       status()[ST_VERSION] + ".\n");
    send_message("\n");
    send_message(TELNET_D->query_banner());
-   send_message("\nВведите ваше имя на русском (or 'who', 'guest', 'quit'): ");
+   send_message("\nВведите ваше имя на русском языке: ");
    send_message(1);
 
    timeout_handle = call_out("login_timeout", 600);
@@ -318,8 +318,14 @@ static void login_user(void) {
       if (!done) {
          player->move(VOID);
       }
-
-      player->simple_action("Вы вошли в игру.\n");
+     if (player->query_gender() == "male") {
+       player->simple_action("$N вошел в игру.\n");
+   } else if (player->query_gender() == "female") {
+       player->simple_action("$N вошла в игру.\n");
+   } else {
+       player->simple_action("$N вошло в игру.\n");
+   }
+      
       player->do_look(player->query_environment());
       player->write_prompt();
       remove_call_out(timeout_handle);
@@ -453,7 +459,7 @@ void input_name(string str) {
       str = "";            /* force login fail */
    }
 
-   if (lowercase(str) == "quit") {
+   if (lowercase(str) == "quit" || lowercase(str) == "выход") {
       write("Пока!!!\n");
       destruct_object(player);
       destruct_object(this_object());
