@@ -16,6 +16,8 @@ static int gettable;
 static int object_value;
 static int weight;
 static int object_size;
+string obj_i_name, obj_r_name, obj_d_name, obj_v_name, obj_t_name, obj_p_name;
+string obj_gender;
 
 void setup();
 
@@ -361,4 +363,89 @@ void create(void) {
    } else {
       OBJECT_D->register_clone(this_object());
    }
+}
+
+/* Падежи */
+void set_obj_i_name(string str) {
+   obj_i_name = str;
+}
+
+string query_obj_i_name(void) {
+   if (!obj_i_name) {
+      return "";
+   }
+
+   return obj_i_name;
+}
+
+void set_obj_r_name(string str) {
+   obj_r_name = str;
+}
+
+string query_obj_r_name(void) {
+   if (!obj_r_name) {
+      return "";
+   }
+
+   return obj_r_name;
+}
+
+void set_obj_d_name(string str) {
+   obj_d_name = str;
+}
+
+string query_obj_d_name(void) {
+   if (!obj_d_name) {
+      return "";
+   }
+
+   return obj_d_name;
+}
+
+void set_obj_v_name(string str) {
+   obj_v_name = str;
+}
+
+string query_obj_v_name(void) {
+   if (!obj_v_name) {
+      return "";
+   }
+
+   return obj_v_name;
+}
+
+void set_obj_t_name(string str) {
+   obj_t_name = str;
+}
+
+string query_obj_t_name(void) {
+   if (!obj_t_name) {
+      return "";
+   }
+
+   return obj_t_name;
+}
+
+void set_obj_p_name(string str) {
+   obj_p_name = str;
+}
+
+string query_obj_p_name(void) {
+   if (!obj_p_name) {
+      return "";
+   }
+
+   return obj_p_name;
+}
+
+void set_obj_gender(string str) {
+   obj_gender = str;
+}
+
+string query_obj_gender(void) {
+   if (!obj_gender) {
+      return "";
+   }
+
+   return obj_gender;
 }

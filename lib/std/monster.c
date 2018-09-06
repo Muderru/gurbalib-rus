@@ -9,6 +9,7 @@ inherit "/std/modules/m_actions";
 
 static int aggressive, spell_chance, spell_damage;
 static string spell_message;
+string r_name, d_name, v_name, t_name, p_name;
 
 void create(void) {
    int x;
@@ -198,3 +199,63 @@ void add_coins(string type, int amt) {
    }
 }
 
+/* Падежи */
+void set_r_name(string str) {
+   r_name = str;
+}
+
+string query_r_name(void) {
+   if (!r_name) {
+      return "";
+   }
+
+   return r_name;
+}
+
+void set_d_name(string str) {
+   d_name = str;
+}
+
+string query_d_name(void) {
+   if (!d_name) {
+      return "";
+   }
+
+   return d_name;
+}
+
+void set_v_name(string str) {
+   v_name = str;
+}
+
+string query_v_name(void) {
+   if (!v_name) {
+      return "";
+   }
+
+   return v_name;
+}
+
+void set_t_name(string str) {
+   t_name = str;
+}
+
+string query_t_name(void) {
+   if (!t_name) {
+      return "";
+   }
+
+   return t_name;
+}
+
+void set_p_name(string str) {
+   p_name = str;
+}
+
+string query_p_name(void) {
+   if (!p_name) {
+      return "";
+   }
+
+   return p_name;
+}
