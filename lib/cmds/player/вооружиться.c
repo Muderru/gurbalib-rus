@@ -1,3 +1,4 @@
+/* wield.c */
 inherit M_COMMAND;
 
 string *usage(void) {

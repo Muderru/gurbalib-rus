@@ -38,14 +38,26 @@ void set_close_message(string str) {
 
 string query_open_message(void) {
    if (!open_message || open_message == "") {
-      open_message = "$N $vopen $o.";
+            if (this_player()->query_gender() == "male") {
+              return "$N открыл "+ this_object()->query_obj_i_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N открыла "+ this_object()->query_obj_i_name() +".";
+          } else {
+              return "$N открыло "+ this_object()->query_obj_i_name() +".";
+          }
    }
    return open_message;
 }
 
 string query_close_message(void) {
    if (!close_message || close_message == "") {
-      close_message = "$N $vclose $o.";
+            if (this_player()->query_gender() == "male") {
+              return "$N закрыл "+ this_object()->query_obj_i_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N закрыла "+ this_object()->query_obj_i_name() +".";
+          } else {
+              return "$N закрыло "+ this_object()->query_obj_i_name() +".";
+          }
    }
    return close_message;
 }
@@ -94,9 +106,9 @@ void update_description(void) {
 void set_open_state(int state) {
    open_state = state;
    if (state == 1) {
-      this_object()->simple_action("$N $vopen.");
+      this_object()->simple_action("$N открыт.");
    } else {
-      this_object()->simple_action("$N $vclose.");
+      this_object()->simple_action("$N закрыт.");
    }
 
    update_description();
@@ -107,12 +119,12 @@ int query_open_state(void) {
 }
 
 string query_cannot_open_message(object who) {
-   return "It seems to be stuck.";
+   return "Кажется, замок заело.";
 }
 
 int do_open(object who) {
    if (open_state == 1) {
-      write("It's already open.");
+      write("Это уже открыто.");
       return 0;
    }
    if (!can_open(who)) {
@@ -125,14 +137,14 @@ int do_open(object who) {
    if (who) {
       who->targeted_action(query_open_message(), nil, this_object());
    } else {
-      this_object()->simple_action("$N $vopen.");
+      this_object()->simple_action("$N открыт.");
    }
    return 1;
 }
 
 int do_close(object who) {
    if (!open_state) {
-      write("It's already closed.");
+      write("Это уже закрыто.");
       return 0;
    }
    open_state = 0;
@@ -140,7 +152,7 @@ int do_close(object who) {
    if (who) {
       who->targeted_action(query_close_message(), nil, this_object());
    } else {
-      this_object()->simple_action("$N $vclose.");
+      this_object()->simple_action("$N закрыт.");
    }
    return 1;
 }
