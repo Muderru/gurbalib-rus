@@ -20,7 +20,13 @@ void set_wear_message(string str) {
 
 string query_wear_message(void) {
    if (!wear_message) {
-      return "$N $vwear $o.";
+            if (this_player()->query_gender() == "male") {
+              return "$N надел " + this_object()->query_obj_i_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N надела " + this_object()->query_obj_i_name() +".";
+          } else {
+              return "$N надело " + this_object()->query_obj_i_name() +".";
+          }
    }
    return wear_message;
 }
@@ -31,7 +37,13 @@ void set_remove_message(string str) {
 
 string query_remove_message(void) {
    if (!remove_message) {
-      return "$N $vremove $o.";
+       if (this_player()->query_gender() == "male") {
+              return "$N снял "+ this_object()->query_obj_i_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N сняла "+ this_object()->query_obj_i_name() +".";
+          } else {
+              return "$N сняло "+ this_object()->query_obj_i_name() +".";
+          }
    }
    return remove_message;
 }
@@ -101,7 +113,7 @@ void set_slot(string str) {
          break;
       default:
          if (this_player()) {
-            write("Illegal bodyslot.\n");
+            write("Неправильная часть тела.\n");
          }
          return;
          break;
@@ -116,26 +128,26 @@ string query_wear_position(void) {
 
    switch (slot) {
       case "torso":
-         return "on the upper body";
+         return "Поверх тела";
       case "head":
-         return "on head";
+         return "На голове";
       case "hands":
-         return "on hands";
+         return "Перчатки";
       case "finger":
-         return "on one finger";
+         return "На пальце";
       case "feet":
-         return "on feet";
+         return "Обувь";
       case "arm":
-         return "on an arm";
+         return "На руках";
       case "neck":
-         return "about the neck";
+         return "На шее";
       case "body":
-         return "about the body";
+         return "Вокруг тела";
       case "legs":
-         return "on the lower body";
+         return "На ногах";
       case "waist":
-         return "about the waist";
+         return "На талии";
       default:
-         return "somewhere";
+         return "Где-то";
    }
 }

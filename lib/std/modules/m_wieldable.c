@@ -28,7 +28,13 @@ void set_wield_message(string str) {
 
 string query_wield_message(void) {
    if (!wield_message) {
-      wield_message = "$N $vwield $o.";
+            if (this_player()->query_gender() == "male") {
+              return "$N вооружился " + this_object()->query_obj_t_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N вооружилась " + this_object()->query_obj_t_name() +".";
+          } else {
+              return "$N вооружилось " + this_object()->query_obj_t_name() +".";
+          }
    }
    return wield_message;
 }
@@ -39,7 +45,13 @@ void set_unwield_message(string str) {
 
 string query_unwield_message(void) {
    if (!unwield_message) {
-      unwield_message = "$N $vunwield $o.";
+            if (this_player()->query_gender() == "male") {
+              return "$N перестал использовать " + this_object()->query_obj_i_name() +".";
+          } else if (this_player()->query_gender() == "female") {
+              return "$N перестала использовать " + this_object()->query_obj_i_name() +".";
+          } else {
+              return "$N перестало использовать " + this_object()->query_obj_i_name() +".";
+          } 
    }
    return unwield_message;
 }
@@ -73,7 +85,7 @@ int is_wielded(void) {
 
 string query_wield_position(void) {
    if (type == "both") {
-      return "wielded in both hands";
+      return "Держит в обеих руках";
    }
-   return "wielded in one hand";
+   return "Держит в одной руке";
 }
