@@ -4,9 +4,9 @@ mixed *currencies;
 
 void create(void) {
    currencies = ({
-      ({ "ducat", 1 }),    /* The base coin */
-      ({ "royal", 10 }),   /* royal = 10 ducat's */
-      ({ "crown", 100 })
+      ({ "дукат", 1 }),    /* The base coin */
+      ({ "рояль", 10 }),   /* royal = 10 ducat's */
+      ({ "крона", 100 })
    });
 }
 

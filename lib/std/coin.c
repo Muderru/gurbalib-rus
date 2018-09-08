@@ -14,7 +14,7 @@ int set_currency(string str) {
 
 string query_currency(void) {
    if (!currency) {
-      return "ducat";
+      return "дукат";
    }
    return currency;
 }
@@ -26,27 +26,27 @@ int query_amount(void) {
 void set_amount(int amt) {
    amount = amt;
    if (amt == 1) {
-      set_short("One " + currency);
-      set_long("A lonely " + currency + ".");
+      set_short("Один " + currency);
+      set_long("Один единственный " + currency + " лежит здесь.");
    } else if (amt < 10) {
-      set_short("A couple of " + currency + "s");
-      set_long("A couple of " + currency + "s.");
+      set_short("Несколько " + currency + "ов");
+      set_long("Несколько " + currency + "ов лежат здесь.");
    } else if (amt < 20) {
-      set_short("A few " + currency + "s");
-      set_long("A few " + currency + "s. About 15.");
+      set_short("Немного " + currency + "ов");
+      set_long("Немного " + currency + "ов лежат здесь.");
    } else if (amt < 40) {
-      set_short("Some " + currency + "s");
-      set_long("Some " + currency + "s. About 30.");
+      set_short("Горстка " + currency + "ов");
+      set_long("Горстка " + currency + "ов лежит здесь.");
    } else if (amt < 80) {
-      set_short("Many " + currency + "s");
-      set_long("Many " + currency + "s. About 50.");
+      set_short("Кучка " + currency + "ов");
+      set_long("Кучка " + currency + "ов лежит здесь.");
    } else if (amt < 150) {
-      set_short("Lots of " + currency + "s");
-      set_long("Lots of " + currency + "s. About 100.");
+      set_short("Куча " + currency + "ов");
+      set_long("Куча " + currency + "ов лежит здесь.");
    } else {
-      set_short("A huge pile of " + currency + "s");
-      set_long("A huge pile of " + currency +
-         "s. More than you'd care to count.");
+      set_short("Гора " + currency + "ов");
+      set_long("Гора " + currency +
+         "ов возвышается тут.");
    }
 }
 
@@ -69,11 +69,18 @@ int is_money(void) {
 /* Setup some reasonable defaults.... */
 void create(void) {
    ::create();
-   set_currency("ducat");
+   set_currency("дукат");
    set_amount(1);
 
-   set_id("coin");
-   add_id("coins");
+   set_id("монета");
+   add_id("монеты");
+   set_obj_i_name("монета");
+   set_obj_r_name("монеты");
+   set_obj_d_name("монете");
+   set_obj_v_name("монету");
+   set_obj_t_name("монетой");
+   set_obj_p_name("монете");
+   set_obj_gender("female");
    set_gettable(1);
    set_value(1);
 }

@@ -23,15 +23,14 @@ void setup(void) {
    ]));
 
    add_item("стол", "Этот огромный стол сделан из великолепного красного дерева. " +
-      "Кажется, что " +
-      myname() + " любит проводить за ним время.");
+      "Кажется, что " + this_player()->query_name() + " любит проводить за ним время.");
 
    add_item("инструменты", "Они используются " + this_player()->query_t_name() +
       " для всяких разных операций.");
 
    set_objects(
       REQDIR + "/monsters/rat", 
-      REQDIR + "/objects/chest", 
+      REQDIR + "/objects/chest",
       REQDIR + "/objects/short_sword", 
       REQDIR + "/objects/helmet"
    );
