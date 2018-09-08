@@ -62,7 +62,7 @@ string *show_emote(string str, int width) {
    if (!str || str == "") {
       rules = query_emotes();
 
-      lines = ({ "Emotes:" });
+      lines = ({ "Эмоций:" });
 
       line = "   ";
       for (i = 0; i < sizeof(rules); i++) {
@@ -75,7 +75,7 @@ string *show_emote(string str, int width) {
          }
       }
       lines += ( {line } );
-      lines += ( { "Total emotes: " + sizeof(rules) } );
+      lines += ( { "Эмоций в общем: " + sizeof(rules) } );
 
       return lines;
    }
@@ -88,7 +88,7 @@ string *show_emote(string str, int width) {
          rules -= ( { rules[0] } );
       }
    } else {
-      lines += ( { "No such emote. \n" } );
+      lines += ( { "Нет такой эмоции. \n" } );
    }
 
    return lines;

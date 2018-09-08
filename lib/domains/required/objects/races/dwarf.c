@@ -12,15 +12,15 @@ void create(void) {
    stat_mod["dex"] = -1;
    stat_mod["cha"] = -2;
 
-   set_race_short_desc("Dwarves are stocky and strong, " +
-      "but lack magical talent.");
-   set_race_long_desc("Dwarves are natural hard workers. A lifetime of " +
-      "mining and smithing\nmake them strong and durable. They make " +
-      "excellent warriors, which is a career\nundertaken by many a dwarf. " +
-      "Dwarves cannot fully grasp the concept of magic,\ndwarven mages " +
-      "are long and far between. Instead most of them can resist magic\n" +
-      "to a certain degree. Dwarves get along nice with trolls and orcs, " +
-      "and they   \nshare the elves' distrust of one another. ");
+   set_race_short_desc("Дворфы это коренастые и сильные существа, " +
+      "но они лишены магического таланта.");
+   set_race_long_desc("У дфорфов природная предрасположенность к тяжелому труду. " +
+      "Время проведенное в шахтах и кузницах сделало их сильными в выносливыми. " +
+      "Эти качества делают из них превосходных воинов. " +
+      "Однако большинство дворфов не может понять концепции магии, и дворфы-маги " +
+      "вещь диковинная. Также они обладают хорошей сопротивляемостью к магии." +
+      "Дворфы хорошо ладят с троллями и орками, " +
+      "и разделяют их неприязнь к эльфам. ");
 
    set_language("dwarven");
    set_skill("language/dwarven", 100);

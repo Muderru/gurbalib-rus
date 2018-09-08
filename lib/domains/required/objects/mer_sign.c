@@ -1,6 +1,6 @@
 inherit "/std/sign";
 
 void setup(void) {
-   set_message(" Use 'list' to see the inventory.\n Use 'buy <item>' to " +
-      "buy an item.\n Use 'sell <item>' to sell an item.");
+   set_message(" Наберите 'list' чтобы увидеть предложения продавца.\n Наберите 'buy <item>' для " +
+      "покупки предмета.\n Наберите 'sell <item>' чтобы продать предмет.");
 }

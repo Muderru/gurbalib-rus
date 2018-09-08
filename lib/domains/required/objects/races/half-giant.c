@@ -4,15 +4,15 @@ inherit "/std/race";
 void create(void) {
    ::create();
 
-   set_race_short_desc("Half giants are a brutish crossbreed with humans");
-   set_race_long_desc("Half giants. The crossbreed between man and giant. " +
-      "The result is a\ncreature that looks human, except that it is twice " +
-      "the size. Because of this,\nthey make excellent fighters, little " +
-      "less so thinkers. Their size means they \nconsume food and drink at " +
-      "four times the human rate, and they need specially \ntailored " +
-      "equipment and armor. Despite all this, they're extremely strong, " +
-      "and\nstories go of incidents where a frail half-giant has survived " +
-      "where the\nstrongest humans have fallen.");
+   set_race_short_desc("Полугиганты появились в результате скрещивания людей и великанов.");
+   set_race_long_desc("Полугиганты появились в результате скрещивания людей и великанов. " +
+      "В результате получились существа, напоминающие людей, но превосходящие их " +
+      "ростом. Поэтому из них получаются отличные воины, но посредственные " +
+      "мыслители. Из-за их роста полугиганты потребляют еду и воду раза " +
+      "в четыре больше, чем люди и им требуется специально сшитая под них " +
+      "одежда и доспехи. Несмотря на это полугиганты очень сильны и " +
+      "и существует множество рассказов, как они выживали в условиях, " +
+      "в которых погибали даже самые выносливые люди.");
    set_language("grunt");
    set_skill("language/grunt", 100);
 }

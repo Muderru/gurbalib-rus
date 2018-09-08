@@ -3,11 +3,11 @@ inherit "/std/race";
 void create(void) {
    ::create();
 
-   set_race_short_desc("Catfolk are very agile and sleek. ");
-   set_race_long_desc("Catfolk are mysterious and keep too themselves.  " +
-      "The other races are not quite sure where they originally came from.  " +
-      "They just showed up one day and have been around ever since.  " +
-      "Catfolk tend to be smaller that humans but are extremely dexterous.");
+   set_race_short_desc("Кэтфолки очень проворные и изящные существа. ");
+   set_race_long_desc("Эти загадочные существа стараются держаться обособленно от остальных.  " +
+      "Никто точно не знает, откуда они родом и откуда пришли.  " +
+      "Кэтфолки просто появились одним прекрасным днем и с тех пор населяют этот мир.  " +
+      "Они меньше людей, но гораздо более проворнее их.");
 
    set_language("catfolk");
    set_skill("language/catfolk", 100);

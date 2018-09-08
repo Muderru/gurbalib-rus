@@ -4,15 +4,15 @@ inherit "/std/race";
 void create(void) {
    ::create();
 
-   set_race_short_desc("Elves are potent in magic and are fairly nimble. " +
-      "Not very strong.");
-   set_race_long_desc("Elves tend to live with nature. They are a noble " +
-      "and proud folk.\nMagic is often their game, but they are commonly " +
-      "seen in other fields as well.\nBeing an elf means that you are not " +
-      "physically strong, but being as dextrous\nas you are means that you " +
-      "can still be a decent warrior. Of some reason long \nforgotten, " +
-      "elves do not get along with dwarves, trolls or orcs. They are\n" +
-      "considered crude, foul, and smelly.");
+   set_race_short_desc("Эльфы искусны в магии и довольно проворны, " +
+      "но не очень сильны.");
+   set_race_long_desc("Эльфы живут в гармонии с природой. Это древний " +
+      "и гордый народ. Магия это их стезя, но не редко они достигают " +
+      "вершин и в других областях. Будучи эльфом вы не будете " +
+      "физически сильны, но благодаря большой ловкости вы сможете " +
+      "компенсировать этот недостаток. С давних пор эльфы не ладят " +
+      "с дворфами, троллями и орками. Их они" +
+      "считают грубыми и варварскими существами.");
    set_language("elvish");
    set_skill("language/elvish", 100);
 }

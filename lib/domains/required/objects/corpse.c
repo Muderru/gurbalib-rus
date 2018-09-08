@@ -11,14 +11,21 @@ void create(void) {
       call_out("decompose", 30);
    }
 
-   set_id("corpse");
-   set_short("A foul smelling corpse");
-   set_long("It looks just as awful as it smells.");
+   set_id("труп");
+   set_short("Дурно пахнущий труп");
+   set_long("Это полуразложившийся вонючий труп.");
+   set_obj_i_name("труп");
+   set_obj_r_name("трупа");
+   set_obj_d_name("трупу");
+   set_obj_v_name("труп");
+   set_obj_t_name("трупом");
+   set_obj_p_name("трупе");
+   set_obj_gender("male");
 }
 
 void set_name(string name) {
    orig_name = name;
-   set_short("The corpse of " + name);
+   set_short("Труп " + name);
 }
 
 void corpse_destruct(void) {
@@ -29,17 +36,17 @@ void corpse_destruct(void) {
    for (i = 0, dim = sizeof(inv); i < dim; i++) {
       inv[i]->move(query_environment());
    }
-   query_environment()->tell_room(nil, "Ash to ash, dust to dust.");
+   query_environment()->tell_room(nil, "Пепел к пеплу, прах к праху.");
    destruct();
 }
 
 void decompose(void) {
    call_out("corpse_destruct", 30);
    if (!orig_name) {
-      orig_name = "noone";
+      orig_name = "чей-то";
    }
 
-   set_short("The somewhat decayed corpse of " + orig_name);
-   query_environment()->tell_room(nil, "The corpse of " +
-      orig_name + " decomposes a bit.");
+   set_short("Частично разложившийся труп " + orig_name);
+   query_environment()->tell_room(nil, "Труп " +
+      orig_name + " частично разложился.");
 }
