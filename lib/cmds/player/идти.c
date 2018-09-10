@@ -1,17 +1,19 @@
-/* eat.c */
+/* go.c */
 inherit M_COMMAND;
 
 string *usage(void) {
    string *lines;
 
-   lines = ({ "Использование: есть [-h] [OBJECT]" });
+   lines = ({ "Использование: идти [-h] НАПРАВЛЕНИЕ" });
    lines += ({ "" });
-   lines += ({ "Поглощение выбранного объекта." });
+   lines += ({ "Позволяет передвигаться вам в выбранном направлении.  Чтобы " +
+      "определить " });
+   lines += ({ "куда можно идти, осмотритесь вокруг." });
    lines += ({ "" });
    lines += ({ "Опции:" });
    lines += ({ "\t-h\tПомошь, вызывает эту справку." });
    lines += ({ "Примеры:" });
-   lines += ({ "\tесть яблоко" });
+   lines += ({ "\tидти север" });
 
    lines += get_alsos();
 
@@ -21,9 +23,9 @@ string *usage(void) {
 void setup_alsos() {
    add_also("player", "attack");
    add_also("player", "cast");
+   add_also("player", "eat");
    add_also("player", "enter");
    add_also("player", "follow");
-   add_also("player", "go");
    add_also("player", "pray");
    add_also("player", "query");
    add_also("player", "quit");
@@ -31,7 +33,8 @@ void setup_alsos() {
 }
 
 static void main(string str) {
-   object obj;
+   string error, str2;
+   int len;
 
    if (!alsos) {
       setup_alsos();
@@ -41,27 +44,19 @@ static void main(string str) {
       this_player()->more(usage());
       return;
    }
-
-   if (sscanf(str, "-%s", str)) {
+   if (sscanf(str, "-%s", str) || sscanf(str, "%s -%s", str, str2)) {
       this_player()->more(usage());
       return;
    }
 
-   if (this_player()->is_dead()) {
-      write("Вы не можете сделать этого, пребывая в мире мертвых.\n");
-      return;
+   len = strlen(str);
+   if (str[len - 1] == ' ') {
+      str = str[..len - 2];
    }
 
-   obj = this_player()->present(lowercase(str));
-   if (!obj) {
-      write("Что вы хотите съесть?\n");
-      return;
-   }
+   error = this_environment()->body_exit(this_player(), str);
 
-   if (!obj->is_eatable()) {
-      write("Вы не можете съесть это.\n");
-      return;
+   if (error) {
+      write(error);
    }
-
-   call_other(obj, "do_eat");
 }
