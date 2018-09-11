@@ -107,16 +107,16 @@ static int do_drop(object obj, int loud) {
 
    if (obj->move(this_environment())) { 
             if (this_player()->query_gender() == "male") {
-              this_player()->targeted_action("$N выбросил" + obj->query_obj_i_name() + ".", nil, obj);
+              this_player()->targeted_action("$N выбросил " + obj->query_obj_i_name() + ".", nil, obj);
           } else if (this_player()->query_gender() == "female") {
-              this_player()->targeted_action("$N выбросила" + obj->query_obj_i_name() + ".", nil, obj);
+              this_player()->targeted_action("$N выбросила " + obj->query_obj_i_name() + ".", nil, obj);
           } else {
-              this_player()->targeted_action("$N выбросило" + obj->query_obj_i_name() + ".", nil, obj);
+              this_player()->targeted_action("$N выбросило " + obj->query_obj_i_name() + ".", nil, obj);
           }
       obj->post_drop();
       return 1;
    } else {
-      this_player()->targeted_action("$N пытается выбросить" + obj->query_obj_i_name() + ", но неудачно.", nil, obj);
+      this_player()->targeted_action("$N пытается выбросить " + obj->query_obj_i_name() + ", но неудачно.", nil, obj);
       return 0;
    }
 }
