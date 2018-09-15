@@ -17,13 +17,13 @@ void create(void) {
    unguarded("restore_me");
 
    months = ({
-      "Calninque", "Ben'ka", "Belegaer", "Mosiana", "Amaros",
-      "Zalbus", "Sisyana", "Rhom", "Paknos", "Alachir", "Fuindell",
-      "Helethia", "Jaran", "Bethel", "Ilkira", "Yavanna", "Mosisis"
+      "Аонгус", "Беленус", "Бран", "Гоибниу", "Дагда",
+      "Диан Кехт", "Лукх", "Огма", "Таранис", "Тевтат", "Цернун",
+      "Эзус", "Велунд", "Йома", "Нуску", "Секвана", "Рианнон"
    });
 
    days = ({ 
-      "Earth", "Wind", "Fire", "Water"
+      "Земли", "Ветра", "Огня", "Воды"
    });
 
    call_out("update_time", ZOOM);
