@@ -5,12 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("newbie");
 
-   set_short("Inside a tunnel");
-   set_long("You are in a small tunnel.  It was a tight squeeze to get in " +
-      "here.");
+   set_short("В туннеле");
+   set_long("Вы внутри узкого земляного туннеля. Ползти вперед тут не так-то " +
+      "просто из-за торчащих со всех сторон камней и корней. Туннель тянется дальше на юг.");
 
    set_exits(([
-      "south" : DIR + "/rooms/equipment",
-      "west" : DIR + "/rooms/tree", 
+      "юг" : DIR + "/rooms/equipment",
+      "запад" : DIR + "/rooms/tree", 
    ]));
 }

@@ -5,12 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("newbie");
 
-   set_short("A narrow passage");
-   set_long("You are in a small tunnel.  It was a tight squeeze to get in " +
-      "here.");
+   set_short("Узкий проход");
+   set_long("Вы находитесь внутри узкого туннеля. Из земляных стен торчат камни и " +
+      "корни, мешающие дальнейшему продвижению.");
 
    set_exits(([
-      "north" : DIR + "/rooms/entrance", 
-      "south" : DIR + "/rooms/fighting",
+      "север" : DIR + "/rooms/entrance", 
+      "юг" : DIR + "/rooms/fighting",
    ]));
 }

@@ -5,31 +5,43 @@ inherit "/std/room";
 void setup(void) {
    add_area("newbie");
 
-   set_short("The newbie arena");
-   set_long("You are in a small tunnel.  It was a tight squeeze to get in " +
-      "here.  There is a large flower in the middle of the room.");
+   set_short("Арена новичков");
+   set_long("Вы в небольшой земляной пещере, пол которой покрыт множеством следов. " +
+      "С потолка свисают огромные цепкие корни. А в центре зала растет большой цветок.");
 
-   add_item("flower", "A Large flower sits in the middle of the room.  " +
-      "Perhaps you should pick it.");
+   add_item("цветок", "Большой цветок растет в центре пещеры в почти полной темноте. " +
+      "Возможно вам стоит сорвать его.");
 
-   add_action("do_pick", "pick");
+   add_action("do_pick", "сорвать");
 
    set_exits(([
-      "north" : DIR + "/rooms/equipment", 
-      "south" : DIR + "/rooms/drinkme",
+      "север" : DIR + "/rooms/equipment", 
+      "юг" : DIR + "/rooms/drinkme",
    ]));
 }
 
 int do_pick(string arg) {
-   if (arg == "flower") {
+   if ((arg == "flower") || (arg == "цветок")) {
       object obj;
 
-      write("As you reach for the flower, a giant bunny rabbit appears, " +
-         "blocking your way.\n");
+      write("Как только вы приблизились к цветку, гигантский саблезубый кролик " +
+         "появился из ниоткуда и преградил ваш путь.\n");
+         if (this_player()->query_gender() == "male") {
       this_player()->query_environment()->tell_room(this_player(),
          this_player()->query_Name() +
-         " reaches for the flower in the center of the room.\n" +
-         "All of a sudden a giant bunny rabbit appears blocking their path.\n");
+         " приблизился к цветку в центре пещеры.\n" +
+         "Тут внезапно появился гигантский саблезубый кролик, блокирующий его путь.\n");
+       } else if (this_player()->query_gender() == "female") {
+      this_player()->query_environment()->tell_room(this_player(),
+         this_player()->query_Name() +
+         " приблизилась к цветку в центре пещеры.\n" +
+         "Тут внезапно появился гигантский саблезубый кролик, блокирующий ее путь.\n");
+       } else {
+      this_player()->query_environment()->tell_room(this_player(),
+         this_player()->query_Name() +
+         " приблизилось к цветку в центре пещеры.\n" +
+         "Тут внезапно появился гигантский саблезубый кролик, блокирующий его путь.\n");
+       }
 
       obj = clone_object(DIR + "/monsters/bunny.c");
       obj->setup();
