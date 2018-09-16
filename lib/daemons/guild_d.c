@@ -12,7 +12,7 @@ void create(void) {
       restore_me();
    } else {
       /* Create a default list if we do not already have one. */
-      guilds["fighter"] = "The Fighters Guild";
+      guilds["fighter"] = "Гильдия Бойцов";
 
       save_me();
    }

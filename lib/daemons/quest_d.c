@@ -15,7 +15,7 @@ int add_quest(string name, int level, string domain) {
    string *keys;
 
    if (quests[name]) {
-      write("I'm sorry but there is already a quest titled: " + name + "\n");
+      write("Простите, но квест с названием: " + name + ", уже существует.\n");
       return 0;
    }
 
@@ -50,7 +50,7 @@ void list_quests(object thisp) {
 
    keys = map_indices(levels);
    max = sizeof(keys);
-   write("Level:  Quest:                           Domain:\n");
+   write("Уровень:  Квест:                        Область:\n");
    write("------------------------------------------------\n");
 
    for (i = 0; i < max; i++) {

@@ -316,15 +316,15 @@ string color_table_chunk(mapping m, int codes) {
 string color_table(void) {
    string msg;
 
-   msg = "Colors:\n";
+   msg = "Цвета:\n";
    msg += color_table_chunk(color_trans, 1);
-   msg += "\nAttributes:\n";
+   msg += "\nПараметры:\n";
    msg += color_table_chunk(attr_trans, 1);
 /*
   msg += "\nTerminal:\n";
   msg += color_table_chunk( terminal_trans, 0 );
 */
-   msg += "\nSymbolic:\n";
+   msg += "\nСимволы:\n";
    msg += color_table_chunk(symbolic_trans, 1);
    return msg;
 }
@@ -342,7 +342,7 @@ void ansi_set_color(string name, string * symbols) {
    int i, sz;
 
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
@@ -357,19 +357,19 @@ void ansi_set_color(string name, string * symbols) {
          symbols[i] = uppercase(symbols[i]);
          if (!translations[symbols[i]] && !symbolic_trans[symbols[i]]) {
             /* Each symbol must resolve to a pre-defined token */
-            write("Symbolic color tokens must be composed of only valid " +
-               "base color tokens or pre-existing custom tokens.\n");
+            write("Символические маркеры цвета должны состоять только из допустимых базовых " +
+               "цветных жетонов или уже существующих пользовательских токенов.\n");
             return;
          }
          tmp += "%^" + symbols[i] + "%^";
       } else {
-         write("Symbolic color tokens cannot (YET) contain custom tokens\n");
+         write("Символические маркеры цвета не могут (ЕЩЕ) содержать пользовательские токены.\n");
          return;
       }
    }
 
    symbolic_trans[name] = tmp;
-   out_unmod(name + " is now " + tmp + "\n");
+   out_unmod(name + " теперь " + tmp + "\n");
    save_me();
 }
 
@@ -377,7 +377,7 @@ void ansi_remove_color(string name) {
    mixed *ind;
 
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
@@ -385,12 +385,12 @@ void ansi_remove_color(string name) {
    ind = map_indices(symbolic_trans);
 
    if (!symbolic_trans[name]) {
-      write(name + " is not currently a symbolic color!\n");
+      write(name + " теперь не код цвета!\n");
       return;
    }
 
    symbolic_trans[name] = nil;
-   write(name + " is no longer a valid color.\n");
+   write(name + " теперь не доступный цвет.\n");
    save_me();
 }
 

@@ -94,7 +94,7 @@ void create(void) {
 
 void chan_set_flag(string chan, int flag) {
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
    channels[chan] = flag;
@@ -107,28 +107,28 @@ void chan_set_flag(string chan, int flag) {
 
 void chan_make_permanent(string name) {
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
    if (permanent[name] == channels[name]) {
       permanent[name] = nil;
-      write("Channel " + name + " is no longer permanent.\n");
+      write("Канал " + name + " больше не постоянный.\n");
    } else {
       permanent[name] = channels[name];
-      write("Channel " + name + " is now permanent.\n");
+      write("Канал " + name + " теперь постоянный.\n");
    }
    save_me();
 }
 
 void chan_imud(string chan, string name) {
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
    if (!channels[chan]) {
-      write("Channel does not exist.\n");
+      write("Канал не существует.\n");
       return;
    }
 
@@ -148,12 +148,12 @@ int chan_delete(string chan) {
    chan = lowercase(chan);
 
    if (query_wizard(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return 0;
    }
 
    if (permanent[chan]) {
-      write("Can not delete permanent channels.\n");
+      write("Нельзя удалить постоянный канал.\n");
       return 0;
    }
 
@@ -166,7 +166,7 @@ int chan_delete(string chan) {
    listeners[chan] = nil;
 
    save_me();
-   write("Channel " + chan + " deleted.\n");
+   write("Канал " + chan + " удален.\n");
 
    return 1;
 }
@@ -176,16 +176,16 @@ int chan_new(string name, int flags) {
    name = lowercase(name);
 
    if (query_wizard(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return 0;
    }
 
    if (channels[name]) {
-      write("Channel already exists.\n");
+      write("Канал уже существует.\n");
       return 0;
    }
    channels[name] = flags;
-   write("Channel created.\n");
+   write("Канал создан.\n");
    save_me();
 
    return 1;
@@ -196,21 +196,21 @@ int chan_join(string chan, object ob) {
    chan = lowercase(chan);
 
    if (!channels[chan]) {
-      write("No such channel.");
+      write("Нет такого канала.");
       return 0;
    }
 
    if (channels[chan] < READ_ONLY) {
       /* XXX need to rethink this */
       if (query_user_type(ob->query_name()) < channels[chan] - 1) {
-         write("No such channel.\n");
+         write("Нет такого канала.\n");
          return 0;
       }
    }
 
    if (guilds[chan]) {
       if (!ob->guild_member(guilds[chan])) {
-         write("No such channel.\n");
+         write("Нет такого канала.\n");
          return 0;
       }
    }
@@ -221,7 +221,7 @@ int chan_join(string chan, object ob) {
       listeners[chan] -= ({ ob });
    }
    listeners[chan] += ({ ob });
-   write("Subscribed to " + chan + ".\n");
+   write("Подписаны на канал " + chan + ".\n");
 
    this_player()->add_channel(chan);
 
@@ -234,14 +234,14 @@ int chan_leave(string chan, object ob) {
    chan = lowercase(chan);
 
    if (!channels[chan]) {
-      write("No such channel.");
+      write("Нет такого канала.");
       return 0;
    }
 
    if (listeners[chan]) {
       listeners[chan] -= ({ ob });
    }
-   write("No longer subscribed to " + chan + ".\n");
+   write("Больше не подписаны на канал " + chan + ".\n");
    this_player()->remove_channel(chan);
 
    return 1;
@@ -259,11 +259,11 @@ void chan_who(string chan) {
    }
 
    if (!users || sz < 1) {
-      write("No subscribers.");
+      write("Нет подписчиков.");
       return;
    }
 
-   write("Subscribed to " + chan + ":\n");
+   write("Подписаны на " + chan + ":\n");
 
    for (i = 0; i < sz; i++) {
       if (users[i]) {
@@ -481,7 +481,7 @@ string handle_emote(string cmd, string arg) {
             nil, nil);
          what = result[2];
       } else {
-         write("No such emote.\n");
+         write("Нет такой эмоции.\n");
          what = "";
       }
    }
@@ -494,12 +494,12 @@ void chan_emote(string chan, string what) {
    string cmd, arg;
 
    if (!query_subscribed(chan)) {
-      write("Not subscribed to channel " + chan + ".\n");
+      write("Нет подписанных на канал " + chan + ".\n");
       return;
    }
 
    if (channels[chan] == READ_ONLY) {
-      write(chan + " is read only.");
+      write(chan + " для чтения только.");
       return;
    }
 
@@ -541,12 +541,12 @@ void chan_say(string chan, string what) {
    int i, sz;
 
    if (!query_subscribed(chan)) {
-      write("Not subscribed to channel " + chan + ".\n");
+      write("Не подписаны на канал " + chan + ".\n");
       return;
    }
 
    if (channels[chan] == READ_ONLY) {
-      write(chan + " is read only.");
+      write(chan + " для чтения только.");
       return;
    }
 
@@ -580,7 +580,7 @@ string chan_query_color(string chan) {
 
 void chan_set_color(string chan, string col) {
    if (query_wizard(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
@@ -605,16 +605,16 @@ string chan_query_guild(string chan) {
 
 void chan_set_guild(string chan, string guild) {
    if (query_admin(this_player()->query_name()) != 1) {
-      write("Access denied.\n");
+      write("Доступ запрещен.\n");
       return;
    }
 
    if ((guild == "") || (guild == "nil") || (guilds[chan] == guild)) {
       guilds[chan] = nil;
-      write(chan + " is no longer a guild only channel.\n");
+      write(chan + " больше не канал гильдии.\n");
    } else {
       guilds[chan] = guild;
-      write(chan + " is now a " + guild + " guild only channel.\n");
+      write(chan + " теперь " + guild + " канал гильдии.\n");
    }
    save_me();
 }
@@ -656,7 +656,7 @@ string *query_channels(void) {
 void event_new_player(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "channel_d",
-         "Trumpets sound as " + capitalize(args[0]) + " joins the realm.",
+         "Внимание! " + capitalize(args[0]) + " вошел в мир.",
          NOT_EMOTE);
    }
 }
@@ -664,35 +664,35 @@ void event_new_player(string * args) {
 void event_player_login(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "channel_d",
-         capitalize(args[0]) + " logs in.", NOT_EMOTE);
+         capitalize(args[0]) + " вошел в игру.", NOT_EMOTE);
    }
 }
 
 void event_player_logout(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "channel_d",
-         capitalize(args[0]) + " logs out.", NOT_EMOTE);
+         capitalize(args[0]) + " вышел из игры.", NOT_EMOTE);
    }
 }
 
 void event_player_linkdeath(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "", capitalize(args[0]) +
-         " goes link-dead.", EMOTE);
+         " потеря связи.", EMOTE);
    }
 }
 
 void event_player_unlinkdeath(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "", capitalize(args[0]) +
-         " returns from link-death.", EMOTE);
+         " восстановление связи.", EMOTE);
    }
 }
 
 void event_player_join(string * args) {
    if (channels["announce"]) {
       chan_send_string("announce", "channel_d",
-         "Trumpets blast a fanfare as " + capitalize(args[0]) + " joins " +
+         "Хоть стой, хоть падай " + capitalize(args[0]) + " присоединился к " +
          args[1] + "!", NOT_EMOTE);
    }
 }
@@ -718,42 +718,42 @@ void show_info(string channel) {
    string value;
    int x;
 
-   this_player()->message("Channel: " + channel + "\n");
+   this_player()->message("Канал: " + channel + "\n");
    x = get_num_listeners(channel);
 
    value = chan_query_color(channel);
-   this_player()->message("Channel Color: " + value + "\n");
+   this_player()->message("Цвет канала: " + value + "\n");
 
-   this_player()->message("Members: " + x + "\n");
+   this_player()->message("Подписчики: " + x + "\n");
 
    if (imud[channel] == channel) {
-      value = "yes";
+      value = "да";
    } else {
-      value = "no";
+      value = "нет";
    }
    this_player()->message("Imud: " + value + "\n");
 
    if (permanent[channel] == channel) {
-      value = "yes";
+      value = "да";
    } else {
-      value = "no";
+      value = "нет";
    }
-   this_player()->message("Permanent: " + value + "\n");
+   this_player()->message("Постоянный: " + value + "\n");
 
    if (guilds[channel]) {
-      this_player()->message("Guild restrictions: " + guilds[channel] + "\n");
+      this_player()->message("Ограничение гильдией: " + guilds[channel] + "\n");
    } else {
-      this_player()->message("Guild restrictions: no, open\n");
+      this_player()->message("Ограничение гильдией: нет, открыт для всех\n");
    }
 
    if (channels[channel] == READ_ONLY) {
-      this_player()->message("Access level: Read only\n");
+      this_player()->message("Уровень допуска: Только для чтения\n");
    } else if (channels[channel] == ADMIN_ONLY) {
-      this_player()->message("Access level: Admin only\n");
+      this_player()->message("Уровень допуска: Только для админов\n");
    } else if (channels[channel] == WIZ_ONLY) {
-      this_player()->message("Access level: Wizard only\n");
+      this_player()->message("Уровень допуска: Только для билдеров\n");
    } else {
-      this_player()->message("Access level: open\n");
+      this_player()->message("Уровень допуска: Открыт для всех\n");
    }
 }
 

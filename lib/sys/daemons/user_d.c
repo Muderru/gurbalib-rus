@@ -17,7 +17,7 @@ static void secure(void) {
       && (name != "/sys/daemons/ftp_session") 
       && (name != "/cmds/player/quit") 
       && !require_priv("system")) {
-      error("Access denied: " + name + "\n");
+      error("Доступ запрещен: " + name + "\n");
    }
 }
 
@@ -148,8 +148,8 @@ int reset_password(string who, string passwd) {
 
    obj = USER_D->find_player(who);
    if (obj) {
-      write("That user is currently logged in you cannot change their " +
-         "password.\n");
+      write("Этот игрок сейчас в игре, вы не можете изменить его " +
+         "пароль.\n");
    }
 
    obj = get_data_ob(who);
@@ -223,7 +223,7 @@ int _delete_user(string name) {
    object u, p;
 
    if (!require_priv("system")) {
-      error("Access denied.");
+      error("Доступ запрещен.");
       return 0;
    }
 
@@ -393,52 +393,52 @@ string *list_all_users(void) {
 void print_finger_info(object player, object player2, int cloned) {
    string linkd;
 
-   player->message("%^BLUE%^Name:%^RESET%^ " + player2->query_Name() + "\n");
-   player->message("%^BLUE%^Title:%^RESET%^ " + player2->query_title() + "\n");
+   player->message("%^BLUE%^Имя:%^RESET%^ " + player2->query_Name() + "\n");
+   player->message("%^BLUE%^Титул:%^RESET%^ " + player2->query_title() + "\n");
 
    if (query_admin(player2->query_name()) == 1) {
-      player->message("%^BLUE%^Status: %^RESET%^Administrator\n");
+      player->message("%^BLUE%^Статус: %^RESET%^Администратор\n");
    } else if (query_wizard(player2->query_name()) == 1) {
-      player->message("%^BLUE%^Status: %^RESET%^Wizard\n");
+      player->message("%^BLUE%^Статус: %^RESET%^Билдер\n");
    } else {
-      player->message("%^BLUE%^Status: %^RESET%^Player\n");
+      player->message("%^BLUE%^Статус: %^RESET%^Игрок\n");
    }
-   player->message("%^BLUE%^Age:%^RESET%^ " + player2->query_age() + "\n");
+   player->message("%^BLUE%^Возраст:%^RESET%^ " + player2->query_age() + "\n");
 
    if (query_wizard(player)) {
-      player->message("%^BLUE%^Description:%^RESET%^ " +
+      player->message("%^BLUE%^Описание:%^RESET%^ " +
          player2->query_long() + "\n");
    }
 
    if (query_admin(player)) {
       if (player2->query_realname()) {
-         player->message("%^BLUE%^Real name: %^RESET%^" +
+         player->message("%^BLUE%^Реальное имя: %^RESET%^" +
             player2->query_realname() + "\n");
       } else {
-         player->message("%^BLUE%^Real name: %^RESET%^\n");
+         player->message("%^BLUE%^Реальное имя: %^RESET%^\n");
       }
       if (player2->query_email()) {
-         player->message("%^BLUE%^Email address: %^RESET%^" +
+         player->message("%^BLUE%^Email адрес: %^RESET%^" +
             player2->query_email() + "\n");
       } else {
-         player->message("%^BLUE%^Email address: %^RESET%^\n");
+         player->message("%^BLUE%^Email адрес: %^RESET%^\n");
       }
    }
 
    if (cloned == 1) {
-      player->message("%^BLUE%^Last login: %^RESET%^" +
+      player->message("%^BLUE%^Последний вход в игру: %^RESET%^" +
          ctime(player2->query_last_login()));
    } else {
       
       if (LINKDEAD_D->is_linkdead(player2) ) {
-         linkd = " %^BOLD%^%^YELLOW%^[link-dead]%^RESET%^";
+         linkd = " %^BOLD%^%^YELLOW%^[Без связи]%^RESET%^";
       } else {
          linkd = "";
       }
 
       player->message("%^BLUE%^Last login: %^RESET%^Now " + linkd + "\n");
       if (player2->query_idle() > 60) {
-         player->message("%^BLUE%^Idle: %^RESET%^" +
+         player->message("%^BLUE%^Простаивает: %^RESET%^" +
             fmt_time(player2->query_idle()) + "\n");
       }
    }
@@ -657,7 +657,7 @@ void create_homedir(string wiz) {
 
    if (!require_priv("system")) {
       prev = previous_object()->base_name();
-      error("Access denied: " + prev + "\n");
+      error("Доступ запрещен: " + prev + "\n");
    }
 
    path = WIZ_DIR + "/" + wiz + "/";
@@ -676,18 +676,18 @@ void delete_homedir(string wiz) {
 
    if (!require_priv("system")) {
       prev = previous_object()->base_name();
-      error("Access denied: " + prev + "\n");
+      error("Доступ запрещен: " + prev + "\n");
    }
 
    path = WIZ_DIR + "/" + wiz + "/";
 
    if (file_exists(path) == 0) {
-      error("No such directory: " + path + "\n");
+      error("Нет такой директории: " + path + "\n");
    } else {
       if (remove_dir(path)) {
          write("Ok.\n");
       } else {
-         write("Failed to remove: " + path + "\n");
+         write("Ошибка удаления: " + path + "\n");
       }
    }
 }
@@ -703,11 +703,11 @@ void make_mortal(string name) {
       LOG_D->write_log("cheating", "Player: " + this_player()->query_Name() +
          " was trying to make_mortal(" + name + ") with this object " +
          prev + "\n");
-      error("Hey! No cheating!\n" + prev + " != /sys/cmds/admin/promote\n");
+      error("Эй! Не читерить!\n" + prev + " != /sys/cmds/admin/promote\n");
    }
 
    if (!require_priv("system")) {
-      error("Access denied: " + prev + "\n");
+      error("Доступ запрещен: " + prev + "\n");
    }
 
    name = lowercase(name);
@@ -730,14 +730,14 @@ void make_mortal(string name) {
          player->remove_cmd_path("/sys/cmds/wiz");
          player->save_me();
          player->message(this_player()->query_Name() +
-            " has promoted you to a mortal.");
+            " был понижен до обычного игрока.");
       }
       filter_array(DOMAIN_D->query_domains(), "remove_domain_member",
          DOMAIN_D, name);
-      write(capitalize(name) + " has been made a mortal.");
+      write(capitalize(name) + " стал обычным игроком.");
       save_me();
    } else {
-      write("No such player.\n");
+      write("Нет такого игрока.\n");
    }
 }
 
@@ -752,11 +752,11 @@ void make_wizard(string name) {
       LOG_D->write_log("cheating", "Player: " + this_player()->query_Name() +
          " was trying to make_wizard(" + name + ") with this object " +
          prev + "\n");
-      error("Hey! No cheating!\n" + prev + " != /sys/cmds/admin/promote\n");
+      error("Эй! Не читерить!\n" + prev + " != /sys/cmds/admin/promote\n");
    }
 
    if (!require_priv("system")) {
-      error("Access denied: " + prev + "\n");
+      error("Доступ запрещен: " + prev + "\n");
    }
 
    name = lowercase(name);
@@ -781,14 +781,14 @@ void make_wizard(string name) {
 
          if (player != this_player()) {
             player->message(this_player()->query_Name() +
-               " has promoted you to a wizard.");
+               " был повышен до билдера.");
          }
       }
       unguarded("create_homedir", name);
-      write(capitalize(name) + " has been made a wizard.");
+      write(capitalize(name) + " стал билдером.");
       save_me();
    } else {
-      write("No such player.\n");
+      write("Нет такого игрока.\n");
    }
 }
 
@@ -803,11 +803,11 @@ void make_admin(string name) {
       LOG_D->write_log("cheating", "Player: " + this_player()->query_Name() +
          " was trying to make_admin(" + name + ") with this object " +
          prev + "\n");
-      error("Hey! No cheating!\n" + prev + " != /sys/cmds/admin/promote\n");
+      error("Эй! Не читерить!\n" + prev + " != /sys/cmds/admin/promote\n");
    }
 
    if (!require_priv("system")) {
-      error("Access denied: " + prev + "\n");
+      error("Доступ запрещен: " + prev + "\n");
    }
 
    name = lowercase(name);
@@ -831,14 +831,14 @@ void make_admin(string name) {
          player->save_me();
          if (player != this_player()) {
             player->message(this_player()->query_Name() +
-               " has promoted you to an admin.");
+               " был повышен до админа.");
          }
       }
       unguarded("create_homedir", name);
-      write(capitalize(name) + " has been made an admin.");
+      write(capitalize(name) + " стал админом.");
       save_me();
    } else {
-      write("No such player.\n");
+      write("Нет такого игрока.\n");
    }
 }
 
@@ -855,7 +855,7 @@ string *list_players(int long_flag) {
    usr = query_players();
    nump = sizeof(usr);
 
-   lines = ({ MUD_NAME + " currently has " + nump + " users online." });
+   lines = ({ MUD_NAME + ": сейчас " + nump + " игроков онлайн." });
 
    max = sizeof(usr);
    for (i = 0; i < max; i++) {
@@ -890,7 +890,7 @@ string *list_players(int long_flag) {
 
       if (long_flag == 1) {
          if (usr[i]->query_environment()) {
-            lines += ({ line + "\n\t" + usr[i]->query_name() + "'s Location: " +
+            lines += ({ line + "\n\t" + usr[i]->query_r_name() + " расположение: " +
                usr[i]->query_environment()->query_short() });
          } else {
                 lines += ({ line + "\n\t" + usr[i]->query_name() });

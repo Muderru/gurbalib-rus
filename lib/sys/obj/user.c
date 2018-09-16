@@ -51,7 +51,7 @@ void _open(mixed * tls) {
    player->set_user(this_object());
    player->initialize_cmd_path();
    player->initialize_alias();
-   player->set_long("Скучающий игрок без описания.");
+   player->set_long("Скучный игрок без описания.");
    LOG_D->write_log("logins", ctime(time()) + "\t" + 
       query_ip_number(this_object()) + "\t" + "opening connection\n");
    player->input_to_object(this_object(), "input_name");

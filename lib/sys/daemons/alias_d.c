@@ -19,22 +19,23 @@ void create(void) {
    } else {
    /* Setup some basic defaults encase we do not have anything setup */
    player_alias = ([
-         "n": "go north $*",
-         "s": "go south $*",
-         "e": "go east $*",
-         "w": "go west $*",
-         "ne": "go northeast $*",
-         "nw": "go northwest $*",
-         "se": "go southeast $*",
-         "sw": "go southwest $*",
-         "u": "go up $*",
-         "d": "go down $*",
-         "i": "inventory $*",
-         "l": "look $*",
-         "exa": "look $*",
-         "drink": "eat $*",
-         "sc": "score $*",
-         "kill": "attack $*"
+         "с": "идти север $*",
+         "ю": "идти юг $*",
+         "в": "идти восток $*",
+         "з": "идти запад $*",
+         "вв": "идти вверх $*",
+         "вн": "идти вниз $*",
+         "св": "идти северо-восток $*",
+         "сз": "идти северо-запад $*",
+         "юв": "идти юго-восток $*",
+         "юз": "идти юго-запад $*",
+         "и": "инвентарь $*",
+         "инв": "инвентарь $*",
+         "э": "инвентарь $*",
+         "экип": "инвентарь $*",
+         "сч": "счет $*",
+         "пить": "есть $*",
+         "см": "смотреть $*"
       ]);
       wizard_alias = ([
          "z": "update $*"
@@ -50,7 +51,7 @@ void add_player_alias(string cmd, string alias) {
    }
 
    player_alias[cmd] = alias;
-   write("Player alias " + cmd + " added.");
+   write("Алиас игрока " + cmd + " добавлен.");
    save_me();
 }
 
@@ -64,7 +65,7 @@ int remove_player_alias(string cmd) {
    }
 
    player_alias[cmd] = nil;
-   write("Player alias " + cmd + " removed.");
+   write("Алиас игрока " + cmd + " удален.");
    save_me();
    return 1;
 }
@@ -75,7 +76,7 @@ void add_wizard_alias(string cmd, string alias) {
    }
 
    wizard_alias[cmd] = alias;
-   write("Wizard alias " + cmd + " added.");
+   write("Алиас билдера " + cmd + " добавлен.");
    save_me();
 }
 
@@ -88,7 +89,7 @@ int remove_wizard_alias(string cmd) {
       return 0;
    }
    wizard_alias[cmd] = nil;
-   write("Wizard alias " + cmd + " removed.");
+   write("алиас билдера " + cmd + " удален.");
    save_me();
    return 1;
 }
@@ -191,7 +192,7 @@ string *show_alias(string type, string str) {
    rules = ( { } );
    if (!str || str == "") {
       if (!type || type == "" || type == "player") {
-         rules += ( { "Player aliases:" } );
+         rules += ( { "Алиасы игрока:" } );
          aliases = map_indices(player_alias);
          for (i = 0; i < sizeof(aliases); i++) {
             line = aliases[i];
@@ -199,7 +200,7 @@ string *show_alias(string type, string str) {
          }
       }
       if (!type || type == "" || type == "wizard" || type == "wiz") {
-         rules += ( { "Wizard aliases:" } );
+         rules += ( { "Алиасы билдера:" } );
          aliases = ({ });
          aliases = map_indices(wizard_alias);
          for (i = 0; i < sizeof(aliases); i++) {
@@ -213,18 +214,18 @@ string *show_alias(string type, string str) {
    if (type == "" || type == "player") {
       if (player_alias[str]) {
          done = 1;
-         rules += ( { "Player alias: " + str + " : " + player_alias[str] } );
+         rules += ( { "Алиасы игрока: " + str + " : " + player_alias[str] } );
       }
    }
 
    if (type == "" || type == "wizard" || type == "wiz") {
       if (wizard_alias[str]) {
          done = 1;
-         rules += ( { "Wizard alias: " + str + " : " + wizard_alias[str] } );
+         rules += ( { "Алиасы билдера: " + str + " : " + wizard_alias[str] } );
       }
    }
    if (!done) {
-      rules = ( { "No such alias: " + str } );
+      rules = ( { "Нет такого алиаса: " + str } );
    }
    return rules;
 }
