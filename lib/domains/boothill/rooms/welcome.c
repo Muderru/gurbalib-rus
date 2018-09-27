@@ -5,12 +5,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("Welcome to town");
-   set_long("A large sign stretches across the road.  It reads: \"Welcome " +
-      "to town\".  The road north, bends to the west here.");
+   set_short("Городские врата");
+   set_long("Над воротами висит грязная деревянная табличка, на которой с трудом можно" +
+   "различить надпись: 'Добро пожаловать!'. На севере за табличкой начинаются неказистые " +
+   "здания, а на юге вы видите узкую пыльную дорогу, ведущую в прерии.");
 
    set_exits(([
-      "north" : DIR + "/rooms/infront_saloon.c",
-      "south" : DIR + "/rooms/entrance.c", 
+      "север" : DIR + "/rooms/infront_saloon.c",
+      "юг" : DIR + "/rooms/entrance.c", 
    ]));
 }

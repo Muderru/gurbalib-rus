@@ -1,11 +1,18 @@
 inherit "/std/weapon";
 
 void setup(void) {
-   set_id("pickaxe");
-   set_adj("rusty");
-   set_short("A rusty pickaxe");
-   set_long("This axe has seen better days.  It could use a sharpening and " +
-      "a whole lot of grease.");
+   set_id("кирка");
+   add_id("ржавая");
+   set_short("Ржавая кирка");
+   set_long("Это очень старый инструмент. Его не помешало бы заточить и " +
+      "очистить от ржавчины и грязи.");
+   set_obj_i_name("ржавая кирка");
+   set_obj_r_name("ржавой кирки");
+   set_obj_d_name("ржавой кирке");
+   set_obj_v_name("ржавую кирку");
+   set_obj_t_name("ржавой киркой");
+   set_obj_p_name("ржавой кирке");
+   set_obj_gender("female");
    set_gettable(1);
 
    set_min_damage(1);
@@ -15,8 +22,6 @@ void setup(void) {
    set_weapon_skill("combat/sharp/small");
 
    set_wield_type("single");
-   set_wield_message("$N $vwield $p $o.");
-   set_unwield_message("$N $vloosen $p $vgrip on $o, and $vput it away.");
    set_weapon_action("slash");
    set_value(8);
    set_size(6);

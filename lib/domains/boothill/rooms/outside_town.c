@@ -5,12 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("A prairie");
-   set_long("The prairie is lush and green.  It extends to the west.  " +
-      "To the east you see a road.");
+   set_short("Прерия");
+   set_long("Все пространство на западе до горизонта занимают обширные прерии, по которым " +
+      "ветра разгоняют зеленые травяные волны. Чуть дальше на востоке вы замечаете пыльную дорогу.");
 
    set_exits(([
-      "east" : DIR + "/rooms/entrance.c", 
-      "west" : STARTING_ROOM,
+      "восток" : DIR + "/rooms/entrance.c", 
+      "запад" : STARTING_ROOM,
    ]));
 }

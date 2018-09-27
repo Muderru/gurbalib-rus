@@ -3,9 +3,16 @@
 inherit "/std/sign";
 
 void setup(void) {
-   set_id("tombstone");
-   set_short("A tombstone");
-   add_ids("stone", "grave", "gravestone");
+   set_id("надгробие");
+   set_short("Надгробие");
+   add_ids("камень", "могила", "могильное надгробие");
+   set_obj_i_name("могильное надгробие");
+   set_obj_r_name("могильного надгробия");
+   set_obj_d_name("могильному надгробию");
+   set_obj_v_name("могильное надгробие");
+   set_obj_t_name("могильным надгробием");
+   set_obj_p_name("могильном надгробии");
+   set_obj_gender("neuter");
 }
 
 string query_long(void) {
@@ -13,22 +20,22 @@ string query_long(void) {
    string str;
 
    x = random(5);
-   str = "The tombstone reads:\n\t";
+   str = "Вы видите надпись на надгробии у могилы:\n\t";
    switch (x) {
       case 0:
-         str += "Here lies Fred, with a belly full of lead!\n";
+         str += "Здесь лежит Фред, умерший от дизентерии.\n";
          break;
       case 1:
-         str += "Here lies Jake, He got hit over the head with a rake.\n";
+         str += "Здесь лежит Джейк, он получил удар по голове граблями.\n";
          break;
       case 2:
-         str += "Here lies Old man Tucker, He couldn't hold his liquor.\n";
+         str += "Здесь лежит Старик Такер. Он не смог побить мировой рекорд по выпиванию ликера.\n";
          break;
       case 3:
-         str += "We don't know this poor feller.\n";
+         str += "Тут похоронен какой-то бомж.\n";
          break;
       case 4:
-         str += "Here lies the fine Miss Sally.\n";
+         str += "Здесь лежит куртизанка Салли. Ее сгубили мужчины.\n";
          break;
    }
    return str;

@@ -5,15 +5,15 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("The general store");
-   set_long("This quaint little shop has all of the basic necessities. " +
-      "Here in the wild west, if you can't get it at the general store, " +
-      "your probably going to have to wait months to get a package.  " +
-      "While looking around at the sundry goods, you smell something " +
-      "delicious.");
+   set_short("Магазин всякой всячины");
+   set_long("Похоже, что это единственный магазин во всем городе и " +
+      "купить здесь можно все самое необходимое для жизни. А, если " +
+      "вам понадобится какая-нибудь экзотика, то здесь ее можно заказать в " +
+      "столице, правда ждать посылку придется несколько месяцев. Единственный " +
+      "выход отсюда ведет на восток на грязную улочку.");
 
    set_exits(([
-      "east" : DIR + "/rooms/infront_store.c", 
+      "восток" : DIR + "/rooms/infront_store.c", 
    ]));
 
    set_objects(

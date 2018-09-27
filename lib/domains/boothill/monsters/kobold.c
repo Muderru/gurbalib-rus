@@ -5,12 +5,17 @@ inherit "/std/monster";
 void setup(void) {
    object obj;
 
-   set_name("kobold");
+   set_name("кобольд");
    set_gender( "male" );
-   add_adj("filthy");
-   set_short("A filthy little kobold");
-   set_long("This dirty little creature is not your friend.  In fact he " +
-      "looks rather grumpy.");
+   add_adj("грязный", "маленький");
+   set_short("Грязный маленький кобольд");
+   set_long("Этот маленький грязный монстр явно не ваш друг. Он смотрит " +
+      "на вас злобно и кажется выжидает удобного момента для нападения.");
+   set_r_name("грязного маленького кобольда");
+   set_d_name("грязному маленькому кобольду");
+   set_v_name("грязного маленького кобольда");
+   set_t_name("грязным маленьким кобольдом");
+   set_p_name("грязном маленьком кобольде");
    set_race("kobold");
    set_level(1);
    set_hit_skill("combat/unarmed");

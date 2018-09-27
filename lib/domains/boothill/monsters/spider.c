@@ -1,14 +1,18 @@
 inherit "/std/monster";
 
 void setup(void) {
-   set_name("spider");
-   /* Leave out the gender specification, get a random one */
-   /*  set_gender( "male" ); */
-   add_adj("large");
-   set_short("A large spider");
-   set_long("You thought the small ones were creepy.  This one is at least" +
-      "two feet across, and it looks like it thinks your a snack.");
+   set_name("паук");
 
+   add_adj("пещерный");
+   set_short("Пещерный паук");
+   set_long("Даже его самые маленькие собратья внушают многим людям страх, ну а эта " +
+      "метровая тварь с полуметровыми хелицерами одним своим видом способна напугать до смерти.");
+   set_r_name("пещерного паука");
+   set_d_name("пещерному пауку");
+   set_v_name("пещерного паука");
+   set_t_name("пещерным пауком");
+   set_p_name("пещерном пауке");
+   set_gender( "male" );
    set_race("spider");
    set_level(1);
    set_hit_skill("combat/unarmed");

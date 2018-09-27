@@ -5,14 +5,15 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("Cave in");
-   set_long("The supports here have collapsed.  There use to be a " +
-      "crawlspace to the west, however it doesn't look like your getting " +
-      "through that way anymore.");
+   set_short("Обрушившаяся пещера");
+   set_long("Отсыревшие опоры потолка пещеры обрушились и западная часть " +
+      "пещеры оказалась полностью заваленной. Ее восточная часть также не " +
+      "выглядит надежной, но пройти туда с осторожностью можно. Южная пещера " +
+      "кажется вполне безопасной.");
 
    set_exits(([
-      "south" : DIR + "/rooms/mine/station.c",
-      "east" : DIR + "/rooms/mine/bigrock.c",
+      "юг" : DIR + "/rooms/mine/station.c",
+      "восток" : DIR + "/rooms/mine/bigrock.c",
    ]));
 
    set_objects(DIR + "/obj/rubble.c");

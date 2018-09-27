@@ -5,12 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("Along a mountain path");
-   set_long("This narrow path winds it's way through the woods, leading " +
-      "east and west.");
+   set_short("Узкая тропа");
+   set_long("Узкая тропа ведет через рощу кривых деревьев на восток, по направлению " +
+      "к одинокой горе. На западе же находится городское кладбище.");
 
    set_exits(([
-      "east" : DIR + "/rooms/mountain.c",
-      "west" : DIR + "/rooms/boothill.c",
+      "восток" : DIR + "/rooms/mountain.c",
+      "запад" : DIR + "/rooms/boothill.c",
    ]));
 }

@@ -5,11 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("Outside town");
-   set_long("A small dirt road leads north to a small frontier town.");
+   set_short("Перед городом");
+   set_long("Узкая пыльная дорога заканчивается на севере у задворок небольшого" +
+   "города. От него несет чесноком и навозом, но в целом он кажется достаточно уютным");
 
    set_exits(([
-      "north" : DIR + "/rooms/welcome.c", 
-      "west" : DIR + "/rooms/outside_town.c",
+      "север" : DIR + "/rooms/welcome.c", 
+      "запад" : DIR + "/rooms/outside_town.c",
    ]));
 }

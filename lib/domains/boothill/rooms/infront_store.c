@@ -5,14 +5,14 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("Outside the general store");
-   set_long("You are on main street, in front of the general store.  Main " +
-      "runs north and south while the general store is to your west.  " +
-      "The road, if you can call it that, seems particularly muddy here.");
+   set_short("У магазина всякой всячины");
+   set_long("Вы остановились посреди главной улицы этого городка перед " +
+      "магазином всякой всячины. Вход в него находится на западе. " +
+      "Улица же тянется мимо неказистых зданий с севера на юг.");
 
    set_exits(([
-      "north" : DIR + "/rooms/infront_jail.c", 
-      "south" : DIR + "/rooms/infront_saloon.c", 
-      "west" : DIR + "/rooms/general_store.c", 
+      "север" : DIR + "/rooms/infront_jail.c", 
+      "юг" : DIR + "/rooms/infront_saloon.c", 
+      "запад" : DIR + "/rooms/general_store.c", 
    ]));
 }

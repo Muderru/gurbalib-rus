@@ -5,14 +5,18 @@ inherit "/std/monster";
 void setup(void) {
    object obj;
 
-   set_name("slim");
+   set_name("слизняк");
    set_gender( "male" );
-   add_adj("large");
-   set_short("Slim shady");
-   set_long("This guy is skinny, he is also kind of creepy looking.  He " +
-      "reminds you of an anemic scarecrow.");
-
-   set_race("human");
+   add_adj("большой");
+   set_short("Большой слизняк");
+   set_long("Эта большая куча слизи выглядит очень зловеще. Возможно из-за " +
+      "нескольких тянущихся к вам щупалец или дюжины уставившихся на вас глаз.");
+   set_r_name("большого слизняка");
+   set_d_name("большому слизняку");
+   set_v_name("большого слизняка");
+   set_t_name("большим слизняком");
+   set_p_name("большом слизняке");
+   set_race("rodent");
    set_level(1);
    set_hit_skill("combat/unarmed");
    set_skill("combat/unarmed", 50);

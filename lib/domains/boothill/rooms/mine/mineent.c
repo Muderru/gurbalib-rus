@@ -5,12 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("Entrance to the mine");
-   set_long("You came into the mine and the exit collapsed behind you.  It " +
-      "doesn't look like you'll be getting out of the mine here.  The " +
-      "mine continues deeper into the cave to the east.");
+   set_short("Вход в шахту");
+   set_long("Как только вы вошли в шахту, вход в нее обвалился. Лишь чудо " +
+      "спасло вас от гибели. Как бы то ни было, выйти здесь обратно не получится." +
+      "Возможно выход есть где-то еще в глубине шахты.");
 
    set_exits(([
-      "east" : DIR + "/rooms/mine/split.c",
+      "восток" : DIR + "/rooms/mine/split.c",
    ]));
 }

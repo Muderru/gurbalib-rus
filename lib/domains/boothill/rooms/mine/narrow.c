@@ -5,15 +5,15 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("Narrow passage");
-   set_long("The cave becomes thiner here.  It takes a sharp turn, it " +
-      "looks pretty skinny towards the south.  It might be safer to go " +
-      "back west.");
+   set_short("Узкий проход");
+   set_long("В этом узком туннеле едва протиснется взрослый человек. " +
+      "Видимо шахтеры не утруждались его разработкой из-за отсутствия " +
+      "полезных минералов, а может туннель образовался естественным путем.");
 
 
    set_exits(([
-      "south" : DIR + "/rooms/mine/rough.c",
-      "west" : DIR + "/rooms/mine/split.c",
+      "юг" : DIR + "/rooms/mine/rough.c",
+      "запад" : DIR + "/rooms/mine/split.c",
    ]));
 }
 

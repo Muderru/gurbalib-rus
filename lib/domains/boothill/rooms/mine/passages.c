@@ -5,14 +5,14 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("Passages");
-   set_long("There are multiple passages here, your not sure which way " +
-      "to go.");
+   set_short("Пересечение туннелей");
+   set_long("Здесь пересекаются несколько совершенно одинаковых туннелей, " +
+      "и определить какой вам нужен, не так то просто.");
 
    set_exits(([
-      "north" : DIR + "/rooms/mine/bigrock.c",
-      "east" : DIR + "/rooms/mine/deadend.c",
-      "west" : DIR + "/rooms/mine/station.c",
+      "север" : DIR + "/rooms/mine/bigrock.c",
+      "восток" : DIR + "/rooms/mine/deadend.c",
+      "запад" : DIR + "/rooms/mine/station.c",
    ]));
 }
 

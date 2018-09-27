@@ -5,15 +5,16 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("The Station");
-   set_long("This use to be the supply station for the mine.  There are a " +
-      "number of shelves and abandoned mine carts here.  Back in the " +
-      "day you could have stocked up big time.");
+   set_short("Станция");
+   set_long("Эта пещера была приспособлена в качестве вспомогательного помещения " +
+      "для шахтеров. Повсюду вы видите перевернутые тележки и разбросанные инструменты. " +
+      "Вряд ли столько добра могли забыть случайно, вероятно шахтеры планировали " +
+      "вернуться сюда позже.");
 
    set_exits(([
-      "north" : DIR + "/rooms/mine/cavein.c",
-      "east" : DIR + "/rooms/mine/passages.c",
-      "west" : DIR + "/rooms/mine/squeeze.c",
+      "север" : DIR + "/rooms/mine/cavein.c",
+      "восток" : DIR + "/rooms/mine/passages.c",
+      "запад" : DIR + "/rooms/mine/squeeze.c",
    ]));
 
    set_objects(DIR + "/obj/pickaxe.c");

@@ -5,11 +5,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("boothill");
 
-   set_short("A very small jail cell");
-   set_long("There isn't a whole heck of a lot here.");
+   set_short("Тюремная камера");
+   set_long("Вы зачем-то зашли в небольшую камеру, пустующую сейчас. "+
+   "Стены и пол камеры покрыты пятнами крови в мочи, от перевернутого " +
+   "помойного ведра несет дерьмом.");
 
    set_exits(([
-      "west" : DIR + "/rooms/jail.c", 
+      "запад" : DIR + "/rooms/jail.c", 
    ]));
 
 }

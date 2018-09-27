@@ -5,15 +5,16 @@ inherit "/std/room";
 void setup(void) {
    add_area("mine");
 
-   set_short("Rough spot");
-   set_long("The walls here are not as clean cut as the rest of the mine." +
-      "  It looks like they must have struck it rich some where else and " +
-      "decided there were better places to dig.");
+   set_short("Большая пещера");
+   set_long("Стены этой пещеры испещрены глубокими расщелинами и царапинами от " +
+      "шахтерских кирок. Сложно сказать, что тут добывалось, если тут и было что-то " +
+      "ценное, то сейчас от этого не осталось и следа. Из пещеры ведет несколько " + 
+      "выходов: узкий северный туннель, широкий западный и низкий восточный.");
 
    set_exits(([
-      "north" : DIR + "/rooms/mine/narrow.c",
-      "east" : DIR + "/rooms/mine/squeeze.c",
-      "west" : DIR + "/rooms/mine/large.c",
+      "север" : DIR + "/rooms/mine/narrow.c",
+      "восток" : DIR + "/rooms/mine/squeeze.c",
+      "запад" : DIR + "/rooms/mine/large.c",
    ]));
 }
 
