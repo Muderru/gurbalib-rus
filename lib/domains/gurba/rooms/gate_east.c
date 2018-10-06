@@ -8,24 +8,23 @@ void setup(void) {
    add_area("BorderWalk");
    add_area("BorderWalkEast");
 
-   set_short("Eastern Gate of Gurba Town");
-   set_long("You are at the eastern entrance to the town of Gurba.  " +
-      "The gate itself is a large, ancient arch of stone, connected on " +
-      "either side to the tall, worn stone wall that marks the perimeter " +
-      "of the town.  The neat brick paving of the streets transitions " +
-      "to a dirt road as it leads through the gate into the lands " +
-      "beyond.  To the east you see a large open field.  To the west " +
-      "Gelmir Road leads toward the town square.  Boarder Walk runs  " +
-      "north and south.");
+   set_short("Восточные ворота города Гурба");
+   set_long("Вы находитесь около восточного входа в город Гурба. " +
+      "Ворота представляют собой древнюю каменную арку, вставленную " +
+      "в стену, окружающую город по периметру. " +
+      "На востоке, сразу за подъемным мостом начинается открытое " +
+      "поле. " +
+      "На западе широкая улица ведет к центральной площади города. " +
+      "А с севера на юг это место пересекает Пограничный переулок.");
 
    set_exits(([
-      "north" : DIR + "/rooms/border_east5",
-      "south" : DIR + "/rooms/border_east4",
-      "east" : STARTING_ROOM,
-      "west" : DIR + "/rooms/gelmir4",
+      "север" : DIR + "/rooms/border_east5",
+      "юг" : DIR + "/rooms/border_east4",
+      "восток" : STARTING_ROOM,
+      "запад" : DIR + "/rooms/gelmir4",
    ]));
 
-   add_item("gate", "The ancient stonework of the gate is etched with the " +
-      "inscription 'Scientia et Pertinacia.'  Beyond it the dirt road " +
-      "leads toward a large open field.");
+   add_item("ворота", "На древнем камне высечена фраза " +
+      "'Scientia et Pertinacia.'  Под ней грязная грунтовая дорога " +
+      "ведет в открытое поле.");
 }

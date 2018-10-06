@@ -67,7 +67,7 @@ static void main(string who) {
    }
 
    if (!what || (what == "")) {
-      write("Что вы хотите сказать?\n");
+      write("Что и кому вы хотите сказать?\n");
       return;
    }
 

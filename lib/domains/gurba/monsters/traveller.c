@@ -5,15 +5,17 @@ inherit "/std/monster";
 inherit "/std/modules/m_wander";
 
 void setup(void) {
-   set_name("traveller");
-
-   /* Leave out the gender specification, get a random one */
-   /*  set_gender(0); */
-
-   add_adj("wandering");
-   set_short("A wandering traveller");
-   set_long("This tired-looking person just happens to be passing through " +
-      "the area..");
+   set_name("путешественник");
+   set_gender("male");
+   add_id("странствующий");
+   set_short("Странствующий путешественник");
+   set_long("Никто не знает, кто он и откуда. И кажется он и сам " +
+      "об этом не вспомнит.");
+   set_r_name("путешественника");
+   set_d_name("путешественнику");
+   set_v_name("путешественника");
+   set_t_name("путешественником");
+   set_p_name("путешественнике");
    set_race("human");
    set_level(random(8) + 5);
    set_hit_skill("combat/unarmed");

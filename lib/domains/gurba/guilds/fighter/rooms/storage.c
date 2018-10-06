@@ -3,13 +3,13 @@
 inherit "/std/room";
 
 void setup(void) {
-   set_short("%^BLUE%^Fighters Guild Locker Rooms%^RESET%^");
-   set_long("There are a bunch of lockers here.  Hey there is yours, to " +
-      "the east.");
+   set_short("%^BLUE%^Кладовые Гильдии бойцов%^RESET%^");
+   set_long("Все вещи членов гильдии здесь аккуратно разложены " +
+      "по именным хранилищам. Тут даже есть ваше персональное хранилище на востоке.");
 
    set_exits(([
-      "south" : DIR + "/guilds/fighter/rooms/main",
-      "east" : "#go_locker",
+      "юг" : DIR + "/guilds/fighter/rooms/main",
+      "восток" : "#go_locker",
    ]));
 
 }
@@ -24,7 +24,7 @@ void go_locker(void) {
       obj = clone_object(DIR + "/guilds/fighter/rooms/locker.c");
 
       if (!obj) {
-         write("Error: Lockers are messed up.  Please talk to an admin.");
+         write("Ошибка: Хранилище отсутствует. Пожалуйста, сообщите об этом админу.");
          return;
       }
 
@@ -33,7 +33,7 @@ void go_locker(void) {
       obj->restore_me();
 
       if (!obj) {
-         write("Error: Your locker is messed up.  Please talk to an admin.");
+         write("Ошибка: Хранилище отсутствует. Пожалуйста, сообщите об этом админу.");
          return;
       }
    } else {
@@ -47,10 +47,20 @@ void go_locker(void) {
    if (this_player()->move(obj)) {
       /* XXX Need to move this stuff to other move's like summon/goto */
       this_object()->event("body_leave", this_player());
-      tell_room(this_player(), this_player()->query_Name() + " leaves east.\n");
-      obj->tell_room(this_player(), this_player()->query_Name() + " enters.\n");
-      this_player()->do_look(0);
+      
+         if (this_player()->query_gender() == "male") {
+          tell_room(this_player(), this_player()->query_Name() + " ушел на восток.\n");
+          obj->tell_room(this_player(), this_player()->query_Name() + " вошел.\n");
+       } else if (this_player()->query_gender() == "female") {
+          tell_room(this_player(), this_player()->query_Name() + " ушла на восток.\n");
+          obj->tell_room(this_player(), this_player()->query_Name() + " вошла.\n");
+       } else {
+          tell_room(this_player(), this_player()->query_Name() + " ушло на восток.\n");
+          obj->tell_room(this_player(), this_player()->query_Name() + " вошло.\n");
+       }
+
+       this_player()->do_look(this_environment());
    } else {
-      write("Error going there...\n");
+      write("Ошибка произошла здесь...\n");
    }
 }

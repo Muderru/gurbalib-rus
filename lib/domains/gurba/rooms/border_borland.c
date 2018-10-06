@@ -8,16 +8,16 @@ void setup(void) {
    add_area("BorderWalkNorth");
    add_area("GurbaOutdoor");
 
-   set_short("Intersection of Border Walk/Borland Avenue");
-   set_long("Here, the long rectangular Border Walk crosses the end of " +
-      "Borland Avenue, a small but well-maintained residential district " +
-      "of the town, which leads to the south from here. The sounds of " +
-      "children playing can be heard. The Border Walk continues to the " +
-      "east and west.");
+   set_short("Большой перекресток");
+   set_long("Вы находитесь на пересечении Пограничной улицы и Пограничного " +
+      "переулка, у границы жилого квартала, большая часть которого" +
+      "расположена к югу от сюда. От туда доносятся звуки " +
+      "играющей детворы. Пограничный переулок тянется вдоль него с " +
+      "запада на восток.");
 
    set_exits(([
-      "east" : DIR + "/rooms/border_north6",
-      "west" : DIR + "/rooms/border_north5",
-      "south" : DIR + "/rooms/borland3",
+      "восток" : DIR + "/rooms/border_north6",
+      "запад" : DIR + "/rooms/border_north5",
+      "юг" : DIR + "/rooms/borland3",
    ]));
 }

@@ -7,26 +7,25 @@ void setup(void) {
    add_area("GurbaSquare");
    add_area("GurbaOutdoor");
 
-   set_short("Gurba Town Square - North");
-   set_long("The northern side of the town square is full of street " +
-      "performers and musicians, all of whom are trying to outdo the " +
-      "others. The townsfolk watch them, cheering, booing, and " +
-      "occasionally giving them some money. The area is a whirling, " +
-      "loud amalgam of sound and color, full of dancing and mildly " +
-      "clashing notes from a wide array of musical instruments. " +
-      "Borland Avenue heads northward from this point.");
+   set_short("Центральная площадь - Север");
+   set_long("Северная часть центральной площади города переполнена " +
+      "скоморохами и музыкантами, соревнующихся за внимание и деньги " +
+      "прохожих. Правда обычной наградой за опасные трюки и грязные " +
+      "частушки служат крики одобрения, а не звонкие монеты. " +
+      "Местные жители довольно скупы и не особо ценят искусство.");
 
    set_exits(([
-      "east" : DIR + "/rooms/square_northeast",
-      "west" : DIR + "/rooms/square_northwest",
-      "south" : DIR + "/rooms/square_center",
-      "north" : DIR + "/rooms/borland1",
+      "восток" : DIR + "/rooms/square_northeast",
+      "запад" : DIR + "/rooms/square_northwest",
+      "юг" : DIR + "/rooms/square_center",
+      "север" : DIR + "/rooms/borland1",
    ]));
 
-   add_item("performers", "Men and women dance around you wearing " +
-      "brightly colored clothes, while others are busy performing an " +
-      "improbable set of clever illusions and acrobatic stunts.");
-   add_item("musicians", "Countless artists of the musical persuasion " +
-      "are scattered around the area, playing their instruments with " +
-      "varying degrees of skill and almost no regard for anything else.");
+   add_item("скоморохи", "Женщины и мужчины, разодетые в яркие " +
+      "одежды, пляшут и исполняют опасные трюки. Тут есть мимы, " +
+      "акробаты и канатоходцы, любой найдет зрелище по душе.");
+   add_item("музыканты", "Музыканты издают тут что-то напоминающее " +
+      "музыку из своих самодельных инструментов. От их музыки с округи " +
+      "разбежались все кошки и собаки, также считается, что их музыку " +
+      "не выносит и нечистая сила.");
 }

@@ -7,23 +7,22 @@ void setup(void) {
    add_area("GurbaSquare");
    add_area("GurbaOutdoor");
 
-   set_short("Gurba Town Square - South");
-   set_long("The south side of Gurba's town square is given over to " +
-      "public speaking. Anyone may speak here on any topic, and there " +
-      "are always several individuals who take advantage of the " +
-      "open-minded atmosphere to give speeches on their personal " +
-      "causes and concerns. Small audiences stand around, occasionally " +
-      "clapping or booing at the speakers' words. Weller Avenue leaves " +
-      "south out of the square from here.");
+   set_short("Центральная площадь - Юг");
+   set_long("Вам повезло застать здесь выступление оратора, впрочем, " +
+      "в этой части площади они обычное явление. С утра до ночи " +
+      "различные проповедники, мошенники и просто умалишенные, " +
+      "сменяя друг друга держат речь перед зевающей толпой. " +
+      "Не стоит тут задерживаться надолго, можно расстаться со своим " +
+      "кошельком, у карманников это излюбленное место.");
 
    set_exits(([
-      "east" : DIR + "/rooms/square_southeast",
-      "west" : DIR + "/rooms/square_southwest",
-      "north" : DIR + "/rooms/square_center",
-      "south" : DIR + "/rooms/weller1",
+      "восток" : DIR + "/rooms/square_southeast",
+      "запад" : DIR + "/rooms/square_southwest",
+      "север" : DIR + "/rooms/square_center",
+      "юг" : DIR + "/rooms/weller1",
    ]));
 
-   add_item("speakers", "At the moment, you see one man talking in a " +
-      "strident fashion about religion, and another townsman proclaiming " +
-      "his concerns about the town's crime rate.");
+   add_item("оратор", "В данный момент какой-то проповедник с " +
+      "выпученными глазами объявляет мир погрязшим в грехах и " +
+      "предвещает скорый конец света.");
 }

@@ -3,21 +3,21 @@
 inherit "/std/room";
 
 void setup(void) {
-   set_short("Timoth's Armorarium");
-   set_long("This small but well-maintained shop smells strongly of " +
-      "armor polish. This is no surprise, since the walls are covered in " +
-      "all manner of gleaming plate armor and leather clothing. As the " +
-      "primary supplier of armor for the fighters of Gurba's Fighter's " +
-      "Guild, Timoth (a centaur) does quite a respectable business. " +
-      "Indeed, hardly a minute goes by where a fighter doesn't show up " +
-      "asking for a new breastplate or a repair of some kind.");
+   set_short("Магазин доспехов Тимоса");
+   set_long("Этот небольшой, но очень опрятный магазин ориентирован " +
+      "строго на торговлю доспехами. Это очевидно по стенам, завешанными " +
+      "разными образцами металлических и кожаных доспехов. Являясь " +
+      "основным поставщиком доспехов для Гильдии бойцов Гурбы, " +
+      "кентавр Тимос стал респектабельным торговцем и обладателем стабильного дохода. " +
+      "Не проходит и минуты, как какой-нибудь искатель приключений приходит " +
+      "сюда с просьбой подобрать ему подходящие доспехи.");
 
    set_exits(([
-      "north" : DIR + "/rooms/square_southeast",
+      "север" : DIR + "/rooms/square_southeast",
    ]));
 
-   add_item("armor", "armors", "shields", "shield",
-      "Shields and armor for all races.");
-   add_item("plaque", "The plaque says: \"Timoth's Armorarium: We'd " +
-      "rather be safe than sorry!\"");
+   add_item("доспех", "доспехи", "щиты", "щит",
+      "Самые разные щиты и доспехи развешены по стенам.");
+   add_item("плакат", "На плакате написано: \"Лучше быть бедным, но защищенным, " +
+      "чем богатым, но мертвым!\"");
 }

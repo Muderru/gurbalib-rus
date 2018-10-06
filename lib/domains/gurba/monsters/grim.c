@@ -3,12 +3,17 @@
 inherit "/std/vendor";
 
 void setup(void) {
-   set_name("grim");
+   set_name("Грэм");
    set_gender("male");
-   add_id("shopkeeper", "merchant");
-   set_short("Grim, the Armsmaster");
-   set_long("A stubby dwarf with bulging muscles. He's covered with " +
-      "sweat, probably from standing in front of his forge..");
+   add_id("торговец", "оружейник", "грэм");
+   set_short("Грэм - оружейник");
+   set_long("Вы видите коренастого мускулистого гнома, черного " +
+      "от копоти. Он много времени провел у кузнечного горна.");
+   set_r_name("Грэма");
+   set_d_name("Грэму");
+   set_v_name("Грэма");
+   set_t_name("Грэмом");
+   set_p_name("Грэме");   
    set_race("dwarf");
    set_level(15);
 

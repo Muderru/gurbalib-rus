@@ -7,16 +7,15 @@ void setup(void) {
    add_area("GurbaSquare");
    add_area("GurbaOutdoor");
 
-   set_short("Gurba Town Square - Northeast");
-   set_long("Not much seems to be going on here in the northeastern " +
-      "corner of the square.  The occasional merchant and street " +
-      "performer wanders by, but the real activity seems to be located " +
-      "to the south and west of here.  A clothing shop to the east seems " +
-      "to be doing fairly steady business.");
+   set_short("Центральная площадь - Северо-восток");
+   set_long("Эта часть площади заполнена торговцами и скоморохами, " +
+      "но наибольшая активность царит на западе и юге отсюда. " +
+      "Так что, если повезет найти свободное местечко, тут можно " +
+      "даже немного отдохнуть от шума и гама, царящего на площади.");
 
    set_exits(([
-      "west" : DIR + "/rooms/square_north",
-      "south" : DIR + "/rooms/square_east",
-      "southwest" : DIR + "/rooms/square_center",
+      "запад" : DIR + "/rooms/square_north",
+      "юг" : DIR + "/rooms/square_east",
+      "юго-запад" : DIR + "/rooms/square_center",
    ]));
 }

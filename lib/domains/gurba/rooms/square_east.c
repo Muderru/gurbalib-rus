@@ -7,20 +7,20 @@ void setup(void) {
    add_area("GurbaSquare");
    add_area("GurbaOutdoor");
 
-   set_short("Gurba Town Square - East");
-   set_long("Here on the eastern side of the town square, a large " +
-      "crowd of merchants are trying to convince people to buy their " +
-      "wares. The resulting bedlam is fantastically loud and utterly " +
-      "disorganized. The bricks here are well-worn from the constant " +
-      "traffic. Gelmir Road leads off towards the east from here.");
+   set_short("Центральная площадь - Восток");
+   set_long("Здесь, в восточной части центральной площади несколько " +
+      "торговцев пытаются убедить прохожих купить их товар. Они " +
+      "громко расхваливают свои безделушки, а потенциальные покупатели " +
+      "яростно пытаются сбить цену. Вокруг них стоит толпа скучающих " +
+      "зевак. Отсюда на восток отходит каменная дорога.");
 
    set_exits(([
-      "north" : DIR + "/rooms/square_northeast",
-      "south" : DIR + "/rooms/square_southeast",
-      "west" : DIR + "/rooms/square_center",
-      "east" : DIR + "/rooms/gelmir1",
+      "север" : DIR + "/rooms/square_northeast",
+      "юг" : DIR + "/rooms/square_southeast",
+      "запад" : DIR + "/rooms/square_center",
+      "восток" : DIR + "/rooms/gelmir1",
    ]));
 
-   add_item("merchants", "These fine gentlemen and ladies work " +
-      "tirelessly to promote the sales of their respective goods.");
+   add_item("торговцы", "Они больше похожи на разбойников с Большой " +
+      "дороги. Не исключено, что они пытаются продать награбленное.");
 }

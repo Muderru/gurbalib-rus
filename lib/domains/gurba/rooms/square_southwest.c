@@ -7,21 +7,21 @@ void setup(void) {
    add_area("GurbaSquare");
    add_area("GurbaOutdoor");
 
-   set_short("Gurba Town Square - Southwest");
-   set_long("The southwest corner of the town square is relatively " +
-      "quiet.  A few benches are scattered around here for those who " +
-      "need a break after visiting other parts of the square.  To the " +
-      "north lies a sort of farmer's market, while to the east you can " +
-      "hear distinct voices and occasional applause.  To the southwest " +
-      "lies a small shop with a flower symbol over the door.");
+   set_short("Центральная площадь - Юго-запад");
+   set_long("В этом относительно тихом месте вы видите несколько " +
+      "неказистых скамеек, на которых сидят пожилые люди. " +
+      "На север отсюда кажется находится фермерский рынок, " +
+      "а с юга доносятся громкие аплодисменты. " +
+      "На юго-западе вы замечаете также небольшой цветочный " +
+      "магазинчик.");
 
    set_exits(([
-      "east" : DIR + "/rooms/square_south",
-      "north" : DIR + "/rooms/square_west",
-      "northeast" : DIR + "/rooms/square_center",
-      "southwest" : DIR + "/rooms/florist",
+      "восток" : DIR + "/rooms/square_south",
+      "север" : DIR + "/rooms/square_west",
+      "северо-восток" : DIR + "/rooms/square_center",
+      "северо-запад" : DIR + "/rooms/florist",
    ]));
 
-   add_item("benches", "They're pretty standard wooden benches.  Nothing " +
-      "exciting, really.");
+   add_item("скамейки", "Они сколочены из нескольких деревянных досок. " +
+      "Ничего особенного, но отдохнуть ногам на них можно.");
 }

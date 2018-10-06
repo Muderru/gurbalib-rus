@@ -7,18 +7,16 @@ void setup(void) {
    add_area("MarketStreet");
    add_area("GurbaOutdoor");
 
-   set_short("Market Street");
-   set_long("This is the western end of Market Street, an extremely " +
-      "old and narrow road that is known for having some of the best " +
-      "deals on all manner of goods. Naturally, the combination has " +
-      "led to a bit of a congestion problem. All around you people " +
-      "push and shove while trying to haggle with any of a hundred " +
-      "merchants, or simply trying to make headway in either " +
-      "direction. The western gate can be seen from here, and the " +
-      "town square lies in the distance to the east.");
+   set_short("Рыночная площадь");
+   set_long("Вы находитесь в западной части рыночной площади, " +
+      "являющейся торговым центром всех окрестных земель. " +
+      "Также это одна из старейших частей города, постройки вокруг " +
+      "выглядят очень старомодно, а камни брусчатки по ногами " +
+      "отполированы от блеска. Дальше на западе вы видите каменную " +
+      "арку ворот города.");
 
    set_exits(([
-      "east" : DIR + "/rooms/market3",
-      "west" : DIR + "/rooms/gate_west",
+      "восток" : DIR + "/rooms/market3",
+      "запад" : DIR + "/rooms/gate_west",
    ]));
 }

@@ -3,21 +3,29 @@
 inherit "/std/guild_book";
 
 void setup(void) {
-   set_id("book");
-   set_long("This book is attached to a large chain which is " +
-      "fastened to the wall.  It is titled, the definitive guide to the " +
-      "fighters guild.");
-   set_short("A sturdy book");
+   set_id("книга");
+   add_id("потертая", "книгу");
+   set_long("Эта книга присоединена прочной цепью к стене. " +
+      "В ней записан устав Гильдии бойцов. Потертые обложка и " +
+      "страницы говорят о ее частом использовании.");
+   set_short("Потертая книга");
+   set_obj_i_name("потертая книга");
+   set_obj_r_name("потертой книги");
+   set_obj_d_name("потертой книге");
+   set_obj_v_name("потертую книгу");
+   set_obj_t_name("потертой книгой");
+   set_obj_p_name("потертой книге");
+   set_obj_gender("female");
 
-   set_message("Welcome to the fighters guild.  If you want to join our " +
-      "guild type 'join'.  If you want to leave the guild type " +
-      "'leave'.  The fighters guild is a prestigious group of, well " +
-      "fighters.");
+   set_message("Добро пожаловать в Гильдию бойцов. Если вы хотите вступить " +
+      "в нее, просто наберите 'вступить'. Если хотите покинуть гильдию, " +
+      "наберите 'покинуть'.  Гильдия бойцов - престижное объединение " +
+      "воинов.");
 
    set_guild("fighter");
 
-   add_action("join_guild", "join");
-   add_action("leave_guild", "leave");
+   add_action("join_guild", "вступить");
+   add_action("leave_guild", "покинуть");
 }
 
 int can_join(object player) {
@@ -25,12 +33,12 @@ int can_join(object player) {
 }
 
 int do_reject(object player) {
-   write("The guild master tells you: Sorry, you're too puny to join.");
+   write("Мастер гильдии говорит вам: Извини, ты нам не подходишь.");
    return 1;
 }
 
 int do_join(object player) {
-   write("The guild master tells you: Welcome to the Fighters Guild, " +
+   write("Мастер гильдии говорит вам: Добро пожаловать в Гильдию бойцов, " +
       player->query_name());
    return 1;
 }
@@ -40,15 +48,15 @@ int can_leave(object player) {
 }
 
 int do_keep(object player) {
-   write("The guild master says: You're too valuable an asset to this guild, " +
-      "so I can't let you go.");
+   write("Мастер гильдии говорит вам: Вы слишком ценны для гильдии, " +
+      "я не могу вам позволить уйти.");
    return 1;
 }
 
 int do_leave(object who) {
-   write("The guild master says: Sorry to see you go.");
-   write("The guild master sighs.");
-   write("The guild master says: A great loss for this guild.");
+   write("Мастер гильдии говорит вам: Печально видеть, что ты уходишь.");
+   write("Мастер гильдии вздыхает.");
+   write("Мастер гильдии говорит вам: Это большая потеря для Гильдии бойцов.");
    return 1;
 }
 

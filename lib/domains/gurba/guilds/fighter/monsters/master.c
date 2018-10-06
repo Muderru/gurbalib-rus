@@ -3,32 +3,37 @@ inherit "/std/modules/m_block_exits";
 inherit "/std/modules/m_triggers";
 
 void setup(void) {
-   set_name("bob");
+   set_name("Боб");
    set_gender("male");
-   add_id("master", "guildmaster");
-   set_short("Bob, the Fighter's Guildmaster");
-   set_long("Bob is the leader of the Fighter's Guild. He is gray-haired, " +
-      "but this does not by any means indicate weakness. After all, to " +
-      "stay the leader you probably need to be pretty good at what you do.");
+   add_id("глава", "глава гильдии", "боб");
+   set_short("Глава гильдии Боб");
+   set_long("Боб руководит Гильдией бойцов уже много лет. Его волосы " +
+      "поседели, но он по прежнему один из лучших бойцов. Чтобы руководить " +
+      "этой организацией, нужно быть лучшим практически во всем.");
+   set_r_name("Боба");
+   set_d_name("Бобу");
+   set_v_name("Боба");
+   set_t_name("Бобом");
+   set_p_name("Бобе");  
    set_race("human");
    set_level(15);
    add_block("north");
 
    if (clone_num() != 0) {
       set_actions(40, ({
-         "say Surely you seek the path of a fighter!",
-         "smile", "emote waves his sword around a bit while whistling.", 
+         "сказать Ты в отличной форме. Становись бойцом!",
+         "smile", "emote размахивает его мечом со свистом.", 
        }));
    }
 
-   add_pattern("%s smiles.", "smile $1");
+   add_pattern("%s улыбается.", "smile $1");
 }
 
 int do_block(object who) {
    if (who->guild_member("fighter")) {
       return 0;
    }
-   this_object()->respond("say Sorry. You need to be a member of the " +
-      "fighters guild to enter.");
+   this_object()->respond("сказать Прости. Но Гильдия бойцов сейчас " +
+      "переполнена.");
    return 1;
 }

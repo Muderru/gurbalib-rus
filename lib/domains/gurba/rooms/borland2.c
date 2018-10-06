@@ -7,14 +7,14 @@ void setup(void) {
    add_area("BorlandAve");
    add_area("GurbaOutdoor");
 
-   set_short("Borland Avenue");
-   set_long("The middle of Borland Avenue is surprisingly peaceful. " +
-      "Small houses sit on either side of the road and the barking of " +
-      "dogs can be heard in the distance. To the south of here lies the " +
-      "town square, and to the north sits an intersection.");
+   set_short("Пограничная улица");
+   set_long("В центре Пограничной улицы на удивление тихо и спокойно. " +
+      "С обеих сторон на вас молчаливо взирают небольшие дома, а " +
+      "откуда издалека доносится лай собак. Чуть дальше на юге " +
+      "находится городская площадь, а на севере вы видите перекресток.");
 
    set_exits(([
-      "south" : DIR + "/rooms/borland1",
-      "north" : DIR + "/rooms/borland3",
+      "юг" : DIR + "/rooms/borland1",
+      "север" : DIR + "/rooms/borland3",
    ]));
 }

@@ -3,12 +3,17 @@
 inherit "/std/vendor";
 
 void setup(void) {
-   set_name("frida");
+   set_name("Фрида");
    set_gender("female");
-   add_id("shopkeeper", "merchant");
-   set_short("Frida, the florist");
-   set_long("She has a long brown pony tail, and a daisy stuck " +
-      "behind an ear.");
+   add_id("торговец", "цветочница", "фрида");
+   set_short("Фрида, цветочница");
+   set_long("Вы видите красивую девушку с длинной черной косой и " +
+      "ромашкой за ухом.");
+   set_r_name("Фриды");
+   set_d_name("Фриде");
+   set_v_name("Фриду");
+   set_t_name("Фридой");
+   set_p_name("Фриде");      
    set_race("human");
    set_level(15);
 

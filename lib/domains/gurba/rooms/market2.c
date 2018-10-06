@@ -7,16 +7,16 @@ void setup(void) {
    add_area("MarketStreet");
    add_area("GurbaOutdoor");
 
-   set_short("Market Street");
-   set_long("The street grows narrow here, confining the huge crowd " +
-      "that habitually populates Market Street in an even smaller " +
-      "space. People are yelling and shoving, children are crying, and " +
-      "music is blaring. All in all, the conditions are likely not great " +
-      "for one's health. Market Street continues towards the western gate " +
-      "in one direction, and toward the town square in the other.");
+   set_short("Рыночная площадь");
+   set_long("Кажется, что на этой небольшой площади собралось " +
+      "все население города. Отовсюду слышится шум и гам, покупатели " +
+      "торгуются с продавцами, маленькие дети плачут, бродячие музыканты " +
+      "извлекают из своих жалких инструментов противные звуки. " +
+      "С непривычки вынести такое очень сложно, но местные жители " +
+      "кажется довольны.");
 
    set_exits(([
-      "east" : DIR + "/rooms/market1",
-      "west" : DIR + "/rooms/market3",
+      "восток" : DIR + "/rooms/market1",
+      "запад" : DIR + "/rooms/market3",
    ]));
 }

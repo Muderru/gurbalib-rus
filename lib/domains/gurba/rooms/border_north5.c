@@ -8,14 +8,14 @@ void setup(void) {
    add_area("BorderWalkNorth");
    add_area("GurbaOutdoor");
 
-   set_short("Border Walk - North");
-   set_long("You are on the Border Walk, the long and narrow street " +
-      "which surrounds the town of Gurba in a large rectangle. It runs " +
-      "along the inside edge of the stone town wall, which at the moment " +
-      "lies to your north. To your east an intersection can be seen.");
+   set_short("Пограничный переулок - Север");
+   set_long("Вы находитесь на Пограничном переулке - длинной и узкой " +
+      "улице, которая огибает по периметру весь город. Она проложена " +
+      "прямо вдоль каменной городской стены, ее неприступные бастионы " +
+      "вздымаются на севере. Дальше на востоке вы видите большой перекресток.");
 
    set_exits(([
-      "east" : DIR + "/rooms/border_borland",
-      "west" : DIR + "/rooms/border_north4",
+      "восток" : DIR + "/rooms/border_borland",
+      "запад" : DIR + "/rooms/border_north4",
    ]));
 }

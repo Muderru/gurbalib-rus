@@ -7,16 +7,15 @@ void setup(void) {
    add_area("WellerAve");
    add_area("GurbaOutdoor");
 
-   set_short("Weller Avenue");
-   set_long("You are at the northern end of Weller Avenue, a pleasant " +
-      "tree-lined walk that seems to be largely surrounded by old and " +
-      "well-kept houses. The landscaping is immaculate and the brick on " +
-      "the road is a bit nicer than what you might see in other parts of " +
-      "the town. To the north the avenue widens as it opens into the town " +
-      "square.");
+   set_short("Светлая улица");
+   set_long("Вы находитесь в северной части Светлой улицы в  " +
+      "окружении стройных подстриженных деревьев и старых " +
+      "респектабельных особняков. Выложенная брусчаткой дорога тут " +
+      "лучше, чем в остальных частях города. " +
+      "Дальше на севере начинается красивый парк.");
 
    set_exits(([
-      "north" : DIR + "/rooms/square_south",
-      "south" : DIR + "/rooms/weller2",
+      "север" : DIR + "/rooms/square_south",
+      "юг" : DIR + "/rooms/weller2",
    ]));
 }

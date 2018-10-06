@@ -1,29 +1,35 @@
 inherit "/std/monster";
 
 int nFollow;
-string master_name;
+string master_name, master_name_2;
 object master;
 string my_name;
 
 void set_master(object m) {
    if (m) {
       master = m;
-      master_name = m->query_Name();
+      master_name = m->query_r_name();
+      master_name_2 = m->query_Name();
    }
 }
 
 void setup(void) {
    if (!master_name || master_name == "") { /* If no master set a default... */
-      master_name = "sirdude";
+      master_name = "Сирдуда";
    }
-   set_name(master_name + "s page");
-   my_name = master_name + "'s page";
+   set_name("слуга " + master_name);
+   my_name = "Слуга " + master_name;
    set_gender("male");
    set_level(1);
-   set_adj("slave");
-   set_short(capitalize(master_name) + "'s page");
-   set_long("The page is wearing a simple robe, and his head is always " +
-      "bent in humbleness.");
+   add_id("раб");
+   set_short("Слуга " + capitalize(master_name));
+   set_long("Слуга одет в простую робу и его голова всегда склонена " +
+      "в смирении.");
+   set_r_name("слуги " + master_name);
+   set_d_name("слуге " + master_name);
+   set_v_name("слугу " + master_name);
+   set_t_name("слугой " + master_name);
+   set_p_name("слуге " + master_name);   
    set_race("human");
    nFollow = call_out("follow_master", 2);
    respond("bow " + master_name);
@@ -45,8 +51,7 @@ void follow_master(void) {
    if (nMasterHere == 0) {
       if (!master) {
          remove_call_out(nFollow);
-         respond("say It seems " + master_name +
-            " no longer has a need for me.");
+         respond("сказать Кажется, что мастер больше не нуждается в моих услугах.");
          die();
          destruct_object(this_object());
          return;
@@ -54,43 +59,43 @@ void follow_master(void) {
       if (query_environment() != master->query_environment()) {
          switch (random(10)) {
             case 0:
-               query_environment()->tell_room(nil, my_name + " leaves.");
+               query_environment()->tell_room(nil, my_name + " ушел.");
                break;
             case 1:
                query_environment()->tell_room(nil, my_name +
-                  " tries to follow his master.");
+                  " пытается следовать за его мастером.");
                break;
             case 2:
                query_environment()->tell_room(nil,
-                  my_name + " follows his master.");
+                  my_name + " следует за его мастером.");
                break;
             case 3:
                query_environment()->tell_room(nil, my_name +
-                  " disappears in a cloud of smoke.");
+                  " исчез в облаке дыма.");
                break;
             case 4:
                query_environment()->tell_room(nil,
-                  my_name + " suddenly vanishes.");
+                  my_name + " внезапно испарился.");
                break;
             case 5:
                query_environment()->tell_room(nil,
-                  my_name + " fades out of view.");
+                  my_name + " скрылся из вида.");
                break;
             case 6:
                query_environment()->tell_room(nil, my_name +
-                  " runs off after his master.");
+                  " убежал за своим мастером.");
                break;
             case 7:
                query_environment()->tell_room(nil, my_name +
-                  " suddenly notices that his master has left, and runs off.");
+                  " внезапно обнаружил, что его мастер ушел и выбежал из комнаты.");
                break;
             case 8:
                query_environment()->tell_room(nil, my_name +
-                  " fades into the shadows, and is gone.");
+                  " скрылся в тенях и пропал.");
                break;
             case 9:
                query_environment()->tell_room(nil, my_name +
-                  " snaps his fingers, and is gone.");
+                  " щелкнул пальцами и скрылся.");
                break;
          }
 
@@ -98,40 +103,40 @@ void follow_master(void) {
          switch (random(10)) {
             case 0:
                query_environment()->tell_room(nil, my_name +
-                  " follows the light of his life.");
+                  " следует за светом его жизни.");
                break;
             case 1:
                query_environment()->tell_room(nil, my_name +
-                  " follows in his masters footsteps.");
+                  " следует за мастером шаг в шаг.");
                break;
             case 2:
                query_environment()->tell_room(nil, my_name +
-                  " appears next to his master in a cloud of smoke.");
+                  " появился рядом с мастером в облаке дыма.");
                break;
             case 3:
-               query_environment()->tell_room(nil, my_name + " enters.");
+               query_environment()->tell_room(nil, my_name + " вошел.");
                break;
             case 4:
-               query_environment()->tell_room(nil, my_name + " appears.");
+               query_environment()->tell_room(nil, my_name + " появился.");
                break;
             case 5:
                query_environment()->tell_room(nil, my_name +
-                  " arrives shortly after his master.");
+                  " пришел вскоре после его мастера.");
                break;
             case 6:
                query_environment()->tell_room(nil, my_name +
-                  " comes running, tying to keep up with his master.");
+                  " вбежал, стараясь не отставать от мастера.");
                break;
             case 7:
-               query_environment()->tell_room(nil, "A humble page enters.");
+               query_environment()->tell_room(nil, "Пришел смиренный слуга.");
                break;
             case 8:
                query_environment()->tell_room(nil,
-                  "A humble person wearing a robe enters.");
+                  "Вошел смиренный человек в робе.");
                break;
             case 9:
                query_environment()->tell_room(nil, my_name +
-                  " catches up with his master.");
+                  " догоняет своего мастера.");
                break;
          }
       }
@@ -140,9 +145,9 @@ void follow_master(void) {
 }
 
 void parse(string str) {
-   if (str == "go away" || str == "die" || str == "dismissed") {
+   if (str == "уходи" || str == "умри" || str == "уволен") {
       remove_call_out(nFollow);
-      respond("say It seems " + master_name + " no longer has a need for me.");
+      respond("сказать Кажется, что мастер больше не нуждается в моих услугах.");
       this_environment()->remove_object(this_object());
       destruct_object(this_object());
    } else {
@@ -156,7 +161,7 @@ void outside_message(string str) {
    str = ANSI_D->strip_colors(str);
    str = str[..(strlen(str) - 3)];
 
-   pre = capitalize(master_name) + " says: Page, ";
+   pre = capitalize(master_name_2) + " говорит: Слуга, ";
 
    if (strstr(str, pre) != -1) {
       parse(str[(strlen(pre))..]);

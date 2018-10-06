@@ -9,22 +9,21 @@ void setup(void) {
    add_area("BorderWalkSouth");
    add_area("GurbaOutdoor");
 
-   set_short("Border Walk - Southwest");
-   set_long("You are at the southwest corner of the town of Gurba, " +
-      "where the western and southern sections of the Border Walk meet. " +
-      "At this corner there seems to be an entrance to a small watch " +
-      "tower used by the town guards to keep an eye out for " +
-      "undesirables, but the entrance is locked. The sounds of the town " +
-      "echo a bit here in this semi-enclosed space. Border Walk continues " +
-      "north and east here toward other parts of the city.");
+   set_short("Юго-западный угол города");
+   set_long("Вы сейчас находитесь в северо-восточном углу города Гурба. " +
+      "Здесь есть вход в маленькую сторожевую башню, " +
+      "которую стражники используют для наблюдения за окрестностями, но " +
+      "дверь туда сейчас заперта. Звуки города отражаются здесь " +
+      "повторяющимся эхом и создают тревожное настроение. Пограничный " +
+      "переулок поворачивает здесь с севера на восток.");
 
-   add_item("tower", "The stone tower is built into the wall and is " +
-      "accessible via an internal staircase, it seems. Openings at the " +
-      "top allow town guards to see any unwanted visitors approaching the " +
-      "western gate before they arrive.");
+   add_item("башня", "Сторожевая башня встроена прямо в городскую " +
+      "стену. Похоже, что в нее можно попасть по лестнице изнутри. " +
+      "С вершины башни открывается обзор на все близлежащие территории, " +
+      "особенно тщательно наблюдают за входящими в западные ворота.");
 
    set_exits(([
-      "north" : DIR + "/rooms/border_west1",
-      "east" : DIR + "/rooms/border_south1",
+      "север" : DIR + "/rooms/border_west1",
+      "восток" : DIR + "/rooms/border_south1",
    ]));
 }

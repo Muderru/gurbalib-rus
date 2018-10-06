@@ -7,15 +7,15 @@ void setup(void) {
    add_area("GurbaOutdoor");
    add_area("GelmirRoad");
 
-   set_short("Gelmir Road");
-   set_long("This is one of the busier parts of one of the town's " +
-      "busiest streets. To the east lies the eastern gate of the town, " +
-      "while to the west sits the intimidatingly large dome of the " +
-      "Fighter's Guild. Large crowds of people wander past, some " +
-      "headed toward the town square in the distance to the west.");
+   set_short("Каменная дорога");
+   set_long("Эта улица одна из самых оживленных во всем городе. " +
+      "Весь день местные жители и гости Гурбы снуют по ней из " +
+      "одного конца в другой, преследуя неведомые цели. " +
+      "Чуть дальше на востоке вы видите восточные ворота города, " +
+      "а на западе здание Гильдии бойцов.");
 
    set_exits(([
-      "east" : DIR + "/rooms/gate_east",
-      "west" : DIR + "/rooms/gelmir3",
+      "восток" : DIR + "/rooms/gate_east",
+      "запад" : DIR + "/rooms/gelmir3",
    ]));
 }
