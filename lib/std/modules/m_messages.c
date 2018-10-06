@@ -41,18 +41,18 @@ string *compose_message(object who, string msg, object target,
             case 'N':
                if (who->is_living()) {
                   if (!who->query_name()) {
-                     us += "you ";
-                     them += "the " + who->query_id() + " ";
-                     others += "the " + who->query_id() + " ";
+                     us += "Ты ";
+                     them += who->query_id() + " ";
+                     others += who->query_id() + " ";
                   } else {
-                     us += "you ";
+                     us += "Ты ";
                      them += who->query_Name() + " ";
                      others += who->query_Name() + " ";
                   }
                } else {
-                  us += "you ";
-                  them += "the " + who->query_id() + " ";
-                  others += "the " + who->query_id() + " ";
+                  us += "Ты ";
+                  them += who->query_id() + " ";
+                  others += who->query_id() + " ";
                }
 
                break;

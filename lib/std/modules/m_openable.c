@@ -79,11 +79,11 @@ string query_closed_description(void) {
 }
 
 string query_default_closed_desc() {
-   return this_object()->query_short() + " %^RED%^[closed]%^RESET%^";
+   return this_object()->query_short() + " %^RED%^[закрыто]%^RESET%^";
 }
 
 string query_default_open_desc() {
-   return this_object()->query_short() + " %^GREEN%^[open]%^RESET%^";
+   return this_object()->query_short() + " %^GREEN%^[открыто]%^RESET%^";
 }
 
 void update_description(void) {

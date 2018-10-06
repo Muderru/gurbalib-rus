@@ -254,7 +254,7 @@ static void main(string str) {
             "%^GREEN%^" + this_player()->query_i_name() + you +
             "%^RESET%^" + capitalize(str) + "\n");
       }
-      this_player()->message("%^GREEN%^You" + me + "%^RESET%^" +
+      this_player()->message("%^GREEN%^Вы" + me + "%^RESET%^" +
          capitalize(str) + "\n", 1);
    } else {
       write("Говорить что?\n");
