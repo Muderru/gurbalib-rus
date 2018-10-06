@@ -28,9 +28,9 @@ void clone_autoload_objects(void) {
             ob->move(this_object()->query_environment());
             ob->setup();
             ob->move(this_object());
-            if (argument == "wield") {
+            if (argument == "вооружиться") {
                this_player()->do_wield(ob);
-            } else if (argument == "wear") {
+            } else if (argument == "одеть") {
                this_player()->do_wear(ob);
             }
          }
@@ -50,9 +50,9 @@ void compose_autoload_string(void) {
    for (i = 0; i < max; i++) {
       tmp = inv[i]->query_autoload_filename();
       if (inv[i]->query_worn()) {
-         action = "wear";
+         action = "одеть";
       } else if (inv[i]->query_wielded()) {
-         action = "wield";
+         action = "вооружиться";
       } else {
          action = "none";
       }

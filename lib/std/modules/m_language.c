@@ -1,5 +1,5 @@
 /* Module to allow players to translate from racial to english */
-mapping racial_words;             /* ([ "meow":"Hello","d�":"die" ]) */
+mapping racial_words;             /* ([ "meow":"Hello","dш":"die" ]) */
 
 string racial_to_english(string racialword) {
    if (!(racial_words)) {
@@ -26,5 +26,5 @@ void learn_racial_word(string racialword, string englishword) {
    racial_words[racialword] = nil;
 
  racial_words += ([racialword:englishword]);
-   write("Word learned: " + racialword + " meaning " + englishword + ".\n");
+   write("Выучено слово: " + racialword + " означающее " + englishword + ".\n");
 }

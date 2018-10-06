@@ -26,7 +26,7 @@ void add_block(string exit) {
    blocks -= ( { exit } );
    blocks += ( { exit } );
    if (!block_action) {
-      block_action = "$N $vstop $t from going $o. \n";
+      block_action = "$N не дает $d пройти. \n";
    }
 }
 

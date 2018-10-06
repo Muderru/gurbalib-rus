@@ -5,17 +5,17 @@
 void add_action(string func, string command);
  
 void bank_init(void) {
-   add_action("do_balance", "balance");
-   add_action("do_withdraw", "withdraw");
-   add_action("do_deposit", "deposit");
-   add_action("do_loan", "loan");
+   add_action("do_balance", "баланс");
+   add_action("do_withdraw", "снять");
+   add_action("do_deposit", "вложить");
+   add_action("do_loan", "занять");
  }
  
 int do_balance(varargs string str) {
    int amount;
 
    amount = this_player()->query_bank();
-   write("Your current balance is: " + amount + " ducats.\n");
+   write("Ваш текущий баланс: " + amount + " дукатов.\n");
    return 1;
 }
 
@@ -24,18 +24,18 @@ int do_withdraw(string str) {
 
    if (sscanf(str, "%d", amount)) {
       if (amount < 1) {
-         write("Please enter a positive number.\n");
+         write("Должно быть не отрицательное число.\n");
          return 1;
          }
       if (this_player()->withdraw(amount)) {
-          write("You withdraw " + amount + " ducats from the bank.\n");
+          write("Вы сняли " + amount + " дукатов с банка.\n");
       } else {
-          write("You do not have " + amount + " ducats in the bank.\n");
+          write("У вас нет " + amount + " дукатов в банке.\n");
       }
       do_balance();
       return 1;
    } else {
-      write("Usage: withdraw (amount)\n");
+      write("Использование: снять (количество)\n");
       return 1;
    }
 }
@@ -45,18 +45,18 @@ int do_deposit(string str) {
 
    if (sscanf(str, "%d", amount)) {
       if (amount < 1) {
-         write("Please enter a positive number.\n");
+         write("Должно быть не отрицательное число.\n");
          return 1;
          }
       if (this_player()->deposit(amount)) {
-          write("You deposit " + amount + " ducats in the bank.\n");
+          write("Вы вложили " + amount + " дукатов в банк.\n");
       } else {
-          write("You do not have " + amount + " ducats.\n");
+          write("У вас нет " + amount + " дукатов.\n");
       }
       do_balance();
       return 1;
    } else {
-      write("Usage: deposit (amount)\n");
+      write("Использование: снять (количество)\n");
       return 1;
    }
 }
@@ -66,11 +66,11 @@ int do_loan(string str) {
 
    if (query_wizard(this_player())) {
       if (sscanf(str, "%d", amount)) {
-         this_player()->add_money("ducat", amount);
-         write("The bank loans you " + amount + " ducats.\n");
+         this_player()->add_money("дукат", amount);
+         write("Банк дает вам взаймы " + amount + " дукатов.\n");
          return 1;
       } else {
-         write("Usage: loan (amount)\n");
+         write("Использование: занять (количество)\n");
          return 1;
       }
    } 

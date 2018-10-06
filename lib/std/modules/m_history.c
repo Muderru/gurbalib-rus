@@ -30,7 +30,7 @@ string list_history(void) {
    int i, dim;
 
    setup_history();
-   str = "Command history:\n";
+   str = "История команд:\n";
    dim = sizeof(history);
    for (i = 0; i < dim; i++) {
       str += "" + (i + 1) + ": " + history[i] + "\n";
@@ -42,7 +42,7 @@ string list_history(void) {
 private string get_history_by_index(int idx) {
    setup_history();
    if (idx < 0 || idx >= sizeof(history)) {
-      return "Index out of range.";
+      return "Индекс вне диапазона.";
    }
    return history[idx];
 }

@@ -211,6 +211,128 @@ string *compose_message(object who, string msg, object target,
                   pronounFlag = 0;
                }
                break;
+        /* Переменные для падежей
+        r - родительный
+        d - дательный
+        w - винительный
+        y - творительный
+        u - предложный
+        */       
+            case 'r':
+               if (who == target) {
+                  us += "тебя ";
+                  them += who->query_r_name() + " ";
+                  others += who->query_r_name() + " ";
+               } else {
+                  if (target->is_living()) {
+                     if (!target->query_Name()) {
+                        us += target->query_r_name() + " ";
+                        them += "тебя ";
+                        others += target->query_r_name() + " ";
+                     } else {
+                        us += target->query_r_name() + " ";
+                        them += "тебя ";
+                        others += target->query_r_name() + " ";
+                     }
+                  } else {
+                     us += target->query_obj_r_name() + " ";
+                     them += target->query_obj_r_name() + " ";
+                     others += target->query_obj_r_name() + " ";
+                  }
+               }
+               break;
+            case 'd':
+               if (who == target) {
+                  us += "тебе ";
+                  them += who->query_d_name() + " ";
+                  others += who->query_d_name() + " ";
+               } else {
+                  if (target->is_living()) {
+                     if (!target->query_Name()) {
+                        us += target->query_d_name() + " ";
+                        them += "тебе ";
+                        others += target->query_d_name() + " ";
+                     } else {
+                        us += target->query_d_name() + " ";
+                        them += "тебе ";
+                        others += target->query_d_name() + " ";
+                     }
+                  } else {
+                     us += target->query_obj_d_name() + " ";
+                     them += target->query_obj_d_name() + " ";
+                     others += target->query_obj_d_name() + " ";
+                  }
+               }
+               break;
+            case 'w':
+               if (who == target) {
+                  us += "тебя ";
+                  them += who->query_v_name() + " ";
+                  others += who->query_v_name() + " ";
+               } else {
+                  if (target->is_living()) {
+                     if (!target->query_Name()) {
+                        us += target->query_v_name() + " ";
+                        them += "тебя ";
+                        others += target->query_v_name() + " ";
+                     } else {
+                        us += target->query_v_name() + " ";
+                        them += "тебя ";
+                        others += target->query_v_name() + " ";
+                     }
+                  } else {
+                     us += target->query_obj_v_name() + " ";
+                     them += target->query_obj_v_name() + " ";
+                     others += target->query_obj_v_name() + " ";
+                  }
+               }
+               break;
+            case 'y':
+               if (who == target) {
+                  us += "тобой ";
+                  them += who->query_t_name() + " ";
+                  others += who->query_t_name() + " ";
+               } else {
+                  if (target->is_living()) {
+                     if (!target->query_Name()) {
+                        us += target->query_t_name() + " ";
+                        them += "тобой ";
+                        others += target->query_t_name() + " ";
+                     } else {
+                        us += target->query_t_name() + " ";
+                        them += "тобой ";
+                        others += target->query_t_name() + " ";
+                     }
+                  } else {
+                     us += target->query_obj_t_name() + " ";
+                     them += target->query_obj_t_name() + " ";
+                     others += target->query_obj_t_name() + " ";
+                  }
+               }
+               break;
+            case 'u':
+               if (who == target) {
+                  us += "тебе ";
+                  them += who->query_p_name() + " ";
+                  others += who->query_p_name() + " ";
+               } else {
+                  if (target->is_living()) {
+                     if (!target->query_Name()) {
+                        us += target->query_p_name() + " ";
+                        them += "тебе ";
+                        others += target->query_p_name() + " ";
+                     } else {
+                        us += target->query_p_name() + " ";
+                        them += "тебе ";
+                        others += target->query_p_name() + " ";
+                     }
+                  } else {
+                     us += target->query_obj_p_name() + " ";
+                     them += target->query_obj_p_name() + " ";
+                     others += target->query_obj_p_name() + " ";
+                  }
+               }
+               break;               
          }
 
          if (punc) {
