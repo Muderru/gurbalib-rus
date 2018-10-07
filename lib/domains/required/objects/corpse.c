@@ -24,8 +24,10 @@ void create(void) {
 }
 
 void set_name(string name) {
-   orig_name = name;
-   set_short("Труп " + name);
+   object obj;
+   obj = this_environment()->present(name);
+   orig_name = obj->query_r_name();
+   set_short("Труп " + orig_name);
 }
 
 void corpse_destruct(void) {

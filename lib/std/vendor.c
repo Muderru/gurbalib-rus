@@ -174,7 +174,7 @@ string build_string(string str, object obj, string num, string *objs) {
    val = obj->query_value();
    if (!obj->query_Name()) {
       if (!obj->query_adj() || obj->query_adj() == "") {
-         str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_id() +
+         str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_obj_i_name() +
             ", " + val + " дукат" + ducats(val) + ".\n";
       } else {
          str += " %^CYAN%^[" + num + "]%^RESET%^ " +
@@ -183,7 +183,7 @@ string build_string(string str, object obj, string num, string *objs) {
       }
    } else {
       val = objs->query_value();
-      str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_Name() +
+      str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_obj_i_name() +
          ", " + val + " дукат" + ducats(val) + ".\n";
    }
 
