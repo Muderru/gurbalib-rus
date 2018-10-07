@@ -12,7 +12,7 @@ void init_stored_items(void) {
 }
 
 string ducats(int val) {
-   return val == 1 ? "" : "s";
+   return val == 1 ? "" : "ов";
 }
 
 int is_vendor(void) {
@@ -48,7 +48,7 @@ void after_sale_transfer(object sold_what, object sold_to) {
 }
 
 string get_successful_sale_msg() {
-   return "$N $vgive $t $o.";
+   return "$d продали $i.";
 }
 
 string emit_successful_sale_msg(object obj, object player) {
@@ -57,7 +57,7 @@ string emit_successful_sale_msg(object obj, object player) {
 }
 
 void deduct_coins_from_buyer(int amount, object player) {
-   player->add_money("ducat", amount);
+   player->add_money("дукат", amount);
 }
 
 void sale_transfer(object obj, object player) {
@@ -97,7 +97,7 @@ void do_sell(object player, string what) {
                   handle_sale(objs[i], obj, player);
                   return;
                }
-               write("You do not have enough money for that.\n");
+               write("У вас недостаточно денег для этого.\n");
                obj->query_environment()->remove_object(obj);
                obj->destruct();
                return;
@@ -109,7 +109,7 @@ void do_sell(object player, string what) {
       }
    }
 
-   player->message("That item is out of stock.");
+   player->message("У нас нет этой вещи.");
 }
 
 void do_buy(object player, object what) {
@@ -119,20 +119,32 @@ void do_buy(object player, object what) {
    value = what->query_value();
 
    if ((will_buy < 1) || (value < 1)) {
-      write(capitalize(this_object()->query_name()) + " will not buy that.\n");
+      write(capitalize(this_object()->query_name()) + " - не купит это.\n");
       return;
    }
 
    name = what->base_name();
 
    if (!what->move(this_object())) {
-      write("You can not sell that.\n");
+      write("Вы не можете продать это.\n");
       return;
    }
 
-   player->targeted_action("$N $vsell $t $o for " + value + " ducat" +
+   if (player->query_gender() == "male") {
+   player->targeted_action("$N продал $d $i за " + value + " дукат" +
       ducats(value) + ".",
       this_object(), what);
+ } else if (player->query_gender() == "female") {
+   player->targeted_action("$N продала $d $i за " + value + " дукат" +
+      ducats(value) + ".",
+      this_object(), what);
+ } else {
+   player->targeted_action("$N продало $d $i за " + value + " дукат" +
+      ducats(value) + ".",
+      this_object(), what);
+ }
+   
+
    what->query_environment()->remove_object(what);
    what->destruct();
 
@@ -143,7 +155,7 @@ void do_buy(object player, object what) {
       stored_items[name] = stored_items[name] + 1;
    }
 
-   player->add_money("ducat", value);
+   player->add_money("дукат", value);
 }
 
 void add_item(string name, int amount) {
@@ -163,16 +175,16 @@ string build_string(string str, object obj, string num, string *objs) {
    if (!obj->query_Name()) {
       if (!obj->query_adj() || obj->query_adj() == "") {
          str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_id() +
-            ", " + val + " ducat" + ducats(val) + ".\n";
+            ", " + val + " дукат" + ducats(val) + ".\n";
       } else {
          str += " %^CYAN%^[" + num + "]%^RESET%^ " +
             obj->query_adj() + " " + obj->query_id() + ", " +
-            val + " ducat" + ducats(val) + ".\n";
+            val + " дукат" + ducats(val) + ".\n";
       }
    } else {
       val = objs->query_value();
       str += " %^CYAN%^[" + num + "]%^RESET%^ " + obj->query_Name() +
-         ", " + val + " ducat" + ducats(val) + ".\n";
+         ", " + val + " дукат" + ducats(val) + ".\n";
    }
 
    return str;

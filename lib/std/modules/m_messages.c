@@ -217,7 +217,36 @@ string *compose_message(object who, string msg, object target,
         w - винительный
         y - творительный
         u - предложный
-        */       
+        i - предмет в именительном вместо $o
+        */
+             case 'i':
+               if (strlen(words[i]) > 2 && words[i][2] >= '0'
+                  && words[i][2] <= '9') {
+                  objnum = words[i][2] - '0';
+               } else {
+                  objnum = 0;
+               }
+               if (!objs || !objs[objnum]) {
+                  break;
+               }
+               if (typeof(objs[objnum]) == T_STRING) {
+                  us += objs[objnum] + " ";
+                  them += objs[objnum] + " ";
+                  others += objs[objnum] + " ";
+               } else {
+                  if (!pronounFlag) { 
+                     us += "";
+                     them += "";
+                     others += "";
+                  }
+
+                  us += objs[objnum]->query_obj_i_name() + " ";
+                  them += objs[objnum]->query_obj_i_name() + " ";
+                  others += objs[objnum]->query_obj_i_name() + " ";
+                  pronounFlag = 0;
+               }
+
+               break;       
             case 'r':
                if (who == target) {
                   us += "тебя ";

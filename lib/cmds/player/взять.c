@@ -37,7 +37,7 @@ static int get_coins(object here, int amount, string type) {
    string str;
    int value;
 
-   obj = here->present("coin");
+   obj = here->present("монета");
    value = obj->query_value();
    if (amount > value) {
       write("Тут нет столько монет.\n");
