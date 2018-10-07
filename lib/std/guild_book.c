@@ -12,7 +12,7 @@ string query_guild(void) {
 }
 
 void do_dub(object who) {
-   who->set_title("$N the newest member.");
+   who->set_title("$N новобранец.");
 }
 
 void join_guild(string str) {
@@ -21,7 +21,7 @@ void join_guild(string str) {
    player = this_player();
 
    if (player->guild_member(query_guild())) {
-      write("The guild master says: You're already a member.");
+      write("Мастер гильдии говорит: Ты уже член гильдии.");
       return;
    }
 
@@ -49,8 +49,8 @@ void leave_guild(string str) {
    player = this_player();
 
    if (!player->guild_member(query_guild())) {
-      write("The guild master says: Why do you want to leave, when you're " +
-         "not a member?");
+      write("Мастер гильдии говорит: Почему ты хочешь покинуть гильдию, " +
+         "хотя ты в ней не состоишь?");
       return;
    }
 
@@ -63,7 +63,7 @@ void leave_guild(string str) {
          CHANNEL_D->chan_leave(query_guild(), player);
       }
 
-      player->set_title("$N the guildless.");
+      player->set_title("$N безгильдийный.");
 
    } else {
       this_object()->do_keep(player);

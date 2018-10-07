@@ -19,6 +19,6 @@ int query_ac(void) {
 
 void create(void) {
    ob::create();
-   add_ids("armor", "armour");
+   add_ids("доспех", "доспехи");
    set_gettable(1);
 }

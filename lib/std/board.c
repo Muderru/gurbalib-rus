@@ -86,19 +86,19 @@ void remove_message(string str) {
    int x, size;
 
    if (sscanf(str, "%d", x) < 1 || x == 0) {
-      write("Usage: delete #\n");
+      write("Использование: удалить #\n");
       return;
    }
 
    size = query_message_count();
    if (size < x) {
-      write("No message : " + x + "\n");
+      write("Нет сообщения : " + x + "\n");
       return;
    }
 
    x = x -1;
    msgs -= ( { msgs[x] } );
-   write("Deleted message #: " + str + "\n");
+   write("Удалено сообщение #: " + str + "\n");
 }
 
 int query_msg_exists(string num) {
@@ -121,14 +121,14 @@ string query_message(string num) {
    i = str2val(num) - 1;
 
    if (i > sizeof(msgs) || i < 0) {
-      return "Message doesn't exist.\n";
+      return "Сообщение не существует.\n";
    }
 
    save_me();
 
-   msg = " \nPoster: %^CYAN%^" + msgs[i][0] + "%^RESET%^\n";
-   msg += "Subject: %^YELLOW%^" + msgs[i][1] + "%^RESET%^\n";
-   msg += "Date: %^GREEN%^" + msgs[i][2] + "%^RESET%^\n";
+   msg = " \nАвтор: %^CYAN%^" + msgs[i][0] + "%^RESET%^\n";
+   msg += "Тема: %^YELLOW%^" + msgs[i][1] + "%^RESET%^\n";
+   msg += "Дата: %^GREEN%^" + msgs[i][2] + "%^RESET%^\n";
    msg += "----------------------------------------------------------------" +
       "--------------\n";
    msg += msgs[i][3];
@@ -141,7 +141,7 @@ string query_message_list(string who) {
 
    check_restore();
 
-   msg = " \nNum    From        Subject                            Date\n" +
+   msg = " \n№      От          Тема                               Дата\n" +
       "-------------------------------------------------------------------" +
       "-----------\n";
 

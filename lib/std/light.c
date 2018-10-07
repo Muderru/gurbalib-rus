@@ -20,18 +20,31 @@ int query_lit(void) {
 static int light(void) {
    EVENT_D->subscribe_event("heart_beat");
    lit = 1;
-   write("You light the " + this_object()->query_id() + ".\n");
+    if (this_player()->query_gender() == "male") {
+   write("Ты зажег " + this_object()->query_id() + ".\n");
    this_player()->query_environment()->tell_room(this_player(), 
-      this_player()->query_Name() + " lights the " + 
+      this_player()->query_Name() + " зажег " + 
       this_object()->query_id() + ".\n");
+  } else if (this_player()->query_gender() == "female") {
+   write("Ты зажгла " + this_object()->query_id() + ".\n");
+   this_player()->query_environment()->tell_room(this_player(), 
+      this_player()->query_Name() + " зажгла " + 
+      this_object()->query_id() + ".\n");
+  } else {
+   write("Ты зажег " + this_object()->query_id() + ".\n");
+   this_player()->query_environment()->tell_room(this_player(), 
+      this_player()->query_Name() + " зажгло " + 
+      this_object()->query_id() + ".\n");
+  }
+
    return 1;
 }
 
 static int extinguish(void) {
    lit = 0;
-   write("You extinguish the " + this_object()->query_id() + ".\n");
+   write("Ты гасишь " + this_object()->query_id() + ".\n");
    this_player()->query_environment()->tell_room(this_player(), 
-      this_player()->query_Name() + " extinguishes the " + 
+      this_player()->query_Name() + " гасит " + 
       this_object()->query_id() + ".\n");
    return 1;
 }
@@ -46,17 +59,30 @@ private int burn_fuel(void) {
    if (--fuel < 5) {
       room = query_environment();
       if (room->is_living()) {
-         write("Your " + query_id() + " dims.\n");
+        if (this_object()->query_obj_gender() == "male") {
+         write("Ваш " + query_id() + " тускнеет.\n");
+      } else if (this_player()->query_gender() == "female") {
+         write("Ваша " + query_id() + " тускнеет.\n");
+      } else {
+         write("Ваше " + query_id() + " тускнеет.\n");
+      }          
+
       }
    }
 
    if (fuel < 1) {
       room = query_environment();
       if (room->is_living()) {
-         write("Your " + query_id() + " goes out.\n");
-         say(room->query_Name() + "'s " + query_id() + " goes out.\n");
+        if (this_object()->query_obj_gender() == "male") {
+         write("Ваш " + query_id() + " гаснет.\n");
+      } else if (this_player()->query_gender() == "female") {
+         write("Ваша " + query_id() + " гаснет.\n");
       } else {
-         room->message_room(room, "The " + query_id() + " goes out.\n");
+         write("Ваше " + query_id() + " гаснет.\n");
+      }
+/*         say(room->query_Name() + "'s " + query_id() + " goes out.\n"); */
+      } else {
+         room->message_room(room, query_id() + " гаснет.\n");
       }
 
       lit = 0;
@@ -68,10 +94,10 @@ private int burn_fuel(void) {
 
 private string lit_or_unlit(void) {
    if (query_lit()) {
-      return "lit";
+      return "светится";
    }
 
-   return "unlit";
+   return "потухшее";
 }
 
 string query_short(void) {
@@ -80,7 +106,7 @@ string query_short(void) {
    str = ::query_short() + " [" + lit_or_unlit() + "]";
 
    if (query_fuel() < 20) {
-      str += " [very low on fuel]";
+      str += " [мало горючего]";
    }
 
    return str;
@@ -89,9 +115,9 @@ string query_short(void) {
 string query_long(void) {
    string str;
 
-   str = ::query_long() + "\nIt is " + lit_or_unlit() + ".";
+   str = ::query_long() + "\nОно " + lit_or_unlit() + ".";
    if (query_fuel() < 20) {
-      str += "\nIt is very low on fuel.";
+      str += "\nТут очень мало горючего.";
    }
 
    return str;
@@ -108,18 +134,18 @@ string query_name(void) {
 private void light_usage(void) {
    string *lines;
 
-   lines = ({ "Usage: light [-h] [OBJECT]" });
+   lines = ({ "Использование: зажечь [-h] [OBJECT]" });
    lines += ({ "" });
-   lines += ({ "Turn on, or light the specified object." });
+   lines += ({ "Включает или зажигает указанный предмет." });
    lines += ({ "" });
-   lines += ({ "Options:" });
-   lines += ({ "\t-h\tHelp, this usage message." });
-   lines += ({ "Examples:" });
-   lines += ({ "\tlight torch" });
-   lines += ({ "\tlight lamp" });
-   lines += ({ "See also:" });
-   lines += ({ "\tbuy, extinguish, identify, list, listen, look, " +
-      "search, sell, value" });
+   lines += ({ "Опции:" });
+   lines += ({ "\t-h\tПомошь, вызывает эту справку." });
+   lines += ({ "Примеры:" });
+   lines += ({ "\tзажечь факел" });
+   lines += ({ "\tзажечь лампа" });
+   lines += ({ "Смотрите также:" });
+   lines += ({ "\tкупить, погасить, опознать, список, слушать, смотреть, " +
+      "искать, продать, цена" });
 
    if (query_wizard(this_player())) {
       lines += ({ "\tlast, locate, mudlist, possess, rwho, snoop, where, who"
@@ -132,18 +158,18 @@ private void light_usage(void) {
 private void extinguish_usage(void) {
    string *lines;
 
-   lines = ({ "Usage: extinguish [-h] [OBJECT]" });
+   lines = ({ "Использование: погасить [-h] [OBJECT]" });
    lines += ({ "" });
-   lines += ({ "Turn off, or extinguish the specified object." });
+   lines += ({ "Погашает или выключает выбранный источник света." });
    lines += ({ "" });
-   lines += ({ "Options:" });
-   lines += ({ "\t-h\tHelp, this usage message." });
-   lines += ({ "Examples:" });
-   lines += ({ "\textinguish torch" });
-   lines += ({ "\textinguish lamp" });
+   lines += ({ "Опции:" });
+   lines += ({ "\t-h\tПомошь, вызывает эту справку." });
+   lines += ({ "Примеры:" });
+   lines += ({ "\tпогачить факел" });
+   lines += ({ "\tпогасить лампу" });
    lines += ({ "See also:" });
-   lines += ({ "\tbuy, identify, light, list, listen, look, " +
-      "search, sell, value" });
+   lines += ({ "\tкупить, погасить, опознать, список, слушать, смотреть, " +
+      "искать, продать, цена" });
 
    if (query_wizard(this_player())) {
       lines += ({ "\tlast, locate, mudlist, possess, rwho, snoop, where, who"
@@ -166,11 +192,23 @@ int do_light(string str) {
       return 0;
    }
    if (query_lit()) {
-      write("Your " + str + " is already lit.");
+        if (this_object()->query_obj_gender() == "male") {
+         write("Ваш " + str + " уже освещает.");
+      } else if (this_player()->query_gender() == "female") {
+         write("Ваша " + str + " уже освещает.");
+      } else {
+         write("Ваше " + str + " уже освещает.");
+      }       
       return 1;
    }
    if (fuel < 1) {
-      write("Your " + str + " is out of fuel.");
+        if (this_object()->query_obj_gender() == "male") {
+         write("Ваш " + str + " без горючего.");
+      } else if (this_player()->query_gender() == "female") {
+         write("Ваша " + str + " без горючего.");
+      } else {
+         write("Ваше " + str + " без горючего.");
+      }       
       return 1;
    }
 
@@ -191,7 +229,13 @@ int do_extinguish(string str) {
       return 0;
    }
    if (!query_lit()) {
-      write("Your " + str + " is not lit.");
+        if (this_object()->query_obj_gender() == "male") {
+         write("Ваш " + str + " не освещает.");
+      } else if (this_player()->query_gender() == "female") {
+         write("Ваша " + str + " не освещает.");
+      } else {
+         write("Ваше " + str + " не освещает.");
+      }       
       return 1;
    }
 
@@ -202,7 +246,7 @@ void create(void) {
    obj::create();
 
    set_fuel(1000);
-   add_action("do_light", "light");
-   add_action("do_extinguish", "extinguish");
+   add_action("do_light", "зажечь");
+   add_action("do_extinguish", "погасить");
 }
 

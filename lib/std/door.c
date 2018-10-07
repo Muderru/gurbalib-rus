@@ -10,9 +10,16 @@ static object sibling;
 
 void create(void) {
    ::create();
-   set_id("door");
-   set_short("A wooden door");
-   set_long("Your average wooden door.");
+   set_id("дверь");
+   set_short("Деревянная дверь");
+   set_long("Самая обычная деревянная дверь.");
+   set_obj_i_name("деревянная дверь");
+   set_obj_r_name("деревянной двери");
+   set_obj_d_name("деревянной двери");
+   set_obj_v_name("деревянную дверь");
+   set_obj_t_name("деревянной дверью");
+   set_obj_p_name("деревянной двери");
+   set_obj_gender("female");
    set_gettable(0);
    set_open_state(0);
 }

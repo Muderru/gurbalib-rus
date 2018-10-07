@@ -209,8 +209,8 @@ nomask int move(mixed destination) {
    }
 
    if (dest->is_player() && !dest->can_carry(this_object())) {
-      dest->message("Your inventory is full. Please check your " +
-         "local environment for '" + this_object()->query_short() + "'.");
+      dest->message("Ваш инвентарь переполнен. Пожалуйста, освободите " +
+         "место для '" + this_object()->query_short() + "'.");
          this_object()->move(dest->query_environment());
 
       return 0;
@@ -349,10 +349,10 @@ void create(void) {
       return;
    }
 
-   set_short("A nondescript thing");
-   set_id("thing");
-   set_long("Error.  Something went wrong.  Please Show a wizard this " +
-      "object or file a bug report with the \"bug\" command.");
+   set_short("Неописанная вещь");
+   set_id("вещь");
+   set_long("Ошибка. Что-то пошло не так. Пожалуйста, сообщите " +
+      "об этом администратору лично или командой \"ошибка\".");
    adjs = ( { } );
 
    tmp = file_name();
