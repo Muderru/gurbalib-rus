@@ -663,15 +663,31 @@ void event_new_player(string * args) {
 
 void event_player_login(string * args) {
    if (channels["announce"]) {
+       if (this_player()->query_gender() == "male") {
       chan_send_string("announce", "channel_d",
          capitalize(args[0]) + " вошел в игру.", NOT_EMOTE);
+        } else if (this_player()->query_gender() == "female") {
+      chan_send_string("announce", "channel_d",
+         capitalize(args[0]) + " вошла в игру.", NOT_EMOTE); 
+        } else {
+      chan_send_string("announce", "channel_d",
+         capitalize(args[0]) + " вошло в игру.", NOT_EMOTE);
+        }
    }
 }
 
 void event_player_logout(string * args) {
    if (channels["announce"]) {
+       if (this_player()->query_gender() == "male") {
       chan_send_string("announce", "channel_d",
          capitalize(args[0]) + " вышел из игры.", NOT_EMOTE);
+        } else if (this_player()->query_gender() == "female") {
+      chan_send_string("announce", "channel_d",
+         capitalize(args[0]) + " вышла из игры.", NOT_EMOTE);
+        } else {
+      chan_send_string("announce", "channel_d",
+         capitalize(args[0]) + " вышло из игры.", NOT_EMOTE);
+        }       
    }
 }
 
@@ -691,9 +707,19 @@ void event_player_unlinkdeath(string * args) {
 
 void event_player_join(string * args) {
    if (channels["announce"]) {
+       if (this_player()->query_gender() == "male") {
       chan_send_string("announce", "channel_d",
          "Хоть стой, хоть падай " + capitalize(args[0]) + " присоединился к " +
          args[1] + "!", NOT_EMOTE);
+        } else if (this_player()->query_gender() == "female") {
+      chan_send_string("announce", "channel_d",
+         "Хоть стой, хоть падай " + capitalize(args[0]) + " присоединилась к " +
+         args[1] + "!", NOT_EMOTE);
+        } else {
+      chan_send_string("announce", "channel_d",
+         "Хоть стой, хоть падай " + capitalize(args[0]) + " присоединилось к " +
+         args[1] + "!", NOT_EMOTE);
+        }       
    }
 }
 

@@ -125,21 +125,21 @@ static int do_get(object obj1, object obj2, int loud) {
    if (obj1->move(this_player())) {
       if (obj2 == this_environment()) {
             if (this_player()->query_gender() == "male") {
-              this_player()->targeted_action("$N взял " + obj1->query_obj_i_name() + ".", nil, obj1);
+              this_player()->targeted_action("$N взял " + obj1->query_obj_v_name() + ".", nil, obj1);
           } else if (this_player()->query_gender() == "female") {
-               this_player()->targeted_action("$N взяла " + obj1->query_obj_i_name() + ".", nil, obj1);
+               this_player()->targeted_action("$N взяла " + obj1->query_obj_v_name() + ".", nil, obj1);
           } else {
-               this_player()->targeted_action("$N взяло " + obj1->query_obj_i_name() + ".", nil, obj1);
+               this_player()->targeted_action("$N взяло " + obj1->query_obj_v_name() + ".", nil, obj1);
           }
       } else {
             if (this_player()->query_gender() == "male") {
-              this_player()->targeted_action("$N взял " + obj1->query_obj_i_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
+              this_player()->targeted_action("$N взял " + obj1->query_obj_v_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
             obj1);
           } else if (this_player()->query_gender() == "female") {
-               this_player()->targeted_action("$N взяла " + obj1->query_obj_i_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
+               this_player()->targeted_action("$N взяла " + obj1->query_obj_v_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
             obj1);
           } else {
-               this_player()->targeted_action("$N взяло " + obj1->query_obj_i_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
+               this_player()->targeted_action("$N взяло " + obj1->query_obj_v_name() + " из " + obj2->query_obj_r_name() + ".", obj2, 
             obj1);
           }
          

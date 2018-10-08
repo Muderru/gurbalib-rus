@@ -90,9 +90,9 @@ static void main(string str) {
       this_player()->more(usage());
       return;
    } else {
-        if (value == "on") {
+        if (value == "вкл") {
            value = "1";
-        } else if (value == "off") {
+        } else if (value == "выкл") {
            value = "0";
          }
         switch(name) {
@@ -128,7 +128,7 @@ static void main(string str) {
               this_player()->more(usage());
               return;
         }
-      write("Ok.");
+      write("ОК.");
       if (str2val(value) != -1) {                     
          /* We've got a value */
          call_other(this_player(), "set_" + name, str2val(value) );

@@ -88,8 +88,8 @@ void restore_privs(void) {
 /* Restore the player */
 void restore_me(void) {
    if (!unguarded("restore_object", "/data/players/" + living_name + ".o")) {
-      write("Error while restoring \"/data/players/" + living_name + ".o");
-      write("Please notify the administration.");
+      write("Ошибка при восстановлении \"/data/players/" + living_name + ".o");
+      write("Пожалуйста сообщите администрации игры.");
       return;
    }
 
@@ -169,9 +169,9 @@ void create(void) {
 
    channels = ( { "gossip", "announce" } );
    ignored = ( { } );
-   title = "$N the nondescript";
+   title = "$N без описания";
    long_desc = "";
-   set_short("A nondescript player");
+   set_short("Игрок без описания");
    timestamp = time();
    ansi = 1;
    set_env("cwd", "/");
@@ -198,7 +198,7 @@ string query_title(void) {
    }
 
    if (!t || t == "") {
-      t = "$N the title less";
+      t = "$N без титула";
    }
    t2 = replace_string(t, "$N", capitalize(living_name));
    if (t2 == t) {
@@ -265,10 +265,10 @@ void login_player(void) {
    for (i = 0; i < sizeof(tmpchannels); i++) {
       if (CHANNEL_D->query_channel(tmpchannels[i])) {
          if (!CHANNEL_D->chan_join(tmpchannels[i], this_player())) {
-            write("Error joining channel: " + tmpchannels[i] + "\n");
+            write("Ошибка входа в канал: " + tmpchannels[i] + "\n");
          }
       } else {
-         write("Error no such channel: " + tmpchannels[i] + "\n");
+         write("Ошибка, нет такого канала: " + tmpchannels[i] + "\n");
          tmpchannels[i] = nil;
       }
    }
@@ -363,7 +363,15 @@ void set_save_on_quit(int i) {
 
 string query_quit_message(void) {
    if (!quit_message) {
-      return "$N $vquit.";
+       
+   if (this_player()->query_gender() == "male") {
+      return "$N покинул игру.";
+   } else if (this_player()->query_gender() == "female") {
+      return "$N покинула игру.";
+   } else {
+      return "$N покинуло игру.";
+   }
+   
    }
 
    return quit_message;
@@ -445,7 +453,7 @@ void set_linkdead(int flag) {
    if (flag == 1) {
       LINKDEAD_D->add_linkdead(this_object());
       EVENT_D->event("player_linkdeath", query_name());
-      set_short(query_title() + " [link-dead]");
+      set_short(query_title() + " [без связи]");
       linkdead = call_out("do_quit", LINKDEAD_TIMEOUT);
    } else {
       set_short(query_title());
@@ -459,7 +467,7 @@ void set_linkdead(int flag) {
 
 void set_editing(int flag) {
    if (flag == 1) {
-      set_short(query_title() + " [editing]");
+      set_short(query_title() + " [редактирует]");
    } else {
       set_short(query_title());
    }
@@ -522,7 +530,7 @@ void add_cmd_path(string path) {
    if (require_priv(owner_file(path))) {
       cmd::add_cmd_path( path );
    } else {
-      error("Permission denied.");
+      error("Доступ запрещен.");
    }
 }
 
@@ -634,7 +642,7 @@ void write_prompt(void) {
    string result, date;
 
    if (this_object()->is_editing()) {
-      out("%^GREEN%^edit> %^RESET%^");
+      out("%^GREEN%^редактирование> %^RESET%^");
       return;
    }
 
@@ -705,7 +713,7 @@ void more(string * lines, varargs int docolor) {
          out_unmod(msg + "\n");
       }
 
-      out("%^BOLD%^--More--(" + ((more_line_num +
+      out("%^BOLD%^--Больше--(" + ((more_line_num +
          height) * 100) / sizeof(lines) + "%)%^RESET%^");
       more_line_num += height + 1;
       input_to("more_prompt");
@@ -756,7 +764,7 @@ void more_prompt(string arg) {
          out_unmod(msg + "\n");
       }
 
-      out("%^BOLD%^--More--(" + ((more_line_num + height) * 100) /
+      out("%^BOLD%^--Больше--(" + ((more_line_num + height) * 100) /
          sizeof(more_lines) + "%)%^RESET%^");
       more_line_num += height + 1;
       input_to("more_prompt");
@@ -781,15 +789,22 @@ static void do_look_obj(object obj) {
    object *objs;
 
    this_environment()->event("body_look_at", this_player(), obj);
-   this_environment()->tell_room(this_player(), this_player()->query_Name() +
-      " looks at the " + obj->query_id() + ".\n");
+   
+   if (!obj->query_obj_v_name()) {
+          this_environment()->tell_room(this_player(), this_player()->query_Name() +
+      " смотрит на " + obj->query_id() + ".\n");
+   } else {
+       this_environment()->tell_room(this_player(), this_player()->query_Name() +
+      " смотрит на " + obj->query_obj_v_name() + ".\n");
+   }
+
    write(obj->query_long());
    if (obj->is_closed()) {
-      write("It is closed.");
+      write("Это закрыто.");
    } else if (obj->is_container()) {
       flag = 0;
       objs = obj->query_inventory();
-      write(" \nIt contains:\n");
+      write(" \nЗдесь содержится:\n");
 
       for (i = 0; i < sizeof(objs); i++) {
          write("  " + objs[i]->query_short() + "\n");
@@ -801,24 +816,38 @@ static void do_look_liv(object obj) {
    int i, flag;
    object *objs;
 
+   if (!obj->query_v_name()) {
    this_environment()->tell_room(this_player(), this_player()->query_Name() +
-      " looks at " + capitalize(obj->query_id()) + ".\n");
-
+      " смотрит на " + capitalize(obj->query_id()) + ".\n");
+   } else {
+   this_environment()->tell_room(this_player(), this_player()->query_Name() +
+      " смотрит на " + capitalize(obj->query_v_name()) + ".\n");
+   }   
+   
    write("%^PLAYER%^" + obj->query_short() + "%^RESET%^\n");
 
    write(obj->query_long());
-   write("A " + obj->query_gender() + " " + obj->query_race() +
-      " who is " + obj->query_status() + "\n");
+   if (obj->query_gender() == "male") {
+   write("Представитель расы " + obj->query_race() + " мужского пола," +
+      " который " + obj->query_status() + "\n");
+   } else if (obj->query_gender() == "female") {
+   write("Представительница расы " + obj->query_race() + " женского пола," +
+      " которая " + obj->query_status() + "\n");
+   } else {
+   write("Представитель расы " + obj->query_race() + " без пола," +
+      " который " + obj->query_status() + "\n");
+   }
+
 
    flag = 0;
    objs = obj->query_inventory();
 
    if (obj->query_gender() == "male") {
-      write(" \nHe is using:\n");
+      write(" \nОн использует:\n");
    } else if (obj->query_gender() == "female") {
-      write(" \nShe is using:\n");
+      write(" \nОна использует:\n");
    } else {
-      write(" \nIt is using:\n");
+      write(" \nОно использует:\n");
    }
 
    for (i = 0; i < sizeof(objs); i++) {
@@ -833,7 +862,7 @@ static void do_look_liv(object obj) {
       }
    }
    if (flag == 0) {
-      write("  Nothing.");
+      write("  Ничего.");
    }
 }
 
@@ -843,13 +872,13 @@ void do_look(object obj) {
 
    if (this_environment()->is_dark()) {
       if (query_wizard(this_player())) {
-         write("This room is dark, however, being a wizard allows " +
-            "you to see in the dark.\n");
+         write("Здесь темно, но будучи администратором игры " +
+            "вы видите во тьме.\n");
       } else if (this_player()->query_race_object()->has_darkvision()) {
-         write("This room is dark, however, your race allows " +
-            "you to see in the dark.\n");
+         write("Здесь темно, но ваша расовая способность " +
+            "позволяет вам видеть во тьме.\n");
       } else {
-         write("It is too dark to see.\n");
+         write("Здесь слишком темно.\n");
          return;
       }
    }
@@ -904,7 +933,13 @@ void do_quit(void) {
          }
 
          if (objs[i]->move(this_object()->query_environment())) {
-            this_object()->targeted_action("$N $vdrop $o.", nil, objs[i]);
+             if (this_player()->query_gender() == "male") {
+               this_object()->targeted_action("$N бросил " + objs[i]->query_obj_v_name() + ".", nil, objs[i]);
+             } else if (this_player()->query_gender() == "female") {
+               this_object()->targeted_action("$N бросила " + objs[i]->query_obj_v_name() + ".", nil, objs[i]);
+             } else {
+               this_object()->targeted_action("$N бросило " + objs[i]->query_obj_v_name() + ".", nil, objs[i]);                 
+   }
          } else {
             objs[i]->destruct();
          }
@@ -1010,7 +1045,14 @@ void leave_guild(string guild) {
 
    guilds[guild] = nil;
    remove_cmd_path( "/cmds/guild/" + guild );
-   set_title("$N the guildless");
+   if (this_player()->query_gender() == "male") {
+    set_title("$N безгильдийный");
+   } else if (this_player()->query_gender() == "female") {
+    set_title("$N безгильдийная");
+   } else {
+    set_title("$N безгильдийное");
+   }
+
    save_me();
 }
 
@@ -1041,13 +1083,13 @@ string random_error(void) {
    randomval = random(3);
    switch (randomval) {
       case 0:
-         return "What?";
+         return "Что?";
          break;
       case 1:
-         return "Que?";
+         return "Как?";
          break;
       case 2:
-         return "Huh?";
+         return "Чего?";
          break;
    }
 }
@@ -1127,19 +1169,19 @@ void receive_message(string message) {
             } else {
                arg = cmd[1..] + " " + arg;
             }
-            cmd = "say";
+            cmd = "говорить";
          } else if (cmd[0] == ';') {
             if (arg == "") {
                arg = cmd[1..];
             } else {
                arg = cmd[1..] + " " + arg;
             }
-            cmd = "emote";
+            cmd = "эмоция";
          }
       }
 
       /* Substitute 'me' with my name */
-      if (arg == "me") {
+      if (arg == "я") {
          arg = this_player()->query_id();
       }
 
@@ -1242,7 +1284,7 @@ void receive_message(string message) {
                CHANNEL_D->query_priv(cmd) <= query_user_type(living_name)) {
 
                flag = 1;
-               command("chan", cmd + " " + arg);
+               command("канал", cmd + " " + arg);
             }
          }
       }
@@ -1252,7 +1294,7 @@ void receive_message(string message) {
          exits = this_environment()->query_exit_indices();
          for (i = 0; i < sizeof(exits); i++) {
             if (exits[i] == lowercase(cmd)) {
-               command("go", cmd);
+               command("идти", cmd);
                flag = 1;
             }
          }
@@ -1282,36 +1324,36 @@ void set_custom_color(string name, string * symbols) {
 
    if (!symbols) {
       custom_colors[name] = nil;
-      write("Removed color symbol " + name + "\n");
+      write("Удален цветовой символ " + name + "\n");
    } else {
       for (i = 0, sz = sizeof(symbols); i < sz; i++) {
          if (strstr("%^", symbols[i]) == -1) {
             symbols[i] = uppercase(symbols[i]);
             if (!ANSI_D->query_any_symbol(symbols[i])) {
                /* Each symbol must resolve to a pre-defined token */
-               write("Symbolic color tokens must be composed of only " +
-                  "valid base color tokens or pre-existing custom tokens.\n" +
-                  "see 'ansi show' for valid tokens");
+               write("Токены символов цветов должны состоять из " +
+                  "существующих токенов основных цветов или уже существующих кастомных токенов.\n" +
+                  "наберите 'анси показать' чтобы узнать существующие токены");
                return;
             } else {
                switch (ANSI_D->check_recursion(name, symbols[i])) {
                   case 2:
-                     write("Loop in symbolic tag " + name + " : " + symbols[i]);
+                     write("Петля в метке символов " + name + " : " + symbols[i]);
                      return;
                   case 1:
-                     write("Too many levels of symbolic tags for " + name);
+                     write("Слишком много уровней меток символов для " + name);
                      return;
                }
             }
             tmp += "%^" + symbols[i] + "%^";
          } else {
-            write("Symbolic color tokens cannot (YET) contain custom tokens\n");
+            write("Токены символов цветов не могут (ПОКА) содержать кастомные токены.\n");
             return;
          }
       }
 
       custom_colors[name] = tmp;
-      out_unmod(name + " is now " + tmp + "\n");
+      out_unmod(name + " теперь " + tmp + "\n");
    }
 
    ANSI_D->set_player_translations(custom_colors);

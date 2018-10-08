@@ -115,8 +115,8 @@ static void main(string str) {
 
       if (member_array(what, this_environment()->query_items() ) > -1) {
          this_environment()->tell_room(this_player(), 
-            this_player()->query_Name( ) + " смотрит на " + 
-            lowercase(what) + ".\n");
+            this_player()->query_Name( ) + " смотрит на что-то" + 
+            ".\n");
          write(this_environment()->query_item(what));
          return;
       }
