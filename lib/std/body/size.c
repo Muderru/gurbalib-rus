@@ -29,19 +29,19 @@ string convert_size(void) {
 
    switch (actual_size) {
       case 1:
-         return ("small");
+         return ("маленький");
       case 2:
-         return ("medium");
+         return ("ниже среднего");
       case 3:
-         return ("medium/large");
+         return ("невысокий");
       case 4:
-         return ("large");
+         return ("большой");
       case 5:
-         return ("extra large");
+         return ("очень большой");
       case 6:
-         return ("any");
+         return ("необъятный");
 
       default:
-         return ("no size given");
+         return ("безразмерный");
    }
 }

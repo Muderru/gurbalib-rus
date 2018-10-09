@@ -27,7 +27,7 @@ void increase_hp(int hp) {
       cur_hp += hp;
       if (cur_hp >= max_hp) {  
          cur_hp = max_hp;
-         this_object()->message("%^BLUE%^You are fully healed.%^RESET%^");
+         this_object()->message("%^BLUE%^Вы полностью здоровы.%^RESET%^");
       }
    }
 }
@@ -142,36 +142,36 @@ string query_status(void) {
    x = this_object()->query_hp();
 
    if (x >= max) {
-      return "in peak physical condition.";
+      return "в превосходном состоянии.";
    } else if (x == 0) {
-      return "dead as a door nail.";
+      return "мертвее мертвого.";
    } else if (max < 5) {
       if (x < (max / 2)) {
-         return "knocking on deaths door.";
+         return "при смерти.";
       }
-      return "wounded.";
+      return "имеет несколько ран.";
    } else {
       t = max / 5;
       x = x / t;
 
       switch (x) {
          case 5:
-            return "in peak physical condition.";
+            return "в превосходном состоянии.";
             break;
          case 4:
-            return "barely scratched.";
+            return "имеет несколько царапин.";
             break;
          case 3:
-            return "lightly wounded.";
+            return "имеет легкие раны.";
             break;
          case 2:
-            return "wounded.";
+            return "имеет несколько ран.";
             break;
          case 1:
-            return "is in really bad shape.";
+            return "имеет несколько тяжелых ран.";
             break;
          default:
-            return "knocking on deaths door.";
+            return "при смерти.";
             break;
       }
    }

@@ -61,7 +61,7 @@ void add_snoopee(object pPlayer) {
    if (!pSnoopees) {
       pSnoopees = ( { } );
    }
-   this_object()->message("%^RED%^You are now being snooped by " +
+   this_object()->message("%^RED%^Сейчас за вами следит " +
       pPlayer->query_Name() + ".%^RESET%^");
    pSnoopees += ( { pPlayer } );
 }
@@ -71,7 +71,7 @@ void remove_snoopee(object pPlayer) {
       pSnoopees = ( { } );
    }
    pSnoopees -= ( { pPlayer } );
-   this_object()->message("%^RED%^You are no longer being snooped by " +
+   this_object()->message("%^RED%^За вами больше не следит " +
       pPlayer->query_Name() + ".%^RESET%^");
 }
 
@@ -80,8 +80,8 @@ void add_snooping(object pPlayer) {
       pSnooping = ( { } );
    }
    pSnooping += ( { pPlayer } );
-   this_object()->message("%^RED%^You are now snooping " +
-      pPlayer->query_Name() + ".%^RESET%^");
+   this_object()->message("%^RED%^Вы теперь следите за " +
+      pPlayer->query_t_name() + ".%^RESET%^");
 }
 
 void remove_snooping(object pPlayer) {
@@ -89,6 +89,6 @@ void remove_snooping(object pPlayer) {
       pSnooping = ( { } );
    }
    pSnooping -= ( { pPlayer } );
-   this_object()->message("%^RED%^You are no longer snooping " +
-      pPlayer->query_Name() + ".%^RESET%^");
+   this_object()->message("%^RED%^Вы больше не следите за " +
+      pPlayer->query_t_name() + ".%^RESET%^");
 }

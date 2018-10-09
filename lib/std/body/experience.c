@@ -14,72 +14,160 @@ int ready_for_next_level(void) {
 string query_level_title(int level) {
    switch (level) {
       case 1:
-         return "the uninitiated.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Непосвященный";
+      } else if (this_player()->query_gender() == "female") {
+         return "Непосвященная";
+      } else {
+         return "Непосвященное";
+      }
          break;
       case 2:
-         return "the newbie.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Начинающий";
+      } else if (this_player()->query_gender() == "female") {
+         return "Начинающая";
+      } else {
+         return "Начинающее";
+      }      
          break;
       case 3:
-         return "is getting the hang of things.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Начинающий вникать";
+      } else if (this_player()->query_gender() == "female") {
+         return "Начинающая вникать";
+      } else {
+         return "Начинающее вникать";
+      }      
          break;
       case 4:
-         return "the mediocre.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Посредственный";
+      } else if (this_player()->query_gender() == "female") {
+         return "Посредственная";
+      } else {
+         return "Посредственное";
+      }      
          break;
       case 5:
-         return "the Sub-average.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Заурядный";
+      } else if (this_player()->query_gender() == "female") {
+         return "Заурядная";
+      } else {
+         return "Заурядное";
+      }      
          break;
       case 6:
-         return "the Average.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Сносный";
+      } else if (this_player()->query_gender() == "female") {
+         return "Сносная";
+      } else {
+         return "Сносное";
+      }      
          break;
       case 7:
-         return "the Strong.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Могучий";
+      } else if (this_player()->query_gender() == "female") {
+         return "Могучая";
+      } else {
+         return "Могучее";
+      }      
          break;
       case 8:
-         return "the Great.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Великий";
+      } else if (this_player()->query_gender() == "female") {
+         return "Великая";
+      } else {
+         return "Великое";
+      }      
          break;
       case 9:
-         if (this_object()->query_race() == "male") {
-            return "the Baron.\n";
-         } else {
-            return "the Baroness.\n";
-         }
+      if (this_player()->query_gender() == "male") {
+            return "Барон";
+      } else if (this_player()->query_gender() == "female") {
+            return "Баронесса";
+      } else {
+            return "Барон";
+      }      
          break;
       case 10:
-         return "the Titan.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Титан";
+      } else if (this_player()->query_gender() == "female") {
+         return "Титанша";
+      } else {
+         return "Титан";
+      }      
          break;
       case 11:
-         return "the Conquerer.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Завоеватель";
+      } else if (this_player()->query_gender() == "female") {
+         return "Завоевательница";
+      } else {
+         return "Завоеватель";
+      }      
          break;
       case 12:
-         return "the Famous.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Герой";
+      } else if (this_player()->query_gender() == "female") {
+         return "Героиня";
+      } else {
+         return "Герой";
+      }      
          break;
-      case 13:
-         return "the Awe-inspiring.\n";
+      case 13:      
+         return "Пророк";
          break;
       case 14:
-         return "the Battle Hardened.\n";
+         return "Легенда";
          break;
       case 15:
-         return "the More than Adequate.\n";
+         return "Миф";
          break;
       case 16:
-         if (this_object()->query_race() == "male") {
-            return "the Grand Baron.\n";
-         } else {
-            return "the Grand Baroness.\n";
-         }
+      if (this_player()->query_gender() == "male") {
+            return "Великий барон";
+      } else if (this_player()->query_gender() == "female") {
+            return "Великая баронесса";
+      } else {
+            return "Великий барон";
+      }      
          break;
       case 17:
-         return "the Great Titan.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Великий титан";
+      } else if (this_player()->query_gender() == "female") {
+         return "Великая титанша";
+      } else {
+         return "Великий титан";
+      }      
          break;
       case 18:
-         return "the Mighty Conquerer.\n";
+      if (this_player()->query_gender() == "male") {
+         return "Могучий завоеватель";
+      } else if (this_player()->query_gender() == "female") {
+         return "Могучая завоевательница";
+      } else {
+         return "Могучий завоеватель";
+      }      
          break;
       case 19:
-         return "the High and Mighty.";
+      if (this_player()->query_gender() == "male") {
+         return "Легендарный герой";
+      } else if (this_player()->query_gender() == "female") {
+         return "Легендарная героиня";
+      } else {
+         return "Легендарный герой";
+      }      
          break;
       default:
-         return "the Grand Wizard!!!";
+         return "Архимаг";
          break;
    }
 }
@@ -92,8 +180,8 @@ void increase_level(void) {
       this_object()->query_base_stat("wis")) + 20);
    this_object()->set_max_end((level *
       this_object()->query_base_stat("con")) + 20);
-   write("Congratulations, you just achieved level: " + level + "\n");
-   this_object()->set_title("$N " + query_level_title(level));
+   write("Поздравляем! Вы достигли " + level + "го уровня.\n");
+   this_object()->set_title(query_level_title(level) + " $N.\n");
 }
 
 void increase_expr(int expr) {
@@ -106,7 +194,7 @@ void increase_expr(int expr) {
    }
    if (ready_for_next_level()) {
       increase_level();
-      write("Congratulations, you just went up a level...\n");
+      write("Поздравляем! Вы достигли нового уровня...\n");
       level += 1;
    }
 }

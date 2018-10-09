@@ -60,8 +60,8 @@ void event_heart_beat(void) {
          heal_time++;
          if (heal_time > heal_rate) {
             heal_time = 0;
-            this_object()->message("You are dead.  You must pray to get your " +
-             "body back.\n");
+            this_object()->message("Вы мертвы. Вы должны помолиться, чтобы " +
+             "чтобы вернуть ваше тело обратно.\n");
          }
       } else {
          call_out("die", 0);
@@ -140,41 +140,41 @@ string query_age(void) {
 
    if (years > 0) {
       if (years == 1) {
-         tmp = " year ";
+         tmp = " год ";
       } else {
-         tmp = " years ";
+         tmp = " лет ";
       }
       ret += years + tmp;
    }
    if (days > 0) {
       if (days == 1) {
-         tmp = " day ";
+         tmp = " день ";
       } else {
-         tmp = " days ";
+         tmp = " дней ";
       }
       ret += days + tmp;
    }
    if (hours > 0) {
       if (hours == 1) {
-         tmp = " hr ";
+         tmp = " час ";
       } else {
-         tmp = " hrs ";
+         tmp = " часов ";
       }
       ret += hours + tmp;
    }
    if (mins > 0) {
       if (mins == 1) {
-         tmp = " min ";
+         tmp = " минута ";
       } else {
-         tmp = " mins ";
+         tmp = " минут ";
       }
       ret += mins + tmp;
    }
    if (secs > 0) {
       if (secs == 1) {
-         tmp = " sec ";
+         tmp = " секунда ";
       } else {
-         tmp = " secs ";
+         tmp = " секунд ";
       }
       ret += secs + tmp;
    }
@@ -196,11 +196,17 @@ void die(void) {
          set_this_player(killer);
       }
 
-      killer->message("%^BOLD%^%^CYAN%^You killed " +
-         this_object()->query_Name() + ".%^RESET%^");
+      killer->message("%^BOLD%^%^CYAN%^Вы убили " +
+         this_object()->query_v_name() + ".%^RESET%^");
    }
 
-   this_object()->simple_action("$N $vfall to the ground...dead.");
+   if (this_object()->query_gender() == "male") {
+   this_object()->simple_action("$N упал на землю... мертвый.");
+   } else if (this_object()->query_gender() == "female") {
+   this_object()->simple_action("$N упала на землю... мертвая.");
+   } else {
+   this_object()->simple_action("$N упало на землю... мертвое.");
+   }
 
    obj = clone_object(DOMAINS_DIR + "/required/objects/corpse");
 
@@ -221,7 +227,7 @@ void die(void) {
    if (this_object()->is_player()) {
       this_object()->set_dead(1);
       this_object()->move(VOID);
-      this_object()->message("You have died.");
+      this_object()->message("Вы умерли.");
       this_object()->clear_money();
    } else {
       if (this_object()<-"/std/monster") {

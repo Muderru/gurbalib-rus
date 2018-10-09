@@ -13,50 +13,50 @@ string query_gender(void) {
       case "neuter":
          return "neuter";
       default:
-         return "unknown";
+         return "неизвестный";
    }
 }
 
 string query_gender_pronoun(void) {
    switch (gender) {
       case "male":
-         return "he";
+         return "он";
       case "female":
-         return "she";
+         return "она";
       default:
-         return "it";
+         return "оно";
    }
 }
 
 string query_gender_determiner(void) {
    switch (gender) {
       case "male":
-         return "his";
+         return "его";
       case "female":
-         return "her";
+         return "ее";
       default:
-         return "its";
+         return "его";
    }
 }
 
 string query_gender_possessive(void) {
    switch (gender) {
       case "male":
-         return "his";
+         return "его";
       case "female":
-         return "hers";
+         return "ее";
       default:
-         return "its";
+         return "его";
    }
 }
 
 string query_gender_reflexive(void) {
    switch (gender) {
       case "male":
-         return "himself";
+         return "себя";
       case "female":
-         return "herself";
+         return "себя";
       default:
-         return "itself";
+         return "себя";
    }
 }

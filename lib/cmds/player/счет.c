@@ -83,8 +83,15 @@ static void main(string str) {
    next_xp = level * level * 2000;
 
    l = ({ "[ " + obj->query_name() + " ] " + obj->query_title() });
-   l += ({ "A " + obj->query_gender() + " " + obj->query_race() +
-      " who is " + obj->query_status() + "\n" });
+   
+   if (this_player()->query_gender() == "female") {
+   l += ({ "Славная представительница расы " + obj->query_race() +
+      ", она " + obj->query_status() + "\n" });
+   } else {
+   l += ({ "Славный представитель расы " + obj->query_race() +
+      ", он " + obj->query_status() + "\n" });
+   } 
+      
    l += ({ "Сила        :  " + obj->query_stat("str") +
       "\t\t" + "Очки жизни :   " + h + "/" + mh + "  (" +
       percentage(h, mh) + "%)" });

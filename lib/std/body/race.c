@@ -72,7 +72,13 @@ void set_hit_string(string str) {
 
 string query_hit_string(void) {
    if (empty_str(hit_string)) {
-      set_hit_string("hit");
+      if (this_object()->query_gender() == "male") {
+        set_hit_string("ударил");
+      } else if (this_object()->query_gender() == "female") {
+        set_hit_string("ударила");
+      } else {
+        set_hit_string("ударило");
+      }       
    }
 
    return hit_string;

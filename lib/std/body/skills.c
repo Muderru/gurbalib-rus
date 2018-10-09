@@ -18,7 +18,7 @@ void set_skill_bonus(int new_skill_bonus) {
 
 void set_hit_skill(string skill) {
    if (!SKILL_D->is_skill(skill)) {
-      write("Unknown skill : " + skill);
+      write("Неизвестное умение : " + skill);
       return;
    }
    hit_skill = skill;
@@ -35,7 +35,7 @@ string query_hit_skill(void) {
 void set_skill(string skill, int val) {
 
    if (!SKILL_D->is_skill(skill)) {
-      write("Unknown skill : " + skill);
+      write("Неизвестное умение : " + skill);
       return;
    }
    if (!skills) {
@@ -47,7 +47,7 @@ void set_skill(string skill, int val) {
 
 int query_skill(string skill) {
    if (!SKILL_D->is_skill(skill)) {
-      write("Unknown skill : " + skill);
+      write("Неизвестное умение : " + skill);
       return (0);
    }
    if (!skills) {
@@ -71,7 +71,7 @@ string *query_skills(void) {
 
 void increase_skill(string skill, int val) {
    if (!SKILL_D->is_skill(skill)) {
-      write("Unknown skill : " + skill);
+      write("Неизвестное умение : " + skill);
       return;
    }
    if (!skills) {
@@ -87,7 +87,7 @@ void increase_skill(string skill, int val) {
 
 void learn_skill(string skill) {
    if (!SKILL_D->is_skill(skill)) {
-      write("Unknown skill : " + skill);
+      write("Неизвестное умение : " + skill);
       return;
    }
 
