@@ -67,6 +67,9 @@ static int do_wield(object obj, int loud) {
       }
    }
 
+
+   obj->setup();
+   
    this_player()->do_wield(obj);
    this_player()->targeted_action(obj->query_wield_message(), nil, obj);
       obj->after_wield(this_player());

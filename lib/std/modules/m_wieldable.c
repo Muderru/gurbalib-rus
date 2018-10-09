@@ -46,11 +46,11 @@ void set_unwield_message(string str) {
 string query_unwield_message(void) {
    if (!unwield_message) {
             if (this_player()->query_gender() == "male") {
-              return "$N перестал использовать " + this_object()->query_obj_i_name() +".";
+              return "$N перестал использовать " + this_object()->query_obj_v_name() +".";
           } else if (this_player()->query_gender() == "female") {
-              return "$N перестала использовать " + this_object()->query_obj_i_name() +".";
+              return "$N перестала использовать " + this_object()->query_obj_v_name() +".";
           } else {
-              return "$N перестало использовать " + this_object()->query_obj_i_name() +".";
+              return "$N перестало использовать " + this_object()->query_obj_v_name() +".";
           } 
    }
    return unwield_message;

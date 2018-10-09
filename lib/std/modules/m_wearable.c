@@ -21,11 +21,11 @@ void set_wear_message(string str) {
 string query_wear_message(void) {
    if (!wear_message) {
             if (this_player()->query_gender() == "male") {
-              return "$N надел " + this_object()->query_obj_i_name() +".";
+              return "$N надел " + this_object()->query_obj_v_name() +".";
           } else if (this_player()->query_gender() == "female") {
-              return "$N надела " + this_object()->query_obj_i_name() +".";
+              return "$N надела " + this_object()->query_obj_v_name() +".";
           } else {
-              return "$N надело " + this_object()->query_obj_i_name() +".";
+              return "$N надело " + this_object()->query_obj_v_name() +".";
           }
    }
    return wear_message;
@@ -38,11 +38,11 @@ void set_remove_message(string str) {
 string query_remove_message(void) {
    if (!remove_message) {
        if (this_player()->query_gender() == "male") {
-              return "$N снял "+ this_object()->query_obj_i_name() +".";
+              return "$N снял "+ this_object()->query_obj_v_name() +".";
           } else if (this_player()->query_gender() == "female") {
-              return "$N сняла "+ this_object()->query_obj_i_name() +".";
+              return "$N сняла "+ this_object()->query_obj_v_name() +".";
           } else {
-              return "$N сняло "+ this_object()->query_obj_i_name() +".";
+              return "$N сняло "+ this_object()->query_obj_v_name() +".";
           }
    }
    return remove_message;

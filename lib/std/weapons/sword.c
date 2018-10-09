@@ -8,20 +8,47 @@ void set_sword_skill(string s) {
 }
 
 void setup(void) {
-   set_id("sword");
-   set_adj("long");
-   set_short("A long sword");
-   set_long("Your standard long sword.");
+   set_id("меч");
+   add_id("длинный");
+   set_short("Длинный меч");
+   set_long("Самый обычный длинный меч.");
+   set_obj_i_name("длинный меч");
+   set_obj_r_name("длинного меча");
+   set_obj_d_name("длинному мечу");
+   set_obj_v_name("длинный меч");
+   set_obj_t_name("длинным мечом");
+   set_obj_p_name("длинном мече");
+   set_obj_gender("male");
    set_gettable(1);
 
    set_combat_stats(1, 5, 10);
 
    set_wield_type("single");
-   set_wield_message("$N $vgrab $p $o. Ready!");
-   set_unwield_message("$N $vloosen $p $vgrip on $o, and $vput it away.");
-   set_weapon_actions(({
-      "slash", "slice", "dice", "cut", "gash", "stab", "poke", "gouge"
-      }));
+   if (this_player()->query_gender() == "male") {
+    set_wield_message("$N вооружился " + this_object()->query_obj_t_name() + ".");
+    set_unwield_message("$N перестал использовать " + this_object()->query_obj_v_name() + ".");
+   } else if (this_player()->query_gender() == "female") {
+    set_wield_message("$N вооружилась " + this_object()->query_obj_t_name() + ".");
+    set_unwield_message("$N перестала использовать " + this_object()->query_obj_v_name() + ".");
+   } else {
+    set_wield_message("$N вооружилось " + this_object()->query_obj_t_name() + ".");
+    set_unwield_message("$N перестало использовать " + this_object()->query_obj_v_name() + ".");
+   }   
+
+   if (this_player()->query_gender() == "male") {
+    set_weapon_actions(({
+       "рубанул", "резанул", "полоснул", "пырнул", "задел", "ранил"
+       }));
+   } else if (this_player()->query_gender() == "female") {
+    set_weapon_actions(({
+       "рубанула", "резанула", "полоснула", "пырнула", "задела", "ранила"
+       }));
+   } else {
+    set_weapon_actions(({
+       "рубануло", "резануло", "полоснуло", "пырнуло", "задело", "ранило"
+       }));
+   }   
+
    set_sword_skill("medium");
 
    set_value(30);
