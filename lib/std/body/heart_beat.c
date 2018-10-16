@@ -221,7 +221,7 @@ void die(void) {
       inv[i]->move(obj);
    }
 
-   obj->set_name(this_object()->query_name());
+   obj->set_name(this_object()->query_r_name());
    obj->move(this_object()->query_environment());
 
    if (this_object()->is_player()) {
