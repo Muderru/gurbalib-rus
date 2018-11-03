@@ -73,6 +73,8 @@ static void main(string str) {
       return;
    }
 
-   this_player()->targeted_action("Вы пытаетесь убить " +obj->query_v_name()+ ".", obj);
+   this_player()->message("Вы пытаетесь убить " + obj->query_v_name() + ".", 1);
+   this_environment()->tell_room(this_player(),
+   this_player()->query_name() + " пытается убить " + obj->query_v_name() + ".");
    this_player()->attack(obj);
 }
