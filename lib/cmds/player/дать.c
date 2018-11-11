@@ -86,11 +86,11 @@ static void do_give(object obj1, object obj2, int loud) {
 
    if (obj1->move(obj2)) {
             if (this_player()->query_gender() == "male") {
-               this_player()->targeted_action("$N дал " + obj1->query_obj_i_name() + " " + obj2->query_d_name() +".", obj2, obj1);
+               this_player()->targeted_action("$N дал $d " + obj1->query_obj_i_name() + ".", obj2, obj1);
           } else if (this_player()->query_gender() == "female") {
-               this_player()->targeted_action("$N дала " + obj1->query_obj_i_name() + " " + obj2->query_d_name() +".", obj2, obj1);
+               this_player()->targeted_action("$N дала $d " + obj1->query_obj_i_name() + ".", obj2, obj1);
           } else {
-               this_player()->targeted_action("$N дало " + obj1->query_obj_i_name() + " " + obj2->query_d_name() +".", obj2, obj1);
+               this_player()->targeted_action("$N дало $d " + obj1->query_obj_i_name() + ".", obj2, obj1);
           }
    } else {
       this_player()->targeted_action("$N безуспешно пытается дать " + obj1->query_obj_i_name() + " " + obj2->query_d_name() +".",
