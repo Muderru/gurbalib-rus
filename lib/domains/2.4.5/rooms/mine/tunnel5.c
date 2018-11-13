@@ -5,12 +5,15 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Stone tunnel");
-   set_long("In the tunnel into the mines.  There is a big stone table here.");
+   set_short("Небольшая пещера");
+   set_long("Здесь туннель, проложенный в толще скалы, расширяется в " +
+   "небольшую пещеру. В центре пещеры установлен каменный стол, на котором " +
+   "лежат ржавые инструменты. У пещеры два выхода, один ведет в северном, " +
+   "а второй в южном направлениях.");
 
-   add_exit("north", DIR + "/rooms/mine/tunnel_room.c");
-   add_exit("south", DIR + "/rooms/mine/tunnel4.c");
+   add_exit("север", DIR + "/rooms/mine/tunnel_room.c");
+   add_exit("юг", DIR + "/rooms/mine/tunnel4.c");
 
-   add_item("table", "You see nothing special about it.");
-   add_item("stone table", "You see nothing special about it.");
+   add_item("стол", "Большой валун обтесан в виде примитивного стола.");
+   add_item("каменный стол", "Большой валун обтесан в виде примитивного стола.");
 }

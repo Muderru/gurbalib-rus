@@ -5,11 +5,16 @@ inherit "/std/monster";
 void setup() {
    object obj;
 
-   set_name("giant");
+   set_name("гигант");
    set_gender( "male" );
-   add_adj("stone");
-   set_short("A stone giant");
-   set_long("A huge marble skinned hulking tower of a man.");
+   add_ids("каменный", "каменный гигант", "каменного гиганта");
+   set_short("Каменный гигант");
+   set_long("Вы видите огромную человекоподобную фигуру из отполированного камня.");
+   set_r_name("каменного гиганта");
+   set_d_name("каменному гиганту");
+   set_v_name("каменного гиганта");
+   set_t_name("каменным гигантом");
+   set_p_name("каменном гиганте");
    set_race("giant");
    set_level(15);
    set_aggressive(1);

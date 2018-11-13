@@ -5,12 +5,14 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Mine entrance");
-   set_long("This is the entrance to the mines.  There is a sign on a pole.");
+   set_short("Вход в шахту");
+   set_long("Вы стоите перед входом в шахту. Перед входом установлен " +
+   "деревянный знак с предостережением. На юге вы видите узкую горную тропу, " +
+   "петляющую серпантином.");
 
-   add_exit("north", DIR + "/rooms/mine/tunnel2.c");
-   add_exit("south", DIR + "/rooms/mount_pass.c");
+   add_exit("север", DIR + "/rooms/mine/tunnel2.c");
+   add_exit("юг", DIR + "/rooms/mount_pass.c");
 
-   add_item("sign", "WARNING!!\n\nThe mines are closed due to risk of " +
-      "falling rock.");
+   add_item("знак", "ВНИМАНИЕ!!!\n\nШахта закрыта из-за угрозы " +
+      "обрушения.");
 }

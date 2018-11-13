@@ -5,10 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("East road");
-   set_long("East road runs south from here.  To the west lies the " +
-      "East Road Inn.");
+   set_short("Восточная дорога");
+   set_long("Вы идете по грунтовой дороге, поворачивающей здесь с юга на запад. " +
+   "Под ногами в пыли множество отпечатков ног, видимо обычно тут весьма " +
+   "многолюдно. На западе вы видите неказистое здание местной " +
+      "таверны.");
 
-   add_exit("south", DIR + "/rooms/eastroad4.c");
-   add_exit("west", DIR + "/rooms/inn.c");
+   add_exit("юг", DIR + "/rooms/eastroad4.c");
+   add_exit("запад", DIR + "/rooms/inn.c");
 }

@@ -5,8 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Dead end");
-   set_long("End of tunnel!");
+   set_short("Тупик");
+   set_long("Неожиданно вы зашли в тупик, заваленный горным мусором. " +
+   "Вы замечаете здесь кучи щебня и шлама, а также несколько сломанных " +
+   "ржавых кирок. Единственный выход ведет отсюда на юг, в поддерживаемый " +
+   "гнилыми балками туннель.");
 
-   add_exit("south", DIR + "/rooms/mine/tunnel26.c");
+   add_exit("юг", DIR + "/rooms/mine/tunnel26.c");
 }

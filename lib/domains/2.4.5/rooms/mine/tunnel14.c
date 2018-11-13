@@ -5,9 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Tunnel");
-   set_long("In the tunnel into the mines.");
+   set_short("Туннель");
+   set_long("Вы осторожно передвигаетесь вдоль ржавых рельсов по " +
+   "заброшенной шахте. Потолок, поддерживаемый лишь несколькими гнилыми " +
+   "балками, грозит обвалиться в любую минуту. Стены здесь покрыты странной " +
+   "плесенью, от соприкосновения с которой начинается дикая чесотка.");
 
-   add_exit("east", DIR + "/rooms/mine/tunnel15.c");
-   add_exit("west", DIR + "/rooms/mine/tunnel9.c");
+   add_exit("восток", DIR + "/rooms/mine/tunnel15.c");
+   add_exit("запад", DIR + "/rooms/mine/tunnel9.c");
 }

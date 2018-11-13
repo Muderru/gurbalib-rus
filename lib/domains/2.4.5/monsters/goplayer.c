@@ -10,13 +10,17 @@ int count;
 object solved_by, wrong_by;
 
 void setup(void) {
-   set_name("player");
+   set_name("игрок");
    set_gender( "male" );
-   set_short("Go player");
-   set_long("A man sitting beside a go board, concentrating on a problem.\n" +
-      "He looks as if he wants help.  Why not look at his problem,\n" +
-      "and tell him where to play?\n");
-
+   set_short("Игрок в Го");
+   set_long("Вы видите сидящего перед доской человека, размышляющего над игрой. " +
+      "Кажется, сейчас ему не помешает помощь и почему бы не предложить" +
+      "ему сыграть одну игру?\n");
+   set_r_name("игрока");
+   set_d_name("игроку");
+   set_v_name("игрока");
+   set_t_name("игроком");
+   set_p_name("игроке");
    set_race("human");
    set_level(10);
    set_hit_skill("combat/unarmed");
@@ -35,20 +39,20 @@ void do_extra_actions() {
       if (count > INTERVAL) {
          switch(random(5)) {
             case 0:
-               respond("say Hm. This is tricky!");
+               respond("говорить Хмм. Это сложно!");
                break;
             case 1:
-               respond("say The moron who wrote this book didn't deal with " +
-                  "this problem.");
+               respond("говорить Придурок написавший эту книгу не знал " +
+                  "о этой комбинации.");
                break;
             case 2:
-               respond("say A throw in here should just be wasted.");
+               respond("говорить Бросок здесь будет просто потрачен впустую.");
                break;
             case 3:
-               respond("say This group is more alive than I am.");
+               respond("говорить Эта группа более живая, чем я.");
                break;
             default:
-               respond("say This is simple using oi-otoshi.");
+               respond("говорить Это просто, используя ой-оотоши.");
                break;
          }
          count = 0;
@@ -65,10 +69,10 @@ int make_move(int prob) {
    int i;
 
    if (solved_by) {
-      respond("say Right! That works!");
+      respond("говорить Точно! Это работает!");
       query_environment()->tell_object(this_object(),
-         "He immediately plays out a new problem.");
-      solved_by->message("You feel that you have gained some experience.");
+         "Он сразу же разыгрывает новую комбинацию.");
+      solved_by->message("Вы чувствуете, что становитесь опытнее.");
 
       solved_by->increase_expr(prob * 100);
 
@@ -76,9 +80,9 @@ int make_move(int prob) {
       query_environment()->set_current_problem( prob + 1);
    }
    if (wrong_by) {
-      respond("say No, that doesn't work.");
+      respond("говорить Нет, так это не работает.");
       query_environment()->tell_room(this_object(),
-         "He sinks back into his deep thought.");
+         "Он глубоко задумывается.");
       wrong_by = nil;
    }
 }
@@ -89,8 +93,10 @@ void outside_message(string str) {
    object room, who;
 
    str = ANSI_D->strip_colors(str);
-   if (sscanf(str, "%s tells you: Play %s.\n", name, what) == 2 ||
-      sscanf(str, "%s says: Play %s.\n", name, what) == 2) {
+   if (sscanf(str, "%s сказал вам: Играть %s.\n", name, what) == 2 ||
+      sscanf(str, "%s говорит: Играть %s.\n", name, what) == 2 ||
+      sscanf(str, "%s сказала вам: Играть %s.\n", name, what) == 2 ||
+      sscanf(str, "%s сказало вам: Играть %s.\n", name, what) == 2) {
       room = query_environment();
 
       if (!room) {
@@ -104,19 +110,19 @@ void outside_message(string str) {
 
       prob = room->query_current_problem();
       if (prob == 0) {
-         if (what == "b1" || what == "b 1" || what == "1b" || what == "1 b") {
+         if (what == "б1" || what == "б 1" || what == "1б" || what == "1 б") {
             solved_by = who;
          } else {
             wrong_by = who;
          }
       } else if (prob == 1) {
-         if (what == "b2" || what == "b 2" || what == "2b" || what == "2 b") {
+         if (what == "б2" || what == "б 2" || what == "2б" || what == "2 б") {
             solved_by = who;
          } else {
             wrong_by = who;
          }
       } else if (prob == 2) {
-         if (what == "d3" || what == "d 3" || what == "3d" || what == "3 d") {
+         if (what == "д3" || what == "д 3" || what == "3д" || what == "3 д") {
             solved_by = who;
          } else {
             wrong_by = who;
@@ -124,17 +130,19 @@ void outside_message(string str) {
       }
 
       query_environment()->tell_room(this_object(),
-         "The go player contemplates a propsed play.");
+         "Игрок в Го раздумывает над игрой.");
       if (solved_by) {
-         solved_by->message("Arne PISS OFF!");
+         solved_by->message("Вот зараза!");
       } else if (wrong_by) {
-         wrong_by->message("Arne PISS OFF!");
+         wrong_by->message("Вот зараза!");
       }
       make_move(prob);
    } else {
-      if (sscanf(str, "%s tells you: %s\n", name, what) == 2 ||
-         sscanf(str, "%s says: %s\n", name, what) == 2) {
-         respond("say What?");
+   if (sscanf(str, "%s сказал вам: %s.\n", name, what) == 2 ||
+      sscanf(str, "%s говорит: %s.\n", name, what) == 2 ||
+      sscanf(str, "%s сказала вам: %s.\n", name, what) == 2 ||
+      sscanf(str, "%s сказало вам: %s.\n", name, what) == 2) {
+         respond("говорить Что?");
       }
    }
 }

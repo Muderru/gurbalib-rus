@@ -5,11 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Village shore");
-   set_long("The village shore.  A jetty leads out to the east.  To the " +
-      "north some stairs lead down to the north beach.  " +
-      "A road starts to the west");
+   set_short("Побережье");
+   set_long("Вы находитесь на побережье около рыбачкой деревни. На " +
+      "востоке вы видите причал с лодками и снастями. На севере - пляж. " +
+      "На запад отсюда ведет грунтовая дорога.");
 
-   add_exit("east", DIR + "/rooms/jetty2.c");
-   add_exit("west", DIR + "/rooms/jetty.c");
+   add_exit("восток", DIR + "/rooms/jetty2.c");
+   add_exit("запад", DIR + "/rooms/jetty.c");
 }

@@ -8,27 +8,27 @@ string open;
 void set_floor(int x) {
    destination = x;
 
-   tell_room(this_object(), "The elevator starts moving.\n");
+   tell_room(this_object(), "Подъемник начал двигаться.\n");
 
    switch (location) {
       case 0:
-         open = "closed";
-         remove_exit("east");
+         open = "закрыта";
+         remove_exit("восток");
          break;
       case 1:
-         open = "open";
-         remove_exit("east");
-         add_exit("east", DIR + "/rooms/wiz_hall.c");
+         open = "открыта";
+         remove_exit("восток");
+         add_exit("восток", DIR + "/rooms/wiz_hall.c");
          break;
       case 2:
-         open = "open";
-         remove_exit("east");
-         add_exit("east", DIR + "/rooms/church.c");
+         open = "открыта";
+         remove_exit("восток");
+         add_exit("восток", DIR + "/rooms/church.c");
          break;
       case 3:
-         remove_exit("east");
-         add_exit("east", DIR + "/rooms/attic.c");
-         open = "open";
+         remove_exit("восток");
+         add_exit("восток", DIR + "/rooms/attic.c");
+         open = "открыта";
          break;
    }
 }
@@ -40,21 +40,21 @@ int query_location() {
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Elevator");
+   set_short("Подъемник");
 
    location = 1;
    set_floor(1);
    add_exit("north", DIR + "/rooms/vill_shore.c");
-   add_action("press_button", "press");
-   add_action("press_button", "push");
+   add_action("press_button", "нажать");
+   add_action("press_button", "давить");
 }
 
 string query_long() {
    string str;
 
-   str = "You are in the elevator.  On the wall are three buttons, " +
-      "numbered 1 to 3.\nCurrently the number " + destination + 
-      " button is lit.  The door to the east is " + open + "\n";
+   str = "Вы стоите на подъемнике. На стене вы видите три кнопки " +
+      "пронумерованные от 1 до 3.\nСейчас горит кнопка " + destination + 
+      ". Дверь на востоке " + open + ".\n";
 
    return str;
 }
@@ -65,25 +65,49 @@ int press_button(string str) {
    object elev;
 
    if (str == "1") {
-      write("You press button 1.\n");
+      write("Вы нажали кнопку 1.\n");
+      if (this_player()->query_gender() == "male") {
       this_object()->tell_room(this_player(), this_player()->query_Name() +
-         " presses button 1.\n");
+         " нажал на кнопку 1.\n");
+      } else if (this_player()->query_gender() == "female") {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажала на кнопку 1.\n");
+      } else {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажало на кнопку 1.\n");
+      }      
       set_floor(1);
 
    } else if (str == "2") {
-      write("You press button 2.\n");
+      write("Вы нажали кнопку 2.\n");
+      if (this_player()->query_gender() == "male") {
       this_object()->tell_room(this_player(), this_player()->query_Name() +
-         " presses button 2.\n");
+         " нажал на кнопку 2.\n");
+      } else if (this_player()->query_gender() == "female") {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажала на кнопку 2.\n");
+      } else {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажало на кнопку 2.\n");
+      }      
       set_floor(2);
 
    } else if (str == "3") {
-      write("You press button 3.\n");
+      write("Вы нажали кнопку 3.\n");
+            if (this_player()->query_gender() == "male") {
       this_object()->tell_room(this_player(), this_player()->query_Name() +
-         " presses button 3.\n");
+         " нажал на кнопку 3.\n");
+      } else if (this_player()->query_gender() == "female") {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажала на кнопку 3.\n");
+      } else {
+      this_object()->tell_room(this_player(), this_player()->query_Name() +
+         " нажало на кнопку 3.\n");
+      }
       set_floor(3);
 
    } else {
-      write("Which button do you want to press? (1, 2, 3)?\n");
+      write("Какую кнопку вы хотите нажать? (1, 2, 3)?\n");
    }
    return 1;
 }

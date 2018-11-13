@@ -3,82 +3,88 @@
 inherit "/std/object";
 
 void setup(void) {
-   set_id("rules");
-   set_short("Go rules");
-   set_long("A list of the rules for playing Go.\n" +
-      "There are 5 rules.\n" +
-      "Do 'rule #', to read a rule number.");
+   set_id("правила");
+   set_short("Правила Го");
+   set_long("Перечень правил в игру Го.\n" +
+      "Тут перечислено 5 правил.\n" +
+      "Наберите 'правило #', чтобы прочесть указанное правило.");
+   set_obj_i_name("правила");
+   set_obj_r_name("правил");
+   set_obj_d_name("правилам");
+   set_obj_v_name("правила");
+   set_obj_t_name("правилами");
+   set_obj_p_name("правилах");
+   set_obj_gender("female");
 
-   add_action("do_rule", "rule");
+   add_action("do_rule", "правило");
 }
 
 string get_rules1() {
-   return "There are two players, black and white.\n" +
-      "They take turns, playing one stone each.\n" +
-      "Black starts with one or more stones, depending on the handicap.\n\n" +
-      "The stones are played in a matrix on the intersections.\n" +
-      "It is allowed to play on the outer border.\n\n" +
-      "The normal game size is 19 x 19 (that is 18 x 18 squares),\n" +
-      "but the game can also be played on smaller boards.";
+   return "Играют два игрока: черный и белый.\n" +
+      "Они играют по очереди, бросая камень.\n" +
+      "У черного игрока на один или несколько камней больше, в зависимости от гандикапа.\n\n" +
+      "Камни разыгрываются на расчерченной матрице.\n" +
+      "Можно играть на внешней границе.\n\n" +
+      "Обычный размер игры 19 x 19 (18 x 18 квадратов),\n" +
+      "но можно уменьшить размер доски.";
 }
 
 string get_rules2() {
-   return "The winner, is the player with the highest score on the board\n" +
-      "when the game ends.\n\n" +
-      "The game ends when both players have passed.\n\n";
-      "The score is the number of stones + number of surrounded empty " +
-      "intersections.";
+   return "Победителем является тот, кто набрал больше очков на доске\n" +
+      "в конце игры.\n\n" +
+      "Игра заканчивается, когда все игроки сходили.\n\n";
+      "Набранные очки: количество камней + число ближайших пустых " +
+      "пересечений.";
 }
 
 string get_rules3() {
-   return "A group is defined as one or more stones of the same colour,\n" +
-      "that are connected along the lines.\n" + 
-      "Stones besides each other are connected, but stones positioned " +
-      "diagonally\nfrom each other are not.\n\n" + 
-      "A liberty is an empty space beside a stone.\n" +
-      "Again, an empty space diagonally from a stone does not count.\n\n" +
-      "The liberties of a group, are the number of liberties that a group " +
-      "have.\n" +
-      "Liberties can be shared by more than one group.";
+   return "Группой считаются камни одного цвета, расположенные\n" +
+      "вдоль линий.\n" + 
+      "Камни соединяются по сторонам, но не по диагонали друг от друга. " +
+      "Свободное место - это пустое место.\n" +
+      "Пустое место по диагонали от камня не учитывается.\n\n" +
+      "Свободные места группы - это число свободным мест около " +
+      "группы.\n" +
+      "Свободные места группы могут принадлежать одновременно разным группам.";
 }
 
 string get_rules4() {
-   return "If a stone is played so that the last liberty of an enemy group\n" +
-      " is removed, then all stones in that enemy group are removed.\n\n" +
-      "If a stone is played so that the last liberty of a group of the same " +
-      "colour\n" +
-      "is removed, then it is an illegal move.";
+   return "Если сыгранный камень занимает последнее свободное место\n" +
+      " вражеской группы, все камни этой группы уничтожаются.\n\n" +
+      "Если сыгранный камень уничтожает последнее свободное место " +
+      "\n" +
+      "своей группы, то этот ход отменяется.";
 }
 
 string get_rules5() {
-   return "If the position of the board is a repeat of an earlier position,\n" +
-      "then the last move was illegal.";
+   return "Если позиция на доске повторяет предыдущую позицию,\n" +
+      "то этот ход отменяется.";
 }
 
 int do_rule(string str) {
    if (str == "1") {
       this_environment()->tell_room(this_player(), 
-         this_player()->query_Name() + " reads rule #" + str + "\n");
+         this_player()->query_Name() + " читает правило #" + str + "\n");
       write(get_rules1());
    } else if (str == "2") {
       this_environment()->tell_room(this_player(), 
-         this_player()->query_Name() + " reads rule #" + str + "\n");
+         this_player()->query_Name() + " читает правило #" + str + "\n");
       write(get_rules2()); 
    } else if (str == "3") {
       this_environment()->tell_room(this_player(), 
-         this_player()->query_Name() + " reads rule #" + str + "\n");
+         this_player()->query_Name() + " читает правило #" + str + "\n");
       write(get_rules3());
    } else if (str == "4") {
       this_environment()->tell_room(this_player(), 
-         this_player()->query_Name() + " reads rule #" + str + "\n");
+         this_player()->query_Name() + " читает правило #" + str + "\n");
       write(get_rules4());
    } else if (str == "5") {
       this_environment()->tell_room(this_player(), 
-         this_player()->query_Name() + " reads rule #" + str + "\n");
+         this_player()->query_Name() + " читает правило #" + str + "\n");
       write(get_rules5());
    } else {
-      write("No rule: " + str + "\n");
-      write("Try looking at the rules.\n");
+      write("Нет правила: " + str + "\n");
+      write("Попробуйте посмотреть правила.\n");
    }
    return 1;
 }

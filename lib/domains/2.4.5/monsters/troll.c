@@ -7,10 +7,15 @@ inherit "/std/modules/m_triggers";
 int count;
 
 void setup() {
-   set_name("troll");
-   add_adj("smelly");
-   set_short("A large smelly troll");
-   set_long("The troll looks like a messed up tree.");
+   set_name("тролль");
+   add_ids("огромный", "страшный", "тролля");
+   set_short("Огромный страшный тролль");
+   set_long("Этот тролль выглядит как гнилое дерево.");
+   set_r_name("тролля");
+   set_d_name("троллю");
+   set_v_name("тролля");
+   set_t_name("троллем");
+   set_p_name("тролле");
    set_race("troll");
    set_hit_skill("combat/unarmed");
    set_skill("combat/unarmed", 50);
@@ -24,13 +29,13 @@ void do_extra_actions() {
    if (count >= INTERVAL) {
       switch(random(2)) {
          case 0:
-            respond("say Mumble...");
+            respond("говорить Мясо...");
             break;
          case 1:
-            respond("say Your mother was a %&#$(G%#!");
+            respond("говорить А потом я зайду к твоей матушке!");
             break;
          default:
-            respond("say what?");
+            respond("говорить Крушить!");
             break;
       }
       count = 0;

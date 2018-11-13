@@ -5,17 +5,16 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Focus Point");
-   set_long("You are standing in a small grove on the western most " +
-      "point of the Isle of the Magi, Focus Point.  All of the trees " +
-      "here are either diseased, dead or heavily mutated.  " +
-      "On the very end of the point stands an old, crumbling stone pedestal. " +
-      " Legend has it that Arcanarton mounted some sort of a magic focusing " +
-      "device here, and used the energy it collected to increase the " +
-      "power of his spells.  The device is now nowhere to be found.  " +
-      "The shore of the island continues east and southeast into a small " +
-      "grove from here.");
+   set_short("Точка фокусировки");
+   set_long("Вы остановились в небольшой роще в самой западной точке " +
+      "Острова магов. Окружающие деревья " +
+      "либо сильно больны, либо мертвы, либо мутированы во что-то странное. " +
+      "В самом конце этого места стоит старый полу-разрушенный пьедестал. " +
+      "Согласно легенде Арканартон соорудил здесь магическое устройство, " +
+      "накапливающее магическую энергию и усиливающее силу заклинаний " +
+      "мага. Но никто не знает, где это устройство теперь. " +
+      "Берег острова продолжается дальше на восток и юго-восток.");
 
-   add_exit("east", DIR + "/rooms/south/sislnd11.c");
-   add_exit("southeast", DIR + "/rooms/south/sislnd9.c");
+   add_exit("восток", DIR + "/rooms/south/sislnd11.c");
+   add_exit("юго-восток", DIR + "/rooms/south/sislnd9.c");
 }

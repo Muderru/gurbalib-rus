@@ -13,17 +13,17 @@ int query_floor() {
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Wizards hall");
+   set_short("Зал билдеров");
 
-   add_action("press_button", "press");
-   add_action("press_button", "push");
+   add_action("press_button", "нажать");
+   add_action("press_button", "давить");
 
    set_objects (DIR + "/monsters/leo.c");
 
    el = get_el();
    if (el) {
       if (el->query_location() == query_floor()) {
-         tell_room(this_object(), "The lamp goes out.\n");
+         tell_room(this_object(), "Лампа гаснет.\n");
          el_arrives();
       } else {
          el_leaves();
@@ -34,14 +34,14 @@ void setup(void) {
 string query_long() {
    string str;
 
-   str = "You are in the hall of wizards.  There is a door to " +
-      "the west, with a button next to it, and a shimmering field to " +
-      "the north.\n";
+   str = "Вы в впечатляющем зале билдеров. На западе вы видите " +
+      "металлическую дверь, рядом с которой находится большая кнопка. " +
+      "На западе ваш путь преграждает силовое поле.\n";
 
    if (lamp_is_lit) {
-     str += "There is a lit lamp beside the elevator.\n";
+     str += " Рядом с подъемником горит яркая лампа.\n";
    } else {
-      str += "There is a lamp beside the elevator.\n";
+      str += "Рядом с подъемником висит потухшая лампа.\n";
    }
 
    return str;

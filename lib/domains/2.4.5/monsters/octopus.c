@@ -6,10 +6,16 @@ inherit "/std/modules/m_triggers";
 void setup() {
    object obj, obj2;
 
-   set_name("octopus");
-   add_adj("giant");
-   set_short("An octopus");
-   set_long("A very big octopus with long arms, reaching for you.");
+   set_name("осьминог");
+   add_id("большой");
+   set_short("Осьминог");
+   set_long("Вы видите огромного осьминога с длинными и цепкими щупальцами.");
+   set_r_name("осьминога");
+   set_d_name("осьминогу");
+   set_v_name("осьминога");
+   set_t_name("осьминогом");
+   set_p_name("осьминоге");
+   set_gender("male");
 
    set_level(10);
    set_hit_skill("combat/unarmed");
@@ -28,8 +34,8 @@ void setup() {
 
 string query_miss_message() {
    if (random(1)) {
-      return "The octopus says: Mumble.";
+      return "Осьминог издает шипящий звук.";
    } else {
-      return "The octopus says: I will convert you to a pulp!";
+      return "Осьминог тянет к вам свои щупальца!";
    }
 }

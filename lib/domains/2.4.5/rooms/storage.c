@@ -5,9 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("A small storage room");
-   set_long("you are in a small and dusty storage room.  You can see the " +
-      "shop through the opening to the east.");
+   set_short("Небольшая кладовая");
+   set_long("Вы зашли в небольшую пыльную комнату, заваленную " +
+      "всевозможным хламом. Его так много, что он грозит свалиться " +
+      "на вас при любом неосторожном движении. На востоке вы видите " +
+      "покосившуюся дверь, ведущую в местный магазин.");
 
-   add_exit("east", DIR + "/rooms/shop.c");
+   add_exit("восток", DIR + "/rooms/shop.c");
 }

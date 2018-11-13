@@ -5,8 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Sun alley");
-   set_long("Sun alley runs east from here.");
+   set_short("Светлая аллея");
+   set_long("Здесь у стены заканчивается аллея продолжающаяся на восток. " +
+   "В аллее высажены ровными рядами вечнозеленые деревья, цветущие " +
+   "разноцветными цветами. Между деревьями перелетают сладкоголосые " +
+   "птицы, создавая благостное настроение.");
 
-   add_exit("east", DIR + "/rooms/sunalley1.c");
+   add_exit("восток", DIR + "/rooms/sunalley1.c");
 }

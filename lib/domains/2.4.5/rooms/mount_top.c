@@ -5,10 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Top of mountain");
-   set_long("You are on top of a mountain.  There is a small plateau to the " +
-      "east.");
+   set_short("Вершина горы");
+   set_long("Вы на вершине горы. Отсюда открывается прекрасный вид на " +
+      "живописное плато под вами. На такую высоту не залетают даже птицы " +
+      "и ваш слух не беспокоит ни один звук. Из-за сильных ветров здесь " +
+      "не самое лучшее место для ночлега.");
 
-   add_exit("east", DIR + "/rooms/mount_top2.c");
-   add_exit("down", DIR + "/rooms/ravine.c");
+   add_exit("восток", DIR + "/rooms/mount_top2.c");
+   add_exit("вниз", DIR + "/rooms/ravine.c");
 }

@@ -6,13 +6,16 @@ inherit DIR + "/lib/maze";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("In a maze");
-   set_long("There are four obvious exits: north, south, east, west");
+   set_short("Лабиринт");
+   set_long("Вы находитесь в самом настоящем лабиринте из совершенно " +
+   "одинаковых полукруглых туннелях. Все стены тут покрыты противной " +
+   "черной плесенью, а под ногами течет грязная вонючая вода. Тут еще и " +
+   "затхлый вонючий воздух без намека свежего сквозняка.");
 
-   add_exit("north", "#do_movementn");
-   add_exit("south", "#do_movements");
-   add_exit("east", "#do_movemente");
-   add_exit("west", "#do_movementw");
+   add_exit("север", "#do_movementn");
+   add_exit("юг", "#do_movements");
+   add_exit("восток", "#do_movemente");
+   add_exit("запад", "#do_movementw");
 }
 
 int do_movementn() {
@@ -26,7 +29,7 @@ int do_movementn() {
       room = DIR + "/rooms/maze1/maze3.c";
    }
 
-   goto_the(room, "north");
+   goto_the(room, "север");
 }
 
 int do_movements() {
@@ -40,7 +43,7 @@ int do_movements() {
       room = DIR + "/rooms/maze1/maze2.c";
    }
 
-   goto_the(room, "south");
+   goto_the(room, "юг");
 }
 
 int do_movemente() {
@@ -54,7 +57,7 @@ int do_movemente() {
       room = DIR + "/rooms/well.c";
    }
 
-   goto_the(room, "east");
+   goto_the(room, "восток");
 }
 
 int do_movementw() {
@@ -68,5 +71,5 @@ int do_movementw() {
       room = DIR + "/rooms/well.c";
    }
 
-   goto_the(room, "west");
+   goto_the(room, "запад");
 }

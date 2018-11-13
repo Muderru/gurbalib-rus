@@ -5,10 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("A large open plain");
-   set_long("A large open plain.  There is a mountain to the north, " +
-      "but it is too steep to climb.");
+   set_short("Равнина");
+   set_long("Вы находитесь в начале большой открытой равнине, заросшей " +
+   "разнотравьем. Со всех сторон вас окружают разноцветные заросли " +
+   "тмина, девясила и тысячелистника. На севере местность резко поднимается и " +
+   "переходит в крутую гору.");
 
-   add_exit("south", DIR + "/rooms/plain8.c");
-   add_exit("west", DIR + "/rooms/plain11.c");
+   add_exit("юг", DIR + "/rooms/plain8.c");
+   add_exit("запад", DIR + "/rooms/plain11.c");
 }

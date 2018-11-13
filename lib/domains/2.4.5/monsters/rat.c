@@ -7,10 +7,16 @@ int count;
 void setup() {
    object obj;
 
-   set_name("rat");
-   add_adj("black");
-   set_short("An ugly black rat");
-   set_long("This sucker is huge.");
+   set_name("черная крыса");
+   add_ids("черная", "крыса");
+   set_short("Уродливая черная крыса");
+   set_long("Этот грызун настоящий великан.");
+   set_r_name("черной крысы");
+   set_d_name("черной крысе");
+   set_v_name("черную крысу");
+   set_t_name("черной крысой");
+   set_p_name("черной крысе");
+   set_gender( "female" );
    set_race("rat");
    set_hit_skill("combat/unarmed");
    set_skill("combat/unarmed", 50);

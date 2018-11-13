@@ -3,11 +3,16 @@
 inherit "/std/vendor";
 
 void setup(void) {
-   set_name("shopkeeper");
-   add_ids("shopkeep", "shopkeeper", "merchant");
+   set_name("торговец");
+   add_ids("хозяин", "свилл", "хозяин магазина");
    set_gender("male");
-   set_short("Swill, the shopkeeper");
-   set_long("He is a burly hulk of a man.");
+   set_short("Торговец Свилл");
+   set_long("Он - суровый громадный человек.");
+   set_r_name("торговца");
+   set_d_name("торговцу");
+   set_v_name("торговца");
+   set_t_name("торговцем");
+   set_p_name("торговце");
    set_race("human");
    set_level(15);
 

@@ -5,11 +5,16 @@ inherit "/std/monster";
 void setup() {
    object obj;
 
-   set_name("giant");
+   set_name("огненный великан");
    set_gender( "male" );
-   add_adj("fire");
-   set_short("A fire giant");
-   set_long("A mighty hot big guy.");
+   add_ids("огненный", "великан");
+   set_short("Огненный великан");
+   set_long("Представьте великана, облитого маслом и подожженного. Он он очень зол.");
+   set_r_name("огненного великана");
+   set_d_name("огненному великану");
+   set_v_name("огненного великана");
+   set_t_name("огненным великаном");
+   set_p_name("огненном великане");   
    set_race("giant");
    set_level(15);
    set_aggressive(1);

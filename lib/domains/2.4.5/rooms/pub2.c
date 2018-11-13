@@ -7,8 +7,11 @@ int current_problem;
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The local pub");
-   set_long("You can order drinks here.");
+   set_short("Паб");
+   set_long("В этой небольшой забегаловке вы можете заказать " +
+   "отличнейшее пойло, способное свалить с ног и коня. Тут всегда " +
+   "сидят несколько никогда не просыхающих пьянчуг и что-то горячо " +
+   "обсуждают. На западе сквозь полуснесенную дверь виден грязный двор.");
 
    set_objects(
       DIR + "/monsters/barkeep.c",
@@ -18,11 +21,11 @@ void setup(void) {
       "/domains/required/objects/mer_sign.c"
    );
 
-   add_exit("west", DIR + "/rooms/yard.c");
+   add_exit("запад", DIR + "/rooms/yard.c");
 
-   add_item("puzzle", "#show_problem");
-   add_item("game", "#show_problem");
-   add_item("problem", "#show_problem");
+   add_item("пазл", "#show_problem");
+   add_item("игра", "#show_problem");
+   add_item("проблема", "#show_problem");
 
    current_problem = 0;
 }
@@ -30,16 +33,16 @@ void setup(void) {
 string show_problem() {
    string result;
    if (current_problem > 2) {
-      if (present("player")) {
-         result = "The player looks tired.\n";
+      if (present("игрок")) {
+         result = "Игрок выглядит уставшим.\n";
       } else {
-         result = "The board is in disarray and the player is no " +
-            "longer here.\n";
+         result = "Игральная доска сложена и игрока здесь " +
+            "сейчас нет.\n";
       }
       return result;
    }
 
-   result = "You look at the go problem.\n";
+   result = "Вы смотрите на игральную доску.\n";
 
    if (current_problem == 0) {
       result += "5|.......\n" +
@@ -49,7 +52,7 @@ string show_problem() {
          "1|...O@..\n" +
          " --------\n" +
          "  abcdefg\n" +
-         "\nIt is black's('@') turn to play.\n";
+         "\nСейчас ход черных ('@').\n";
    } else if (current_problem == 1) {
       result += "7|.......\n" +
          "6|.......\n" +
@@ -60,7 +63,7 @@ string show_problem() {
          "1|..OO@..\n" +
          " --------\n" +
          "  abcdefg\n" +
-         "\nIt is black's('@') turn to play.\n";
+         "\nСейчас ход черных ('@').\n";
    } else if (current_problem == 2) {
       result += "5|..........\n" +
          "4|...@@@@@..\n" +
@@ -69,9 +72,9 @@ string show_problem() {
          "1|@OO.O...@.\n" +
          " -----------\n" +
          "  abcdefg\n" +
-         "\nIt is white's('O') turn to play.\n";
+         "\nСейчас ход белых ('O').\n";
    } else {
-      result += "The go player does not want to be disturbed any more.\n";
+      result += "Игрок в го не хочет, чтобы его сейчас беспокоили.\n";
    }
    return result;
 }

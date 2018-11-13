@@ -5,8 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The post office");
-   set_long("An abandoned post office.\n");
+   set_short("Здание почты");
+   set_long("Похоже, что это здание почты было заброшено несколько " +
+   "лет назад. Тут на всем лежит толстый слой пыли, а с потолка свисает " +
+   "пушистая паутина. Но окна и двери целы. Единственный выход ведет " +
+   "отсюда на север в городскую аллею.");
 
-   add_exit("north", DIR + "/rooms/narr_alley.c");
+   add_exit("север", DIR + "/rooms/narr_alley.c");
 }

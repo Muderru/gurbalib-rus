@@ -14,29 +14,38 @@ object get_el() {
 }
 
 void el_arrives() {
-   this_object()->tell_room(nil, "Ding!  The door to the west opens.");
-   this_object()->add_exit("west", ELFILE);
-   this_object()->remove_item("door");
-   this_object()->add_item("door", "The door is open.");
+   this_object()->tell_room(nil, "Дзинь! На западе открылась дверь.");
+   this_object()->add_exit("запад", ELFILE);
+   this_object()->remove_item("дверь");
+   this_object()->add_item("дверь", "Дверь открыта.");
    this_object()->lamp_off();
 }
 
 void el_leaves() {
-   this_object()->tell_room(nil, "The door to the west closes.");
-   this_object()->remove_exit("west");
-   this_object()->remove_item("door");
-   this_object()->add_item("door", "The door is closed.");
+   this_object()->tell_room(nil, "На западе закрылась дверь.");
+   this_object()->remove_exit("запад");
+   this_object()->remove_item("дверь");
+   this_object()->add_item("дверь", "Дверь закрыта.");
 }
 
 int press_button(string str) {
    object elev;
 
-   if (str == "button") {
-      write("You press the button.\n");
-      this_object()->tell_room(this_player(), this_player()->query_Name() + 
-         " presses the button.\n");
+   if ((str == "кнопка") ||  (str == "кнопку")) {
+      write("Вы нажали на кнопку.\n");
+      if (this_player()->query_gender() == "male") {
+       this_object()->tell_room(this_player(), this_player()->query_Name() + 
+         " нажал на кнопку.\n");
+      } else if (this_player()->query_gender() == "female") {
+       this_object()->tell_room(this_player(), this_player()->query_Name() + 
+         " нажала на кнопку.\n");
+      } else {
+       this_object()->tell_room(this_player(), this_player()->query_Name() + 
+         " нажало на кнопку.\n");
+      }
+
       this_object()->tell_room(this_object(),
-         "The lamp on the desk lights up.\n");
+         "Рядом с подъемником загорелась лампа.\n");
 
       this_object()->lamp_on();
 

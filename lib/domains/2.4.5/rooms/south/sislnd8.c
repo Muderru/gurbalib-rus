@@ -5,14 +5,14 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The shore of the Isle of the Magi");
-   set_long("You are standing on the shore of the isle of the Magi.  " +
-      "A path leads up the hill to the east.  " +
-      "The shore of the island continues southeast and northwest into a " +
-      "small grove from here.  To the north, you can see an old disused well.");
+   set_short("Берег Острова магов");
+   set_long("Вы стоите у кромки моря, омывающего остров магов. " +
+      "К холму на востоке ведет заросшая тропинка. Тогда как берег острова " +
+      "продолжается на юго-восток и северо-запад и теряется в небольшой " +
+      "роще. На севере вы замечаете старый заброшенный колодец.");
 
-   add_exit("north", DIR + "/rooms/south/sislnd17.c");
-   add_exit("east", DIR + "/rooms/south/sislnd16.c");
-   add_exit("southeast", DIR + "/rooms/south/sislnd7.c");
-   add_exit("northwest", DIR + "/rooms/south/sislnd9.c");
+   add_exit("север", DIR + "/rooms/south/sislnd17.c");
+   add_exit("восток", DIR + "/rooms/south/sislnd16.c");
+   add_exit("юго-восток", DIR + "/rooms/south/sislnd7.c");
+   add_exit("северо-запад", DIR + "/rooms/south/sislnd9.c");
 }

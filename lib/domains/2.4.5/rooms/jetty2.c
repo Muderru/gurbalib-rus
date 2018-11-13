@@ -5,12 +5,15 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Jetty");
-   set_long("You are at a jetty.  The waves roll in from the east.  " +
-      "A small path leads back to the west.");
+   set_short("Пристань");
+   set_long("Вы стоите на пристани среди дюжины утлых суденышек, на " +
+      "которых местные рыбаки отваживаются выходить в открытое море. " +
+      "Хотя рыбацкое дело и опасно, оно позволяет обеспечить пропитанием " +
+      "себя и своих детей. На востоке лениво перекатываются волны коварного " +
+      "моря, сделавшего сиротами многих детей.");
 
-   add_exit("east", DIR + "/rooms/sea.c");
-   add_exit("west", DIR + "/rooms/vill_shore2.c");
+   add_exit("восток", DIR + "/rooms/sea.c");
+   add_exit("запад", DIR + "/rooms/vill_shore2.c");
 
   set_objects (DIR + "/obj/bag.c");
 }

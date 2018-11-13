@@ -5,10 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Central point");
-   set_long("This is the central point.  A lot of traffic seems to " + 
-      "have passed through here.  If you just wait long enough, some " +
-      "transport might pick you up.");
+   set_short("Конная станция");
+   set_long("На этой станции вы можете сесть на конный дилижанс или " + 
+      "проходящую мимо карету и добраться до других городов или " +
+      "проходящих станций. Здесь сильно воняет конским навозом, но " +
+      "желающих уехать из этого места он не убавляет. Чуть выше " +
+      "по склону проходит грунтовая дорога.");
 
-   add_exit("up", DIR + "/rooms/vill_road2.c");
+   add_exit("вверх", DIR + "/rooms/vill_road2.c");
 }

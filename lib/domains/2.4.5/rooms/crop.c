@@ -5,9 +5,10 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Fields");
-   set_long("You are in the middle of the fields where the city grows " +
-      "all its crops.  A road runs north of here.");
+   set_short("Поля");
+   set_long("Вы находитесь посреди полей, где выращиваются практически " +
+      "все злаки для ближайшего города. Больше всего тут репы, видимо " +
+      "тут это популярная еда. На север отсюда ведет грунтовая дорога.");
 
-   add_exit("north", DIR + "/rooms/vill_shore.c");
+   add_exit("север", DIR + "/rooms/vill_shore.c");
 }

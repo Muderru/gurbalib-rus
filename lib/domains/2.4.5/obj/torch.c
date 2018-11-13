@@ -3,10 +3,17 @@
 inherit "/std/light";
 
 void setup(void) {
-   set_id("torch");
-   set_adj("large");
-   set_short("A torch");
-   set_long("A stick with some burnable stuff stuck to the end of it.");
+   set_id("факел");
+   set_short("Факел");
+   set_long("На грязную палку намотана промасленная тряпка, " +
+   "которую можно поджечь.");
+   set_obj_i_name("факел");
+   set_obj_r_name("факела");
+   set_obj_d_name("факелу");
+   set_obj_v_name("факел");
+   set_obj_t_name("факелом");
+   set_obj_p_name("факеле");
+   set_obj_gender("male");
    set_gettable(1);
 
    set_value(1);

@@ -13,10 +13,10 @@ int query_floor() {
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The attic");
+   set_short("Чердак");
 
-   add_action("press_button", "press");
-   add_action("press_button", "push");
+   add_action("press_button", "нажать");
+   add_action("press_button", "давить");
 
    el = get_el();
    if (el) {
@@ -31,12 +31,12 @@ void setup(void) {
 string query_long() {
    string str;
 
-   str = "This is the attic above the church.  There is a door to the west, " +
-      "with a button next to it.";
+   str = "Вы находитесь на чердаке церкви. В западной стене вы замечаете дверь, " +
+      "а рядом с ней кнопку.";
    if (lamp_is_lit == 1) {
-      str += "  The lamp beside the elevator is lit.";
+      str += " Рядом с подъемником горит яркая лампа.";
    } else {
-      str += "  There is a lamp beside the elevator.";
+      str += " Рядом с подъемником висит потухшая лампа.";
    }
 
    return str;

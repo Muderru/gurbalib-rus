@@ -3,10 +3,17 @@
 inherit "/std/sign";
 
 void setup(void) {
-   set_id("book");
-   set_short("A book in a chain");
-   set_long("There is a book hanging in a chain from the wall.\n" +
-      "The title is: 'ADVENTURING'.\n");
+   set_id("книга");
+   set_short("Книга на иностранном языке");
+   set_long("Эта книга подвешена железной цепью к стене.\n" +
+      "На обложке написано: 'ADVENTURING'.\n");
+   set_obj_i_name("книга");
+   set_obj_r_name("книги");
+   set_obj_d_name("книге");
+   set_obj_v_name("книгу");
+   set_obj_t_name("книгой");
+   set_obj_p_name("книге");
+   set_obj_gender("female");
 
    set_message("ADVENTURING.\n\n" +
       "On later years, it has become more and more complicated to " +

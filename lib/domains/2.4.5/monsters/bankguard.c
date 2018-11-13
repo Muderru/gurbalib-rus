@@ -7,10 +7,15 @@ inherit "/std/modules/m_block_exits";
 void setup() {
    object obj;
 
-   set_name("guard");
-   set_gender( "female" );
-   set_short("A guard");
-   set_long("A big and sturdy guard.");
+   set_name("охранник");
+   set_gender( "male" );
+   set_short("Охранник банка");
+   set_long("Большой и грузный мужик, готовый навалять любому.");
+   set_r_name("охранника");
+   set_d_name("охраннику");
+   set_v_name("охранника");
+   set_t_name("охранником");
+   set_p_name("охраннике");
    set_race("human");
    set_level(11);
    set_hit_skill("combat/unarmed");

@@ -5,10 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Ravine");
-   set_long("You are in a ravine between mountains.  It seems to be " +
-      "possible to go up from here.");
+   set_short("Ущелье");
+   set_long("Вы сейчас находитесь в ущелье между горами и со всех " +
+      "сторон вас обдувают ледяные ветра. Отсюда, цепляясь за скользкие камни, " +
+      "можно попытаться взобраться вверх или опуститься вниз.");
 
-   add_exit("up", DIR + "/rooms/mount_top.c");
-   add_exit("down", DIR + "/rooms/mount_pass.c");
+   add_exit("вверх", DIR + "/rooms/mount_top.c");
+   add_exit("вниз", DIR + "/rooms/mount_pass.c");
 }

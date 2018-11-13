@@ -9,18 +9,23 @@ int count;
 
 void setup() {
    object obj;
-   set_name("orc");
+   set_name("орк");
    set_gender( "male" );
-   add_adj("dirty");
-   set_short("An orc");
-   set_long("A dirty smelly orc.");
+   add_ids("грязный", "вонючий");
+   set_short("Орк");
+   set_long("Это грязный и вонючий орк.");
+   set_r_name("орка");
+   set_d_name("орку");
+   set_v_name("орка");
+   set_t_name("орком");
+   set_p_name("орке"); 
    set_race("orc");
    set_aggressive(1);
    set_level(random(2) + 1);
    set_hit_skill("combat/unarmed");
    set_skill("combat/unarmed", 50);
    set_skill("combat/defense", 100);
-   add_block("north");
+   add_block("север");
 
    switch(random(3)) {
       case 0:
@@ -40,25 +45,25 @@ void do_extra_actions() {
    if (count >= INTERVAL) {
       switch(random(7)) {
          case 0:
-            respond("say Kill him!");
+            respond("говорить Убить его!");
             break;
          case 1:
-            respond("say Bloody humans!");
+            respond("говорить Жалкие люди!");
             break;
          case 2:
-            respond("say Stop him!");
+            respond("говорить Остановить его!");
             break;
          case 3:
-            respond("say Get them!");
+            respond("говорить Взять его!");
             break;
          case 4:
-            respond("say Lets rip out some guts!");
+            respond("говорить Выпотрошите ему кишки!");
             break;
          case 5:
-            respond("say Kill 'em before they run away!");
+            respond("говорить Убейте их, пока они не сбежали!");
             break;
          default:
-            respond("say What is that doing here?");
+            respond("говорить Что тут происходит?");
             break;
       }
       count = 0;

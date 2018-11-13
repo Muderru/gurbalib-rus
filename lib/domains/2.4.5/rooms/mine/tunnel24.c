@@ -5,9 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Tunnel");
-   set_long("The tunnel slopes steeply down a hole here.");
+   set_short("Туннель");
+   set_long("Тянущийся с запада туннель здесь резко начинает опускаться " +
+   "в глубь горы. Со всех сторон тут торчат острые сталактиты и сталагмиты, " +
+   "делая спуск похожим на ощерившуюся пасть дракона. А вдруг это так и есть?");
 
-   add_exit("west", DIR + "/rooms/mine/tunnel23.c");
-   add_exit("down", DIR + "/rooms/mine/tunnel25.c");
+   add_exit("запад", DIR + "/rooms/mine/tunnel23.c");
+   add_exit("вниз", DIR + "/rooms/mine/tunnel25.c");
 }

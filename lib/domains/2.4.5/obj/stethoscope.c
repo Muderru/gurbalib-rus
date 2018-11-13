@@ -3,21 +3,29 @@
 inherit "/std/object";
 
 void setup(void) {
-   set_id("stethoscope");
-   set_adj("old");
-   set_short("A stethoscope");
-   set_long("An old stethoscope.");
+   set_id("стетоскоп");
+   add_ids("старый", "старый стетоскоп");
+   set_short("Стетоскоп");
+   set_long("Этот стетоскоп выглядит старым и потертым, но использовать " +
+   "его можно все-равно.");
+   set_obj_i_name("старый стетоскоп");
+   set_obj_r_name("старого стетоскопа");
+   set_obj_d_name("старому стетоскопу");
+   set_obj_v_name("старый стетоскоп");
+   set_obj_t_name("старым стетоскопом");
+   set_obj_p_name("старом стетоскопе");
+   set_obj_gender("male");
    set_gettable(1);
 
    set_value(15);
    set_weight(1);
-   add_action("apply", "apply");
+   add_action("apply", "использовать");
 }
 
 int do_listen(string str) {
-   write("You must apply stethoscope to something.\n");
+   write("Вы должны приложить стетоскоп к чему-то.\n");
    this_player()->query_environment()->tell_room(this_player(),
-      this_player()->query_Name() + " fiddles with their stethoscope.\n");
+      this_player()->query_Name() + " возится со своим стетоскопом.\n");
    return 1;
 }
 
@@ -30,31 +38,31 @@ int apply(string str) {
    }
 
    if (query_environment() != this_player()) {
-      write("You must have the stethoscope on you to use it.\n");
+      write("Чтобы использовать стетоскоп, он должен быть у вас.\n");
       return 1;
    }
    obj = this_player()->query_environment()->present(str);
    if (!obj) {
-      if (sscanf(str, "stethoscope to %s", what) != 1) {
-         write("On what?\n");
+      if (sscanf(str, "стетоскоп %s", what) != 1) {
+         write("На ком?\n");
          return 1;
       }
       obj = this_player()->query_environment()->present(str);
       if (!obj) {
-         write("On what?\n");
+         write("На чем?\n");
          return 1;
       }
    }
 
-   write("You listen to the " + obj->query_name() + "\n");
+   write("Вы слушаете " + obj->query_v_name() + "\n");
    this_player()->query_environment()->tell_room(this_player(),
-      this_player()->query_Name() + " uses a stethoscope to listen to " +
-      obj->query_name() + "\n");
+      this_player()->query_Name() + " слушает через стетоскоп " +
+      obj->query_v_name() + ".\n");
 
    if (obj->is_living()) {
-      write("Thub Whub\n");
+      write("Тук, тук.\n");
    } else {
-      write("You hear nothing.\n");
+      write("Вы не слышите ничего.\n");
    }
    return 1;
 }

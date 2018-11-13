@@ -5,11 +5,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("A dimly lit forest");
-   set_long("You are in part of a dimly lit forest.  " +
-      "Trails lead north, south and west.");
+   set_short("Сумеречный лес");
+   set_long("Вы находитесь в Сумеречном лесу - мрачном и таинственном " +
+   "месте, о котором ходят жуткие истории. Вокруг вас искривленные деревья, " +
+   "на которых вы не видите ни единого зеленого листочка. Лес кажется мертвым, " +
+   "но и живым одновременно.");
 
-   add_exit("north", DIR + "/rooms/south/sforst11.c");
-   add_exit("south", DIR + "/rooms/south/sforst13.c");
-   add_exit("west", DIR + "/rooms/south/sshore4.c");
+   add_exit("север", DIR + "/rooms/south/sforst11.c");
+   add_exit("юг", DIR + "/rooms/south/sforst13.c");
+   add_exit("запад", DIR + "/rooms/south/sshore4.c");
 }

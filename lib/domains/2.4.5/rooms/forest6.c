@@ -5,8 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Deep forest");
-   set_long("You are in the deep forest.");
+   set_short("В лесу");
+   set_long("Вы находитесь в глубине леса в окружении густых колючих " +
+   "кустов и древних деревьев. Сквозь листья и переплетенные ветви не " +
+   "пробивается ни одного лучика света и тут всегда царит полумрак. " +
+   "Единственный доступный выход ведет отсюда на запад, на узкую тропу.");
 
-   add_exit("west", DIR + "/rooms/forest4.c");
+   add_exit("запад", DIR + "/rooms/forest4.c");
 }

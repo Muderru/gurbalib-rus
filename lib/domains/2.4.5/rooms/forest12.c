@@ -5,9 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Deep forest");
-   set_long("You are in the deep forest.");
+   set_short("Лесные дебри");
+   set_long("Вы находитесь в самом центре леса. Со всех сторон вас " +
+   "окружают древние мрачные деревья, норовящие зацепить вас когтистыми " +
+   "ветками при любом неосторожном движении. Пройти отсюда можно только " +
+   "на восток и на юг.");
 
-   add_exit("south", DIR + "/rooms/south/sforst1.c");
-   add_exit("east", DIR + "/rooms/forest11.c");
+   add_exit("юг", DIR + "/rooms/south/sforst1.c");
+   add_exit("восток", DIR + "/rooms/forest11.c");
 }

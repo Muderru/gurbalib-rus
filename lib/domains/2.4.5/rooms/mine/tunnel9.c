@@ -7,12 +7,13 @@ inherit DIR + "/lib/climb_rope";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Hole in ceiling");
-   set_long("You are in the bottom of a shaft in the tunnels. " +
-      "There is a hole in the ceiling.");
-   add_exit("east", DIR + "/rooms/mine/tunnel14.c");
-   add_exit("west", DIR + "/rooms/mine/tunnel10.c");
-   add_action("do_climb", "climb");
+   set_short("Дыра в потолке");
+   set_long("Вы стоите в древнем туннеле, тянущемся с запада на восток. " +
+   "В потолке над вами зияет огромная дыра. Если бы у вас была веревка, " +
+   "то вы могли бы взобраться вверх.");
+   add_exit("восток", DIR + "/rooms/mine/tunnel14.c");
+   add_exit("запад", DIR + "/rooms/mine/tunnel10.c");
+   add_action("do_climb", "взобраться");
 }
 
 int is_rope() {
@@ -30,18 +31,18 @@ string query_long() {
 }
 
 private void do_up(string str) {
-   move_player(this_player(), this_object(), "up", UP_ROOM);
+   move_player(this_player(), this_object(), "вверх", UP_ROOM);
 }
 
 int do_climb(string str) {
    if (!is_rope()) {
-      write("There is no rope to climb.");
+      write("У вас нет подходящей веревки.");
       return 1;
    }
-   if (str == "up" || str == "up rope") {
+   if (str == "вверх" || str == "вверх по веревке") {
       do_up(str);
       return 1;
    }
-   write("You should climb up, if you wish to climb the rope.");
+   write("Вы должны взобраться вверх.");
    return 1;
 }

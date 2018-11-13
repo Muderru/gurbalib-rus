@@ -5,11 +5,11 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Clearing");
-   set_long("A small clearing.  There are trees all around you.  However, " +
-      "the trees are sparse to the north.");
+   set_short("Поляна");
+   set_long("Вы на маленькой поляне. Со всех сторон вас окружают высокие мрачные деревья. " +
+      "Правда на севере, между ними, вам кажется находится небольшой просвет.");
 
-   add_exit("north", DIR + "/rooms/plain1.c");
-   add_exit("east", DIR + "/rooms/forest1.c");
-   add_exit("west", DIR + "/rooms/forest2.c");
+   add_exit("север", DIR + "/rooms/plain1.c");
+   add_exit("восток", DIR + "/rooms/forest1.c");
+   add_exit("запад", DIR + "/rooms/forest2.c");
 }

@@ -8,12 +8,16 @@ static int count;
 string *a_str, *na_str;
 
 void setup() {
-   set_name("harry");
-   add_id("fjant");
+   set_name("Гарри");
+   add_id("надоедливый");
    set_gender("male");
-   add_adj("affectionate");
-   set_short("Harry the affectionate");
-   set_long("Harry has an agreeable look.");
+   set_short("Надоедливый Гарри");
+   set_long("Очень любопытный молодой человек. Наблюдает за вами не отрываясь.");
+   set_r_name("Гарри");
+   set_d_name("Гарри");
+   set_v_name("Гарри");
+   set_t_name("Гарри");
+   set_p_name("Гарри");   
    set_race("human");
    set_level(3);
    set_hit_skill("combat/unarmed");
@@ -22,26 +26,26 @@ void setup() {
    count = 0;
 
    a_str = ({
-      "say Don't hit men",
-      "say That hurt!",
-      "say Help, someone!",
-      "say Why can't you go bullying elsewhere?",
-      "say Aooooo!",
-      "say I hate bashers!\n",
-      "say Bastard\n",
-      "say You big brute!\n"            
+      "говорить Не надо драться!",
+      "говорить Это больно!",
+      "говорить Помогите кто-нибудь!",
+      "говорить Почему-бы тебе не обижать слабых в каком-нибудь другом месте?",
+      "говорить Нет!",
+      "говорить Я не люблю задир!\n",
+      "говорить Подонок!\n",
+      "говорить Ты - драчун!\n"            
    });
 
    na_str = ({
-      "say What are you waiting for?",
-      "say Hello there!",
-      "say I don't like winter.",
-      "say I don't like snow.",
-      "say I don't like rain.",
-      "say Who are you?",
-      "say Why do you look like that?",
-      "say What are you doing here?",
-      "say Nice weather, isn't it?",
+      "говорить Чего ты ждешь?",
+      "говорить Привет!",
+      "говорить Мне не нравится зима.",
+      "говорить Мне не нравится снег.",
+      "говорить Мне не нравится дождь.",
+      "говорить Кто ты?",
+      "говорить Почему ты так странно смотришь?",
+      "говорить Что ты делаешь здесь?",
+      "говорить Прекрасная погода, вы не находите?",
       "smile"
    });
 }
@@ -55,7 +59,7 @@ private int check_verb(string str, string verb) {
 }
 
 private int is_harry(string str) {
-   return lowercase(str) == "harry";
+   return lowercase(str) == "Гарри";
 }
 
 /* XXX get harry from vill_road2.c  Needs lots of work... */
@@ -66,20 +70,20 @@ private void why_did(string str) {
    if (is_harry(who)) {
       return;
    }
-   if (sscanf(what, "sells %*s") == 1) {
-      respond("say Why did you sell " + what);
+   if (sscanf(what, "продал %*s") == 1) {
+      respond("говорить Зачем ты продал " + what);
    }
-   if (sscanf(str, "%s attacks %s.", who, what) == 2) {
-      respond("say Why does " + who + " attack " + what + "?");
+   if (sscanf(str, "%s пытается убить %s.", who, what) == 2) {
+      respond("говорить Почему " + who + " пытается убить " + what + "?");
    }
-   if (sscanf(str, "%s left the game.", who) == 1) {
-      respond("say Why did " + who + " quit the game ?");
+   if (sscanf(str, "%s покинул игру.", who) == 1) {
+      respond("говорить Почему " + who + " вышел из игры?");
    }
-   if (sscanf(str, "%s takes %s.\n", who, what) == 2) {
-      respond("say Why did " + who + " take " + what + " ?");
+   if (sscanf(str, "%s взял %s.\n", who, what) == 2) {
+      respond("говорить Почему " + who + " взял " + what + " ?");
    }
-   if (sscanf(what, "drops %s.", tmp) == 1) {
-      respond("say Why did " + who + " drop " + tmp + "?");
+   if (sscanf(what, "выбросил %s.", tmp) == 1) {
+      respond("говорить Почему " + who + " бросил " + tmp + "?");
    }
 }
 
@@ -90,7 +94,7 @@ private void how_does_it_feel(string str) {
       return;
    }
    if (sscanf(str, "%s is now level %s.\n", who, what) == 2) {
-      respond("say How does it feel, being of level " + what + " ?");
+      respond("говорить How does it feel, being of level " + what + " ?");
    }
 }
 
@@ -113,8 +117,8 @@ private void say_hello(string str) {
    if (is_harry(who)) {
       return;
    }
-   if (check_verb(what, "appears") == 1 || check_verb(what, "enters") == 1) {
-      respond("say Hi " + who + ", nice to see you!");
+   if (check_verb(what, "появился") == 1 || check_verb(what, "пришел") == 1 || check_verb(what, "пришла") == 1 || check_verb(what, "пришло") == 1) {
+      respond("говорить Привет, " + who + ", рад видеть тебя!");
    }
 }
 
@@ -129,25 +133,25 @@ void handle_say(string str) {
    if (is_harry(a)) {
       return;
    }
-   if (sscanf(str, "%s says: %s\n", a, b) != 2) {
+   if (sscanf(str, "%s говорит: %s\n", a, b) != 2) {
       return;
    }
 
    str = lowercase(b);
 
-   if (contains("hello", str) || contains("hi", str) ||
-      contains("hello everybody", str)) {
-      message = "say Pleased to meet you!";
+   if (contains("привет", str) || contains("здравствуйте", str) ||
+      contains("привет всем", str)) {
+      message = "говорить Рад видеть вас!";
    }
-   if (contains("shut up", str)) {
-      message = "say Why do you want me to shut up ?";
+   if (contains("заткнись", str)) {
+      message = "говорить Почему ты хочешь, чтобы я замолчал?";
    }
-   if (contains("stay here", str) || contains("not follow", str) ||
-      contains("get lost", str)) {
-      message = "say Ok then.";
+   if (contains("стой здесь", str) || contains("не следуй", str) ||
+      contains("отстань", str)) {
+      message = "говорить Хорошо.";
    }
    if (!message) {
-      message = "say Why do you say '" + str + "'???";
+      message = "говорить Зачем ты говоришь '" + str + "'???";
    }
    respond(message);
 }
@@ -155,9 +159,9 @@ void handle_say(string str) {
 private void follow(string str) {
    string who, where;
 
-   if (sscanf(str, "%s leaves %s.\n", who, where) == 2) {
+   if (sscanf(str, "%s ушел на %s.\n", who, where) == 2) {
       if (!is_harry(who)) {
-         respond("go " + where);
+         respond("идти " + where);
       }
    }
 }
@@ -167,45 +171,45 @@ private void gives(string str) {
    int rand;
    object obj, next_obj, who_obj;
 
-   if (sscanf(str, "%s gives the %s to you.", who, what) != 2) {
+   if (sscanf(str, "%s дал %s гарри.", who, what) != 2) {
       return;
    }
 
-   if ((what == "firebreather" || what == "special" ||
-         what == "beer" || what == "bottle") && this_object()->present(what)) {
+   if ((what == "firebreather" || what == "специальное" ||
+         what == "пиво" || what == "бутылка") && this_object()->present(what)) {
       rand = random(4);
 
       if (rand == 0) {
          if (random(10) > 6) {
             respond("sigh");
-            respond("say I guess you're gonna kill me now.");
-            respond("drop all");
-            respond("go west");
+            respond("говорить Мне кажется, ты пытаешься убить меня.");
+            respond("бросить все");
+            respond("идти запад");
          }
       }
       if (rand == 1) {
-         respond("drink " + what);
+         respond("пить " + what);
       }
       if (rand == 2) {
-         respond("drop " + what);
+         respond("бросить " + what);
       }
       if (rand == 3) {
          obj = this_object()->present(what);
          if (obj) {
-            respond("give " + what + " to " + who);
+            respond("дать " + what + " " + who);
          }
       }
-   } else if (what == "corpse") {
-      respond("say HEY, bury your corpses yourself, asshole.");
+   } else if (what == "труп") {
+      respond("говорить Эй, таскай свой трупы сам, задница осла.");
       obj = this_object()->present(what);
       if (obj) {
-         respond("give corpse to " + who);
+         respond("дать труп " + who);
       }
    } else {
       if (this_object()->present(what)) {
          who_obj = this_object()->query_environment()->present(who);
          /* XXX sir, ma'am, creature... */
-         respond("say Thank you very much, sir.");
+         respond("говорить Большое вам спасибо.");
       }
    }
 }

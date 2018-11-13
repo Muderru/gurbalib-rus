@@ -5,13 +5,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The shore of Crescent Lake");
-   set_long("You are standing on the shore of Crescent Lake, a beautiful " +
-      "and clear lake.  Out in the center of the lake stands the Isle " +
-      "of the Magi.  A Trail leads into the forest to the east.  " +
-      "The shore of Crescent Lake continues north and south.");
+   set_short("Берег Лунного озера");
+   set_long("Вы стоите у отвесных скал красноватого оттенка, на севере и " +
+      "юге от вас мертвое озеро, а на востоке - высохший лес. Везде " +
+      "царит мрачная картина. Окружающая тишина лишь иногда прерывается " +
+      "дикими криками, полными боли и злобы.");
 
-   add_exit("north", DIR + "/rooms/south/sshore2.c");
-   add_exit("south", DIR + "/rooms/south/sshore4.c");
-   add_exit("east", DIR + "/rooms/south/sforst11.c");
+   add_exit("север", DIR + "/rooms/south/sshore2.c");
+   add_exit("юг", DIR + "/rooms/south/sshore4.c");
+   add_exit("восток", DIR + "/rooms/south/sforst11.c");
 }

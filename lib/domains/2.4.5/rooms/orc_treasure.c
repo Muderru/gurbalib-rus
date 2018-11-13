@@ -5,10 +5,14 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The orc treasury");
-   set_long("You are in the orc treasury.  It is normally heavily guarded.");
+   set_short("Сокровищница орков");
+   set_long("Вы зашли в невысокое помещение орков, стены которого покрыты " +
+   "примитивными рисунками и копотью от костра в центре комнаты. Здесь " +
+   "орки складируют свои сокровища, все то, что им удалось награбить в " +
+   "ближайших лесах. Среди разноцветных ракушек и блестящих камушков " +
+   "можно разглядеть горсти монет и ювелирные изделия.");
 
-   add_exit("south", DIR + "/rooms/fortress.c");
+   add_exit("юг", DIR + "/rooms/fortress.c");
 
    set_objects (DIR + "/monsters/orc_shayman.c");
 }

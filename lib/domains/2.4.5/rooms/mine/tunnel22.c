@@ -5,10 +5,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Tunnel");
-   set_long("Tunnel fork.");
+   set_short("Развилка");
+   set_long("Тут тянущийся с юга туннель раздваивается на два " +
+   "абсолютно одинаковых ответвления, ведущих в восточном и западном " +
+   "направлениях. Спертый воздух тут затрудняет дыхание и от него " +
+   "постоянно слезятся глаза, видимо вы уже слишком глубоко под землей.");
 
-   add_exit("south", DIR + "/rooms/mine/tunnel19.c");
-   add_exit("east", DIR + "/rooms/mine/tunnel23.c");
-   add_exit("west", DIR + "/rooms/mine/tunnel21.c");
+   add_exit("юг", DIR + "/rooms/mine/tunnel19.c");
+   add_exit("восток", DIR + "/rooms/mine/tunnel23.c");
+   add_exit("запад", DIR + "/rooms/mine/tunnel21.c");
 }

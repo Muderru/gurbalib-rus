@@ -7,7 +7,7 @@ string query_long() {
    string str;
 
    str = ::query_long();
-   str += " To the east the legendary Noki Cliffs loom large.";
+   str += " На востоке вы видите очертания легендарного Ноки Клиффа.";
    return str;
 }
 #endif
@@ -15,14 +15,14 @@ string query_long() {
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Plateau");
-   set_long("You are on a large, open plateau on top of the mountain.  " +
-      "The view is fantastic in all directions and the clouds that " +
-      "rush past above, feel so close you could almost touch them. " +
-      "The air here is fresh and clean.");
+   set_short("Высокогорное плато");
+   set_long("Вы на большом открытом плато недалеко от вершины горы. " +
+      "Фантастический вид дополняется пушистыми облаками, до которых " +
+      "кажется можно дотянуться рукой и погладить. С запада, с вершины" +
+      "горы дует сильный ледяной ветер.");
 
 #ifdef USE_NOKICLIFFS
-   add_exit("east", "/domains/nokicliffs/rooms/start.c");
+   add_exit("восток", "/domains/nokicliffs/rooms/start.c");
 #endif
-   add_exit("west", DIR + "/rooms/mount_top.c");
+   add_exit("запад", DIR + "/rooms/mount_top.c");
 }

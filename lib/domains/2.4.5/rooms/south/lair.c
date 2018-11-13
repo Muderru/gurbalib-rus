@@ -4,13 +4,13 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The bottom of the well");
-   set_long("You are standing at the bottom of the well.  " +
-      "About thirty feet below the surface.  Bones lie strewn about in a " +
-      "random fashion, many of them broken or shattered.  The only way out " +
-      "is the way in, back up the ladder.");
+   set_short("Дно колодца");
+   set_long("Вы стоите на дне колодца по пояс в воде. До поверхности " +
+      "примерно десять метров и придется потрудиться, чтобы добраться до " +
+      "нее по мокрым камням. Здесь валяется множество звериных и " +
+      "человеческих костей, на них видны следы огромных клыков и когтей.");
 
-   add_exit("up", DIR + "/rooms/south/sislnd17.c");
+   add_exit("вверх", DIR + "/rooms/south/sislnd17.c");
 
    set_objects(DIR + "/monsters/wyrm.c");
 }

@@ -7,11 +7,13 @@ void setup(void) {
    string name;
    add_area("2.4.5");
 
-   set_short("Humpbacked bridge");
-   set_long("An old humpbacked bridge.");
+   set_short("Покатый мост");
+   set_long("Вы находитесь на старом каменном мосту, перекинутым " +
+   "изящной аркой над небольшой речкой. Хотя камни моста покрыты " +
+   "густым мхом, он кажется достаточно крепким и безопасным.");
 
-   add_exit("east", DIR + "/rooms/vill_green.c");
-   add_exit("west", DIR + "/rooms/wild1.c");
+   add_exit("восток", DIR + "/rooms/vill_green.c");
+   add_exit("запад", DIR + "/rooms/wild1.c");
 
    set_objects (DIR + "/obj/torch.c");
 

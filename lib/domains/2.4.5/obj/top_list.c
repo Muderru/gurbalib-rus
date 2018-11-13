@@ -2,8 +2,15 @@ inherit "/std/sign";
 
 
 void setup(void) {
-   set_id("list", "top", "top players", "top list", "list of top players");
-   set_short("A list of the top players");
+   set_id("список", "топ", "топ игроков", "топ список", "список лучших игроков");
+   set_short("Список лучших игроков");
+   set_obj_i_name("список");
+   set_obj_r_name("списка");
+   set_obj_d_name("списку");
+   set_obj_v_name("список");
+   set_obj_t_name("списком");
+   set_obj_p_name("списке");
+   set_obj_gender("male");
    set_gettable(1);
    set_value(5);
    set_weight(1);
@@ -18,14 +25,14 @@ string query_long() {
 
    top_scores = TOP_SCORE_D->get("");
    if (nilp(top_scores)) {
-      return "There have been no top scores generated yet. " +
-         "Start adventuring!";
+      return "Пока еще никто не набрал очков. " +
+         "Пора попытать удачу!";
    }
    dim = sizeof(top_scores);
 
    lines = allocate(dim + 2);
 
-   lines[0] = "Top Ten Players list";
+   lines[0] = "10 лучших игроков:";
    lines[1] = "-------------------------------------------";
 
    for (i = 0; i < dim; i++) {

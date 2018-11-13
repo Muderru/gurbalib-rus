@@ -6,18 +6,27 @@ void goto_the(string location, string dir) {
    string error;
      
    event("body_leave", this_player());
-   this_player()->query_environment()->tell_room(this_player(), 
-      this_player()->query_Name() + " leaves " + dir + ".\n");
+   if (this_player()->query_gender() == "male") {
+      this_player()->query_environment()->tell_room(this_player(), 
+        this_player()->query_Name() + " ушел на " + dir + ".\n");
+   } else if (this_player()->query_gender() == "female") {
+      this_player()->query_environment()->tell_room(this_player(), 
+        this_player()->query_Name() + " ушла на " + dir + ".\n");
+   } else {
+      this_player()->query_environment()->tell_room(this_player(), 
+        this_player()->query_Name() + " ушло на " + dir + ".\n");
+   }
+
    error = catch(this_player()->move(location));
 
    /* Need to do last exit stuff XXX */
 
    if (error) {
       if (query_wizard(this_player()) == 1) {
-         write("\nConstruction blocks your path.\n" + "Error: " + error + "\n");
+         write("\nПрипятствие не дает вам пройти.\n" + "Ошибка: " + error + "\n");
          return;
       } else {
-         write ("\nConstruction blocks your path.\n");
+         write ("\nПрипятствие не дает вам пройти.\n");
       }
    }
 
@@ -25,5 +34,12 @@ void goto_the(string location, string dir) {
 
    room = this_player()->query_environment();
    room->event("body_enter", this_player());
-   room->tell_room(this_player(), this_player()->query_Name()  + " enters.\n");
+   if (this_player()->query_gender() == "male") {
+       room->tell_room(this_player(), this_player()->query_Name()  + " пришел.\n");
+   } else if (this_player()->query_gender() == "female") {
+       room->tell_room(this_player(), this_player()->query_Name()  + " пришла.\n");
+   } else {
+       room->tell_room(this_player(), this_player()->query_Name()  + " пришло.\n");
+   }   
+
 }

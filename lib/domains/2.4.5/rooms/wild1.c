@@ -5,10 +5,12 @@ inherit "/std/room";
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("Wilderness");
-   set_long("You are in the wilderness outside the village.  There is a big " +
-      "forest to the west.");
+   set_short("Пустырь");
+   set_long("Тут расположен заросший бурьяном пустырь около деревни. " +
+      "На западе вы видите дикий лес, в котором вероятно водятся хищники " +
+      "или какие-нибудь твари пострашнее. Отдаляться от деревни не будет " +
+      "хорошей идеей.");
 
-   add_exit("east", DIR + "/rooms/hump.c");
-   add_exit("west", DIR + "/rooms/forest1.c");
+   add_exit("восток", DIR + "/rooms/hump.c");
+   add_exit("запад", DIR + "/rooms/forest1.c");
 }

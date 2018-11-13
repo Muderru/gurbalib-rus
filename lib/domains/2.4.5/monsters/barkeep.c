@@ -3,11 +3,16 @@
 inherit "/std/vendor";
 
 void setup(void) {
-   set_name("barkeeper");
-   add_ids("barkeep", "lazyeye", "shopkeeper", "merchant");
+   set_name("бармен");
+   add_ids("косоглазый", "хозяин бара", "торговец");
    set_gender("male");
-   set_short("Lazyeye, the barkeeper");
-   set_long("He really doesn't like people staring at him.");
+   set_short("Косоглазый бармен");
+   set_long("Он не слишком то любит, когда люди на него пялятся. Но пойло у него отменное.");
+   set_r_name("бармена");
+   set_d_name("бармену");
+   set_v_name("бармена");
+   set_t_name("барменом");
+   set_p_name("бармене");   
    set_race("human");
    set_level(15);
 

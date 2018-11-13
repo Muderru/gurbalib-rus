@@ -8,62 +8,78 @@ string key;
 void setup(void) {
    add_area("2.4.5");
 
-   set_short("The bank");
-   set_long("You are in the bank.  To the east is a low counter.  The " +
-      "counter is covered with heavy iron bars.  On the wall beside " +
-      "the counter, a door leads further east");
+   set_short("Банк");
+   set_long("Вы зашли в банк. На востоке находится низкая стойка, " +
+      "которая перегорожена толстыми железными прутьями. В стене " +
+      "за стойкой вы видите дверь, ведущую в глубь банка.");
 
-   add_exit("west", DIR + "/rooms/narr_alley.c");
-   add_exit("east", "#enter_door");
+   add_exit("запад", DIR + "/rooms/narr_alley.c");
+   add_exit("восток", "#enter_door");
 
-   add_item("counter", "There is a sign on the counter that says\n" +
-      "CLOSED FOR RECONSTRUCTION.\n");
+   add_item("стойка", "На стойке висит большая табличка:\n" +
+      "ЗАКРЫТО НА РЕКОНСТРУКЦИЮ.\n");
 
-   add_item("door", "#look_door");
+   add_item("дверь", "#look_door");
 
    set_objects (DIR + "/monsters/bankguard.c");
    door_closed = 1;
    locked = 1;
-   key = "gurba bank key";
+   key = "банковский ключ";
 }
 
 /* Need to attach these commands to a user... */
 
 string look_door() {
    if (!door_closed) {
-      return "The door is open.";
+      return "Дверь открыта.";
    }
-   return "The door is closed.";
+   return "Дверь закрыта.";
 }
 
 int open_door() {
    if (locked) {
-      write("The door is locked.\n");
+      write("Дверь заперта.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the locked door.\n");
+         " возится с запертой дверью.\n");
    } else if (door_closed) {
       door_closed = 0;
-      write("You open the door.\n");
+      write("Вы открыли дверь.\n");
+      if (this_player()->query_gender() == "male") {
       tell_room(this_player(), this_player()->query_Name() + 
-         " opens the door.\n");
+         " открыл дверь.\n");
+      } else if (this_player()->query_gender() == "female") {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " открыла дверь.\n");
+      } else {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " открыло дверь.\n");
+      }      
    } else {
-      write("The door is already open.\n");
+      write("Дверь уже открыта.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the open door.\n");
+         " возится с открытой дверью.\n");
    }
    return 1;
 }
 
 int close_door() {
    if (door_closed) {
-      write("The door is already closed.\n");
+      write("Дверь уже закрыта.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the closed door.\n");
+         " возится с закрытой дверью.\n");
    } else {
       door_closed = 1;
-      write("You close the door.\n");
+      write("Вы закрыли дверь.\n");
+      if (this_player()->query_gender() == "male") {
       tell_room(this_player(), this_player()->query_Name() + 
-         " closes door.\n");
+         " закрыл дверь.\n");
+      } else if (this_player()->query_gender() == "female") {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " закрыла дверь.\n");
+      } else {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " закрыло дверь.\n");
+      } 
    }
    return 1;
 }
@@ -81,39 +97,55 @@ int has_key(string str) {
 
 int unlock_door() {
    if (!locked) {
-      write("The door is already unlocked.\n");
+      write("Дверь уже не заперта.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the door.\n");
+         " возится с дверью.\n");
    } else if (has_key(key)) {
-      write("You unlock the door.\n");
+      write("Вы отперли дверь.\n");
+      if (this_player()->query_gender() == "male") {
       tell_room(this_player(), this_player()->query_Name() + 
-         " unlocks the door.\n");
+         " отпер дверь.\n");
+      } else if (this_player()->query_gender() == "female") {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " отперла дверь.\n");
+      } else {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " отперло дверь.\n");
+      }      
       locked = 0;
    } else {
-      write("You can't find the key for that door.\n");
+      write("Вы не можете найти ключ от этой двери.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the door.\n");
+         " возится с дверью.\n");
    }
 }
 
 int lock_door() {
    if (locked) {
-      write("The door is already locked.\n");
+      write("Дверь уже заперта.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the door.\n");
+         " возится с дверью.\n");
    } else if (!door_closed) {
-      write("The door is open, you can't lock it when it's open.\n");
+      write("Дверь открыта, ее сейчас нельзя запереть.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the door.\n");
+         " возится с дверью.\n");
    } else if (has_key(key)) {
-      write("You lock the door.\n");
+      write("Вы заперли дверь.\n");
+      if (this_player()->query_gender() == "male") {
       tell_room(this_player(), this_player()->query_Name() + 
-         " locks the door.\n");
+         " запер дверь.\n");
+      } else if (this_player()->query_gender() == "female") {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " заперла дверь.\n");
+      } else {
+      tell_room(this_player(), this_player()->query_Name() + 
+         " заперло дверь.\n");
+      }      
       locked = 1;
    } else {
-      write("You can't find the key for that door.\n");
+      write("Вы не можете найти ключ от этой двери.\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " fiddles with the door.\n");
+         " возится с дверью.\n");
    }
 }
 
@@ -122,9 +154,9 @@ int enter_door() {
 /* XXX domove isn't done yet */
       /* return domove(DIR + "/rooms/bankroom.c", usermsg, othermsg); */
    } else {
-      write("The door is closed.  Maybe you should open it first.\n");
+      write("Дверь закрыта. Может быть сначала следует ее открыть?\n");
       tell_room(this_player(), this_player()->query_Name() + 
-         " walks right into the closed door, with a SMACK.\n");
+         " безуспешно пытается войти в закрытую дверь.\n");
    }
    return 1;
 }

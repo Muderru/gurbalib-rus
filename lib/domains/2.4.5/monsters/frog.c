@@ -5,10 +5,16 @@ inherit "/std/monster";
 void setup() {
    object obj;
 
-   set_name("frog");
-   add_adj("cute");
-   set_short("A cute little frog");
-   set_long("It looks a little slimy.");
+   set_name("маленькая лягушка");
+   add_ids("лягушка", "маленькая");
+   set_short("Маленькая лягушка");
+   set_long("Мерзкая слизистая тварь, уставилась на вас не моргая.");
+   set_r_name("маленькой лягушки");
+   set_d_name("маленькой лягушке");
+   set_v_name("маленькую лягушку");
+   set_t_name("маленькой лягушкой");
+   set_p_name("маленькой лягушке");
+   set_gender( "female" );
    set_race("frog");
    set_level(2);
    set_hit_skill("combat/unarmed");

@@ -6,20 +6,24 @@ inherit "/std/modules/m_triggers";
 void setup() {
    object obj;
 
-   set_name("shayman");
-   set_gender( "female" );
-   add_adj("orc");
-   add_ids("orc", "orc shayman");
-   set_short("Orc shayman");
-   set_long("An ugly orc shayman.  This thing looks wilder than your average " +
-      "orc.");
+   set_name("шаман");
+   set_gender( "male" );
+   add_ids("орк", "шаман", "шаман орков");
+   set_short("Шаман орков");
+   set_long("Вы видите уродливого шамана орков. Он намного шире " +
+      "обычных орков.");
+   set_r_name("шамана орков");
+   set_d_name("шаману орков");
+   set_v_name("шамана орков");
+   set_t_name("шаманом орков");
+   set_p_name("шамане орков");
    set_race("orc");
    set_level(10);
    set_aggressive(1);
 
    set_spell_chance(20);
    set_spell_damage(20);
-   set_spell_message("The shayman casts a magic missile at $t.");
+   set_spell_message("Шаман орков запускает магический снаряд в $w.");
 
    set_hit_skill("combat/unarmed");
    set_skill("combat/unarmed", 50);
