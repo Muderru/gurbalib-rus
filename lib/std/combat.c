@@ -55,7 +55,7 @@ void add_killed_by(object who, int t) {
 
    killed_by[t] = who->file_name();
 #ifdef DO_STATS
-   str = "killed: " + this_object()->file_name() + " by " +
+   str = "убит: " + this_object()->file_name() + " " +
    who->query_Name() + "(" + who->file_name() + "):" + t + "\n";
    LOG_D->write_log("stats.raw", str);
 #endif
@@ -105,7 +105,7 @@ int run_away(void) {
    if (!empty_str(wimpy_dir) &&
       this_object()->query_environment()->query_exit(wimpy_dir)) {
 
-      write("You attempt to run " + wimpy_dir + ".\n");
+      write("Вы попытались сбежать на " + wimpy_dir + ".\n");
       error = this_object()->this_environment()->body_exit(this_object(),
          wimpy_dir);
       if (error) {
@@ -116,7 +116,7 @@ int run_away(void) {
    } else if (!empty_str(wimpy_dir) &&
       this_object()->query_environment()->query_hidden_exit(wimpy_dir)) {
 
-      write("You attempt to run " + wimpy_dir + ".\n");
+      write("Вы попытались сбежать на " + wimpy_dir + ".\n");
       error = this_object()->this_environment()->body_exit(this_object(),
          wimpy_dir);
       if (error) {
@@ -130,15 +130,15 @@ int run_away(void) {
       if (exits) {
          x = sizeof(exits);
          if (x < 1) {
-            write("You attempt to run away but can not find " + "an exit.\n");
+            write("Вы попытались сбежать из боя, но не нашли " + "пути.\n");
          } else {
             if (x > 1) {
                y = random(x);
             } else {
                y = 0;
             }
-            this_object()->message("RUNAWAY : " + exits[y] + "\n");
-            write("You attempt to run " + exits[y] + ".\n");
+            this_object()->message("УБЕЖАТЬ : " + exits[y] + "\n");
+            write("Вы попытались сбежать на " + exits[y] + ".\n");
             error = this_object()->this_environment()->body_exit(this_object(),
                exits[y]);
             if (error) {
@@ -148,7 +148,7 @@ int run_away(void) {
             }
          }
       } else {
-         write("You attempt to run away but can not find " + "an exit.\n");
+         write("Вы попытались сбежать из боя, но не нашли " + "пути.\n");
       }
    }
    return 0;
@@ -157,8 +157,8 @@ int run_away(void) {
 void receive_damage(object who, int dam) {
    int x, when;
 
-   this_object()->message("%^RED%^You took " + dam + " damage from " +
-      who->query_id() + ".%^RESET%^");
+   this_object()->message("%^RED%^Вы получили " + dam + " урона от " +
+      who->query_r_name() + ".%^RESET%^");
 
    if (this_object()->query_hp() <= dam) {
       x = this_object()->query_max_hp();
@@ -230,7 +230,7 @@ int do_swing(int me) {
    opponent_roll = random(opponent + 1);
 
 #ifdef DEBUG_COMBAT
-   this_object()->message("Roll [%^RED%^" + me_roll + "%^RESET%^/%^GREEN%^" +
+   this_object()->message("Бросок [%^RED%^" + me_roll + "%^RESET%^/%^GREEN%^" +
       me + "%^RESET%^  vs %^RED%^" + opponent_roll + "%^RESET%^/%^GREEN%^" +
       opponent + "%^RESET%^]");
 #endif
@@ -303,8 +303,8 @@ private void handle_performance_enhancement_expires() {
    if (this_object()->has_performance_enhancement()) {
       this_object()->decrease_performance_enhancement(1);
       if (!this_object()->has_performance_enhancement()) {
-         this_object()->message("You no longer feel like you could " +
-            "fight forever.");
+         this_object()->message("Вы не думаете, что сможете сражаться " +
+            "вечно.");
       }
    }
 }
@@ -321,7 +321,7 @@ void attack_with(string skill, object weapon, object target) {
 
    me = this_object()->query_end();
    if (me < ATTACK_COST) {
-      this_object()->message("You are too tired to attack.\n");
+      this_object()->message("Вы слишком устали для боя.\n");
       return;
    } else {
       handle_performance_enhancement_expires();
@@ -346,7 +346,7 @@ void attack_with(string skill, object weapon, object target) {
          this_object()->query_skill("combat/unarmed") / 2;
          if (tmp <= target->query_skill("combat/defense")) {
             this_object()->learn_skill(this_object()->query_hit_skill());
-            this_object()->message("Learn: hit_skill, " +
+            this_object()->message("Теперь вы лучше владеете умением " +
                this_object()->query_skill("combat/unarmed"));
          }
 
@@ -354,12 +354,12 @@ void attack_with(string skill, object weapon, object target) {
          damage = target->after_damage_hook(this_object(), nil, damage);
 
          if (damage == 0) {
-            this_object()->targeted_action("$N $v" +
-               this_object()->query_hit_string() + " $T, but $vdo no " +
-               "damage!", target);
+            this_object()->targeted_action("$N " +
+               this_object()->query_hit_string() + " $w, но не нанес " +
+               "урона!", target);
          } else {
-            this_object()->targeted_action("$N $v" +
-               this_object()->query_hit_string() + " $T.", target);
+            this_object()->targeted_action("$N " +
+               this_object()->query_hit_string() + " $w.", target);
          }
       } else {
          damage = this_object()->query_statbonus("str") +
@@ -368,7 +368,7 @@ void attack_with(string skill, object weapon, object target) {
             this_object()->query_skill(weapon->query_weapon_skill()) / 2;
          if (tmp <= target->query_skill("combat/defense")) {
             this_object()->learn_skill(weapon->query_weapon_skill());
-            this_object()->message("Learn: hit_skill, " +
+            this_object()->message("Теперь вы лучше владеете умением " +
                this_object()->query_skill(weapon->query_weapon_skill()));
          }
 
@@ -377,12 +377,12 @@ void attack_with(string skill, object weapon, object target) {
 
          if (damage == 0) {
             this_object()->targeted_action("$N " + 
-               "$v" + weapon->query_weapon_action() + " $T with a " +
-               weapon->query_id() + ", but $vdo no damage!", target);
+               " " + weapon->query_weapon_action() + " $w " +
+               weapon->query_obj_t_name() + ", но не нанес урона!", target);
          } else {
             this_object()->targeted_action("$N " +
-               "$v" + weapon->query_weapon_action() + " $T with a " +
-               weapon->query_id() + ".", target);
+               " " + weapon->query_weapon_action() + " $w " +
+               weapon->query_obj_t_name() + ".", target);
          }
       }
 
@@ -395,9 +395,9 @@ void attack_with(string skill, object weapon, object target) {
       }
 
       if (!miss) {
-         this_object()->targeted_action("$N $vmiss $T.", target);
+         this_object()->targeted_action("$N не попал по $d.", target);
       } else {
-         this_object()->targeted_action("$N " + miss + " $T.", target);
+         this_object()->targeted_action("$N " + miss + "по $d.", target);
       }
 
       if (!weapon) {
@@ -409,7 +409,7 @@ void attack_with(string skill, object weapon, object target) {
       }
       if (target->query_skill("combat/defense") <= tmp) {
          target->learn_skill("combat/defense");
-         target->message("Learn: defense, " +
+         target->message("Теперь вы лучше владеете умением " +
             this_object()->query_skill("combat/defense"));
       }
    }
@@ -423,9 +423,9 @@ void cast_spell(object target) {
 
    message = this_object()->query_spell_message();
    if (!message || (message == "")) {
-      message = "Casts an unamed spell at $t.";
+      message = "Колдует неизвестное заклинание в $w.";
    }
-   message = replace_string(message, "$t", target->query_name());
+   message = replace_string(message, "$w", target->query_v_name());
 
    target->query_environment()->tell_room(this_object(), message);
 
@@ -458,18 +458,18 @@ string get_status(object thing) {
    tmp = thing->query_hp();
    tmpmax = thing->query_max_hp();
    col = get_color(tmp, tmpmax);
-   line = col + "HP[" + tmp + "/" + tmpmax + "]%^RESET%^";
+   line = col + "ЖИЗНЬ[" + tmp + "/" + tmpmax + "]%^RESET%^";
 
    tmp = thing->query_mana();
    tmpmax = thing->query_max_mana();
    col = get_color(tmp, tmpmax);
-   line += " " + col + "MANA[" + tmp + "/" + tmpmax + "]%^RESET%^";
+   line += " " + col + "МАНА[" + tmp + "/" + tmpmax + "]%^RESET%^";
 
    tmp = thing->query_end();
    tmpmax = thing->query_max_end();
    col = get_color(tmp, tmpmax);
-   line += " " + col + "END[" + tmp + "/" + tmpmax + "]%^RESET%^";
-   line += "\tEXP: " + thing->query_expr();
+   line += " " + col + "БОДРОСТЬ[" + tmp + "/" + tmpmax + "]%^RESET%^";
+   line += "\tОПЫТ: " + thing->query_expr();
 
    return line;
 }
@@ -552,7 +552,7 @@ string *summarise_killers(void) {
    killers = ({ });
 
    done = 0;
-   lines = ({ "Summary of your killers:" });
+   lines = ({ "Статистика ваших убийств:" });
    lines += ({ "------------------------" });
 
    for (i = 0, dim = sizeof(killed_times); i < dim; i++) {
@@ -571,14 +571,14 @@ string *summarise_killers(void) {
    }
 
    if (!done) { 
-      lines += ({ "So far you have been spared, count yourself lucky.\n" });
+      lines += ({ "Пока вас пощадили, считайте себя счастливчиком.\n" });
    } else {
 
       killers = map_indices(killer_count);
       dim = sizeof(killers);
       for (i = 0; i < dim; i++) {
-         lines += ({ killers[i] + " killed you " +
-            killer_count[killers[i]] + " time(s).\n" });
+         lines += ({ killers[i] + " убил вас " +
+            killer_count[killers[i]] + " раз.\n" });
       }
    }
 
