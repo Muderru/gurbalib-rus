@@ -346,7 +346,7 @@ void attack_with(string skill, object weapon, object target) {
          this_object()->query_skill("combat/unarmed") / 2;
          if (tmp <= target->query_skill("combat/defense")) {
             this_object()->learn_skill(this_object()->query_hit_skill());
-            this_object()->message("Теперь вы лучше владеете умением " +
+            this_object()->message("Вы улучшили ваш рукопашный бой до " +
                this_object()->query_skill("combat/unarmed"));
          }
 
@@ -354,9 +354,19 @@ void attack_with(string skill, object weapon, object target) {
          damage = target->after_damage_hook(this_object(), nil, damage);
 
          if (damage == 0) {
-            this_object()->targeted_action("$N " +
-               this_object()->query_hit_string() + " $w, но не нанес " +
-               "урона!", target);
+             if (this_object()->query_gender() == "male") {
+               this_object()->targeted_action("$N " +
+                this_object()->query_hit_string() + " $w, но не нанес " +
+                "урона!", target);
+             } else if (this_object()->query_gender() == "female") {
+               this_object()->targeted_action("$N " +
+                this_object()->query_hit_string() + " $w, но не нанесла " +
+                "урона!", target);
+             } else {
+               this_object()->targeted_action("$N " +
+                this_object()->query_hit_string() + " $w, но не нанесло " +
+                "урона!", target);
+             }
          } else {
             this_object()->targeted_action("$N " +
                this_object()->query_hit_string() + " $w.", target);
@@ -368,7 +378,7 @@ void attack_with(string skill, object weapon, object target) {
             this_object()->query_skill(weapon->query_weapon_skill()) / 2;
          if (tmp <= target->query_skill("combat/defense")) {
             this_object()->learn_skill(weapon->query_weapon_skill());
-            this_object()->message("Теперь вы лучше владеете умением " +
+            this_object()->message("Вы улучшили владение оружием до " +
                this_object()->query_skill(weapon->query_weapon_skill()));
          }
 
@@ -376,9 +386,19 @@ void attack_with(string skill, object weapon, object target) {
          damage = target->after_damage_hook(this_object(), weapon, damage);
 
          if (damage == 0) {
-            this_object()->targeted_action("$N " + 
-               " " + weapon->query_weapon_action() + " $w " +
-               weapon->query_obj_t_name() + ", но не нанес урона!", target);
+             if (this_object()->query_gender() == "male") {
+               this_object()->targeted_action("$N " + 
+                 " " + weapon->query_weapon_action() + " $w " +
+                 weapon->query_obj_t_name() + ", но не нанес урона!", target);
+             } else if (this_object()->query_gender() == "female") {
+               this_object()->targeted_action("$N " + 
+                 " " + weapon->query_weapon_action() + " $w " +
+                 weapon->query_obj_t_name() + ", но не нанесла урона!", target);
+             } else {
+               this_object()->targeted_action("$N " + 
+                 " " + weapon->query_weapon_action() + " $w " +
+                 weapon->query_obj_t_name() + ", но не нанесло урона!", target);
+             }
          } else {
             this_object()->targeted_action("$N " +
                " " + weapon->query_weapon_action() + " $w " +
@@ -395,7 +415,14 @@ void attack_with(string skill, object weapon, object target) {
       }
 
       if (!miss) {
-         this_object()->targeted_action("$N не попал по $d.", target);
+        if (this_object()->query_gender() == "male") {
+          this_object()->targeted_action("$N не попал по $d.", target);
+        } else if (this_object()->query_gender() == "female") {
+          this_object()->targeted_action("$N не попала по $d.", target);
+        } else {
+          this_object()->targeted_action("$N не попало по $d.", target);
+        }
+
       } else {
          this_object()->targeted_action("$N " + miss + "по $d.", target);
       }
@@ -409,7 +436,7 @@ void attack_with(string skill, object weapon, object target) {
       }
       if (target->query_skill("combat/defense") <= tmp) {
          target->learn_skill("combat/defense");
-         target->message("Теперь вы лучше владеете умением " +
+         target->message("Вы улучшили ваше защитное умение до " +
             this_object()->query_skill("combat/defense"));
       }
    }
