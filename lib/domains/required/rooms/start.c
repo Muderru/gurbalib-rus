@@ -15,4 +15,8 @@ void setup(void) {
       "восток" : "/domains/boothill/rooms/outside_town",
       "запад" : "/domains/gurba/rooms/gate_east",
    ]));
+   
+   set_objects(
+      "/domains/required/objects/chest"
+   );
 }
