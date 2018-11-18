@@ -11,7 +11,7 @@ void setup(void) {
    "хищников среди нет. В нескольких метрах под вами вы можете " +
    "разглядеть дно, к нему можно нырнуть.");
 
-   add_exit("west", DIR + "/rooms/jetty2.c");
+   add_exit("запад", DIR + "/rooms/jetty2.c");
 
    add_action("dive", "нырнуть");
 }
